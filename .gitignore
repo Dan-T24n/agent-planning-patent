@@ -1,0 +1,12 @@
+
+__pycache__/
+.DS_Store
+
+# environment
+.cursor/
+.venv/
+.env
+
+# folders
+data/
+tests/

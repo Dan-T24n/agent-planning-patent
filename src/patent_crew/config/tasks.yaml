@@ -1,0 +1,43 @@
+patent_analysis_task:
+  description: >
+    Analyze the patent data, which has been pre-loaded from a JSON file as a knowledge source.
+    Focus on understanding the patent's abstract, claims, and description.
+    Extract the following:
+    1. The core invention and the problem it solves.
+    2. Key technical components and methodologies described in the patent.
+    3. Any explicitly mentioned advantages or novel aspects of the invention.
+  expected_output: >
+    A structured summary detailing the patent's core technology, the problem it addresses,
+    its solution, and its key distinguishing features. This summary will serve as context
+    for the product manager.
+  agent: patent_analyst
+
+product_creation_task:
+  description: >
+    Using the structured summary provided by the patent analyst (available in context),
+    develop a product concept. Your output must be a JSON object.
+    Specifically, create the following fields:
+    - product_title: A concise name for the product (up to 100 characters).
+    - product_description: A brief explanation of the product outlining its essential features
+      and functions, the target users, their needs, and the benefits provided by the product
+      (up to 300 characters).
+    - implementation: An explanation describing how the patent's technology will be
+      implemented into the product (up to 300 characters).
+    - differentiation: An explanation highlighting what makes the product unique and why it
+      stands out from existing solutions (up to 300 characters).
+  expected_output: >
+    A JSON object containing the publication_number (use "US-2020073983-A1"),
+    title (for the product, map to 'product_title' from your task),
+    product_description, implementation, and differentiation.
+    The JSON structure should be exactly:
+    {
+      "publication_number": "US-2020073983-A1",
+      "title": "<Your Product Title>",
+      "product_description": "<Your Product Description>",
+      "implementation": "<Your Implementation Explanation>",
+      "differentiation": "<Your Differentiation Explanation>"
+    }
+  agent: product_manager
+  context:
+    - patent_analysis_task
+  output_file: output/nlp/US-2020073983-A1_output.json 

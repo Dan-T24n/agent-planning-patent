@@ -1,0 +1,26 @@
+[project]
+name = "patent_crew"
+version = "0.1.0"
+description = "patent-crew using crewAI"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[knowledge,tools]>=0.121.1,<1.0.0",
+    "arize-phoenix >= 7.0.1",
+    "docling>=2.34.0",
+    "python-dotenv>=1.1.0",
+    "crewai-tools>=0.45.0",
+]
+
+[project.scripts]
+patent_crew = "patent_crew.main:run"
+run_crew = "patent_crew.main:run"
+train = "patent_crew.main:train"
+replay = "patent_crew.main:replay"
+test = "patent_crew.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
