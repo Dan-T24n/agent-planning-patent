@@ -39,3 +39,5 @@ We build a multi-agents workflow to read patent data and make potential product 
 
 # Technology
 
+Use CrewAI documentation for central concepts: Agents, Task, Crew, Knowledge
+Search information at entry point: https://docs.crewai.com/concepts/

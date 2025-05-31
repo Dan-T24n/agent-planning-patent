@@ -22,16 +22,22 @@ Example output:
 }
 ```
 
-# Task: implement simple multi-agent workflow, with 2 agents
+# Task: upgrade current simple 2-agent workflow: feed input path to ingest files
 
-1. Read and understand the current simple example in `./src/patent_crew`
-2. Read the input from `knowledge/nlp/pdf_and_image/US-2020073983-A1`, the publication_number is `US-2020073983-A1`
+1. Read and understand the current example in `./src/patent_crew`
 
-3. Agent workflow design:
+2. Read the input from `knowledge/nlp/pdf_and_image/{publication_number}/{json, pdf and images}`, e.g. the publication_number is `US-2020073983-A1`
+2.1 First, create a list all possible {publication_number} by indexing knowledge/nlp/pdf_and_image/
+2.2 We want to feed the input_path upto {publication_number}/  as input, so that we can ingest different files 
+- use `CrewDoclingSource` for pdf file 
+- use `JSONKnowledgeSource` for Json file (already done)
+- ignore images files for now
+
+1. Agent workflow design:
 3.1 patent analyst:
-   - Task: Analyze the patent data from the provided JSON file.
-   - Input: Reads the JSON file located at `knowledge/nlp/pdf_and_image/US-2020073983-A1/US-2020073983-A1.json` (assuming the JSON file is named after the publication_number within its directory).
-   - Action: Ingests the JSON content using `JSONKnowledgeSource` to understand the patent's details, including its abstract, claims, and description.
+   - Task: Analyze the patent data from the provided files.
+   - Input: file path `knowledge/nlp/pdf_and_image/{publication_number}` (assuming both the JSON adn PDF file is named after the publication_number within its directory, e.g. `US-2020073983-A1`).
+   - Action: Ingests the JSON and PDF content to understand the patent's details, including its abstract, claims, and description.
    - Responsibilities:
      - Extract the core invention and problem solved.
      - Identify key technical components and methodologies described.

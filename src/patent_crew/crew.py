@@ -3,6 +3,7 @@ from typing import List # Added for type hinting
 from crewai import Agent, Task, Crew, Process
 from crewai.project import CrewBase, agent, crew, task
 from crewai.knowledge.source.json_knowledge_source import JSONKnowledgeSource
+from crewai_tools import SerperDevTool
 
 # Ensure the output directory exists
 output_dir = "output/nlp"
@@ -15,7 +16,7 @@ class PatentAnalysisCrew():
     tasks_config = 'config/tasks_nlp.yaml'
 
     # Type hints for agents and tasks lists, to be populated by decorators
-    agents: List[Agent] 
+    agents: List[Agent]
     tasks: List[Task]
 
     # Define the JSONKnowledgeSource
@@ -23,10 +24,17 @@ class PatentAnalysisCrew():
     patent_json_path = "nlp/pdf_and_image/US-2020073983-A1/US-2020073983-A1.json"
     json_knowledge_source = JSONKnowledgeSource(file_paths=[patent_json_path])
 
+    # Instantiate tools
+    search_tool = SerperDevTool(
+        country="us",
+        n_results=5
+    )
+
     @agent
     def patent_analyst(self) -> Agent:
         return Agent(
             config=self.agents_config['patent_analyst'],
+            tools=[self.search_tool],
             verbose=True
         )
 
@@ -34,6 +42,7 @@ class PatentAnalysisCrew():
     def product_manager(self) -> Agent:
         return Agent(
             config=self.agents_config['product_manager'],
+            tools=[self.search_tool],
             verbose=True
         )
 

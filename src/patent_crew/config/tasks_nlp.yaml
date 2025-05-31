@@ -1,54 +1,70 @@
 patent_analysis_task:
   description: >
-    Perform an in-depth Natural Language Processing (NLP) analysis of the patent data
-    (pre-loaded from a JSON knowledge source). Focus on:
+    Perform an in-depth analysis of the patent data (from JSON, image, and pdf depening on available data). Focus on:
     1.  Identifying core inventive concepts and the specific problem solved, paying close
-        attention to semantic nuances and technical terminology.
-    2.  Extracting key technical components, methodologies, and any mentioned algorithms
-        or data structures using NLP techniques like Named Entity Recognition (NER) and
-        relation extraction.
+        attention to semantic nuances and specific technical terminology.
+    2.  Extracting key technical components, specific methodologies (e.g., algorithms, 
+        data processing steps, model architectures if mentioned), and any explicitly named 
+        algorithms or data structures. Keep exact technical terms as they are in the patent when it comes to technical terms.
     3.  Pinpointing explicitly stated advantages, novel aspects, and potential applications,
-        supported by textual evidence and sentiment analysis where applicable.
-    4.  Summarizing any claims related to language understanding, generation, or processing
-        if present in the patent.
+        supported by textual evidence and sentiment analysis of relevant phrases where applicable.
+    4.  Utilizing web search capabilities to understand the broader technical landscape of the patent's domain,
+        clarify highly specialized terminologies if necessary, or identify closely related published concepts or prior art.
+        Use a maximum of 5 search attempts.
+    5.  Summarizing any claims specifically related to language understanding, generation, 
+        information retrieval, or text processing if present in the patent.
   expected_output: >
-    A structured, NLP-enhanced summary detailing:
-    - The patent's core technology from an NLP perspective (e.g., text summarization,
-      machine translation, sentiment analysis features if applicable).
-    - The specific problem it addresses and the proposed linguistic/algorithmic solution.
-    - Key distinguishing features and technical entities identified via NLP.
-    - A concise list of claims or functionalities that leverage language processing.
-    This summary will serve as context for the NLP-focused Product Strategist.
+    A structured, technically-focused summary detailing:
+    - The patent's core technology from a language processing perspective (e.g.
+      methods for text summarization, machine translation, sentiment analysis, 
+      information extraction features if applicable).
+    - The specific problem it addresses and the proposed technical solution.
+    - Insights from web searches regarding the patent's context in the broader technical field.
+    - A concise list of claims or functionalities that leverage specific language processing techniques.
+    - Examples of use-cases or potential applications mentioned in the patent.
+    This summary will serve as detailed technical context for the Product Strategist.
   agent: patent_analyst
 
 product_creation_task:
   description: >
-    Using the NLP-enhanced patent summary, develop a cutting-edge product concept that
-    leverages the identified NLP capabilities. Your output must be a JSON object.
-    Specifically, articulate:
-    - product_title: A concise, compelling name for the NLP-powered product (up to 100 characters).
-    - product_description: Explain the product, its core NLP features, target users (e.g.,
-      researchers, developers, enterprises needing language solutions), their needs, and the
-      unique benefits derived from its NLP technology (up to 300 characters).
-    - implementation: Describe how the patent's core NLP methodologies or algorithms would be
-      integrated into the product architecture to deliver its key features (up to 300 characters).
-    - differentiation: Highlight what makes this NLP product unique. Focus on how its language
-      processing capabilities (e.g., accuracy, specific domain adaptation, novel features identified
-      through NLP analysis of the patent) set it apart from existing solutions (up to 300 characters).
+    Using the patent summary, develop a cutting-edge product concept that
+    leverages the identified technology capabilities. Your output must be a JSON object.
+
+    To ensure commercial viability and differentiation, perform web searches to gather insights on:
+    a. Current market trends and user needs relevant to the patent's technology.
+    b. The competitive landscape, including existing products or solutions in the same domain.
+    c. Potential target user segments and their specific pain points the proposed product could address.
+    Use a maximum of 5 search attempts. Use the search results to inform your product concept. 
+    Do not output the search results in the final output!
+
+    Based on both the patent analysis and your market research, specifically articulate:
+    - product_title: A concise, compelling name for the product, highlighting its technological core (up to 100 characters).
+    - product_description: Explain the product, its core technology features, target users (informed by your research), their needs, and the
+      unique benefits derived from its underlying technology (up to 300 characters).
+    - implementation: Describe how the patent's core methodologies or algorithms (e.g., specific
+      text processing pipelines, machine learning models) would be integrated into the product 
+      architecture to deliver its key features (up to 300 characters).
+    - differentiation: Highlight what makes this product unique, supported by your market research. Focus on how its specific language
+      processing capabilities (e.g., superior accuracy in a niche domain, novel features 
+      identified through the patent analysis, efficiency of algorithms) set it apart 
+      from existing solutions (up to 300 characters).
   expected_output: >
     A JSON object containing:
-    - publication_number (use "US-2020073983-A1")
-    - title (product title reflecting its NLP nature)
-    - product_description (emphasizing NLP features and benefits)
-    - implementation (focusing on NLP technology integration)
-    - differentiation (based on unique NLP capabilities or insights from the patent)
+    - publication_number (e.g. "US-2020073983-A1")
+    - title: product title reflecting its core technology (up to 100 characters)
+    - product_description: emphasizing specific language technology features, target users, and business benefits, informed by market research (up to 300 characters)
+    - implementation: focusing on integrating the patent's technical methodologies (up to 300 characters) 
+    - differentiation: based on unique technological capabilities or insights from the patent and validated against market research (up to 300 characters)
+    
+    Make sure to output strictly the JSON object, no other text.
+
     The JSON structure should be exactly:
     {
-      "publication_number": "US-2020073983-A1",
-      "title": "<Your NLP Product Title>",
-      "product_description": "<Your NLP Product Description>",
-      "implementation": "<Your NLP Implementation Explanation>",
-      "differentiation": "<Your NLP Differentiation Explanation>"
+      "publication_number": "<publication_number>"" derived from patent data,
+      "title": "<Your Product Title>",
+      "product_description": "<Your Product Description>",
+      "implementation": "<Your Implementation Explanation>",
+      "differentiation": "<Your Differentiation Explanation>"
     }
   agent: product_manager
   context:

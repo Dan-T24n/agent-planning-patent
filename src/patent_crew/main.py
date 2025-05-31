@@ -19,7 +19,6 @@ def run():
 
         print("\n######################")
         print("## Crew Execution Result:")
-        print("######################")
         print(result)
         # The output file path is defined in tasks.yaml and handled by the crew.
         # print(f"\nOutput file should be generated at: {os.path.join(output_dir, output_file_name)}") # Removed
