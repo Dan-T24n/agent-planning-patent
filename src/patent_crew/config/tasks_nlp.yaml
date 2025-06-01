@@ -1,72 +1,114 @@
-patent_analysis_task:
+document_analysis_task:
   description: >
-    Perform an in-depth analysis of the patent data (from JSON, image, and pdf depening on available data). Focus on:
+    Use the 'Patent JSON Loader' tool to load the content of the patent JSON file. 
+    The path to the JSON file for patent {publication_number} is '{json_file_path}'.
+    Perform an in-depth analysis of THIS loaded patent data. Focus on:
     1.  Identifying core inventive concepts and the specific problem solved, paying close
-        attention to semantic nuances and specific technical terminology.
+        attention to semantic nuances and specific technical terminology FOUND IN THE LOADED DATA.
     2.  Extracting key technical components, specific methodologies (e.g., algorithms, 
-        data processing steps, model architectures if mentioned), and any explicitly named 
-        algorithms or data structures. Keep exact technical terms as they are in the patent when it comes to technical terms.
-    3.  Pinpointing explicitly stated advantages, novel aspects, and potential applications,
-        supported by textual evidence and sentiment analysis of relevant phrases where applicable.
-    4.  Utilizing web search capabilities to understand the broader technical landscape of the patent's domain,
-        clarify highly specialized terminologies if necessary, or identify closely related published concepts or prior art.
-        Use a maximum of 5 search attempts.
-    5.  Summarizing any claims specifically related to language understanding, generation, 
-        information retrieval, or text processing if present in the patent.
+        data processing steps, model architectures if mentioned), and any explicitly technical concepts FROM THE LOADED DATA.
+        Keep exact technical terms as they are in the patent.
+    3.  Highlighting explicitly stated advantages, novel aspects, and potential applications,
+        supported by relevant evidence from THE LOADED DATA. If failed to process loaded data, clearly state that "failed to process text data" in the output.
+    4.  Summarizing any claims specifically related to language understanding, generation, 
+        information retrieval, or text processing if present IN THE LOADED DATA.
+    **The output should be in JSON format.**
   expected_output: >
-    A structured, technically-focused summary detailing:
-    - The patent's core technology from a language processing perspective (e.g.
-      methods for text summarization, machine translation, sentiment analysis, 
-      information extraction features if applicable).
-    - The specific problem it addresses and the proposed technical solution.
-    - Insights from web searches regarding the patent's context in the broader technical field.
-    - A concise list of claims or functionalities that leverage specific language processing techniques.
-    - Examples of use-cases or potential applications mentioned in the patent.
-    This summary will serve as detailed technical context for the Product Strategist.
+    A structured, technically-focused summary based on the loaded patent data:
+    - The patent's core technology from a language processing perspective (up to 200 words)
+    - The specific problem it addresses and the proposed technical solution, as detailed in the loaded data. (up to 200 words)
+    - A concise list of claims or functionalities that leverage specific language processing techniques. (up to 200 words)
+    - Examples of use-cases or potential applications mentioned in the patent. (up to 200 words)
   agent: patent_analyst
 
-product_creation_task:
+patent_context_research_task:
   description: >
-    Using the patent summary, develop a cutting-edge product concept that
-    leverages the identified technology capabilities. Your output must be a JSON object.
+    Based on the analysis of the patent {publication_number}, utilize web search capabilities to:
+    1.  Validate understanding of the patent's core inventive concepts.
+    2.  Clarify any ambiguities regarding specialized terminologies found in the patent.
+    3.  Gather additional context on the novelty and potential impact of the innovation.
+    Use maximum 2 search attempts to validate your understanding.
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object summarizing the web research findings:
+    - key_findings: A summary of insights gained from web research that clarify or expand upon the patent's inventive concepts and terminology (up to 300 words).
+    - competitive_advantage: Additional details on the novelty or potential impact of the innovation based on web search (up to 200 words).
+  agent: product_manager
+  context:
+    - document_analysis_task
+    - document_visual_analysis_task
 
-    To ensure commercial viability and differentiation, perform web searches to gather insights on:
-    a. Current market trends and user needs relevant to the patent's technology.
-    b. The competitive landscape, including existing products or solutions in the same domain.
-    c. Potential target user segments and their specific pain points the proposed product could address.
-    Use a maximum of 5 search attempts. Use the search results to inform your product concept. 
-    Do not output the search results in the final output!
+market_fit_research_task:
+  description: >
+    For the patent {publication_number}, perform web searches to gather insights on product-market fit. Focus on:
+    a. Current market trends and user needs relevant to the patent's core technology.
+    b. Potential target user segments and their specific pain points that a product based on this patent could address.
+    Use maximum 2 search attempts.
+    The output should be a JSON object.
+  expected_output: >
+    A JSON object detailing market fit analysis:
+    - market_trends_summary: Key market trends relevant to the patent's technology (up to 200 words).
+    - user_needs_summary: Identified user needs and pain points the technology could solve (up to 200 words).
+    - target_segments_summary: Description of potential target user segments (up to 200 words).
+  agent: product_manager
+  context:
+    - document_analysis_task
 
-    Based on both the patent analysis and your market research, specifically articulate:
+
+usp_validation_task:
+  description: >
+    Based on the patent {publication_number} and its underlying technology, perform web searches to validate its Unique Selling Proposition (USP). Focus on:
+    a. Identifying how a product based on this patent can be uniquely positioned in the market.
+    b. Validating potential differentiation points against existing solutions or market gaps.
+    Use maximum 2 search attempts.
+    The output should be a JSON object.
+  expected_output: >
+    A JSON object detailing USP validation:
+    - usp_opportunities: Potential unique selling propositions derived from the patent's technology and identified market gaps (up to 250 words).
+    - differentiation_validation: Insights from web research validating how the proposed product's features or approach can stand out (up to 250 words).
+  agent: product_manager
+  context:
+    - document_analysis_task
+    - patent_context_research_task
+    - market_fit_research_task
+
+product_definition_task:
+  description: >
+    Using the patent analysis and market research, develop a commercial product concept given by the patent `{publication_number}`
+    Utilize all gathered insights to build a product concept with the following structure:
     - product_title: A concise, compelling name for the product, highlighting its technological core (up to 100 characters).
-    - product_description: Explain the product, its core technology features, target users (informed by your research), their needs, and the
+    - product_description: Explain the product, its core technology features, target users (informed by research), their needs, and the
       unique benefits derived from its underlying technology (up to 300 characters).
-    - implementation: Describe how the patent's core methodologies or algorithms (e.g., specific
-      text processing pipelines, machine learning models) would be integrated into the product 
+    - implementation: Describe how the patent's core technologies would be integrated into the product
       architecture to deliver its key features (up to 300 characters).
-    - differentiation: Highlight what makes this product unique, supported by your market research. Focus on how its specific language
-      processing capabilities (e.g., superior accuracy in a niche domain, novel features 
-      identified through the patent analysis, efficiency of algorithms) set it apart 
+    - differentiation: Highlight what makes this product unique, supported by your market and USP research. Focus on how its specific
+      technological capabilities (e.g., superior accuracy, novel features, efficiency) set it apart
       from existing solutions (up to 300 characters).
+    Be specific with the product features, benefits, and implementation. Use short and concise sentences, following the provided example output.
+    **The output should be in JSON format.**
   expected_output: >
     A JSON object containing:
     - publication_number (e.g. "US-2020073983-A1")
     - title: product title reflecting its core technology (up to 100 characters)
-    - product_description: emphasizing specific language technology features, target users, and business benefits, informed by market research (up to 300 characters)
-    - implementation: focusing on integrating the patent's technical methodologies (up to 300 characters) 
-    - differentiation: based on unique technological capabilities or insights from the patent and validated against market research (up to 300 characters)
-    
-    Make sure to output strictly the JSON object, no other text.
+    - product_description: emphasizing specific technology features, target users, and business benefits, informed by research (up to 300 characters)
+    - implementation: focusing on integrating the patent's technical methodologies (up to 300 characters)
+    - differentiation: based on unique technological capabilities or insights from the patent and validated against market/USP research (up to 300 characters)
 
-    The JSON structure should be exactly:
+    ONLY output the JSON object. Do NOT include any other text, commentary, or markdown formatting (like ```json).
+    The output MUST be a valid JSON object starting with { and ending with }.
+
+    Example output, strictly follow the format:
     {
-      "publication_number": "<publication_number>"" derived from patent data,
-      "title": "<Your Product Title>",
-      "product_description": "<Your Product Description>",
-      "implementation": "<Your Implementation Explanation>",
-      "differentiation": "<Your Differentiation Explanation>"
+      "publication_number": "US-202117564168-A",
+      "title": "NameGuard: AI-Powered Access Control for Enterprise Systems",
+      "product_description": "NameGuard helps IT admins and compliance teams block unauthorized access by checking user names against global deny lists and using AI to catch name variations. It\'s ideal for finance, defense, and critical infrastructure sectors needing strong security and compliance.",
+      "implementation": "Use the patented method to integrate a name screening API into login or user registration flows. Names are matched against an updated denylist, decomposed, and analyzed via a neural network to detect obfuscated identities. Access decisions are then returned to the enterprise system.",
+      "differentiation": "Unlike traditional DPL checks, NameGuard detects partial or altered name matches using name decomposition and machine learning. It adapts to evolving threats, aggregates multi-source deny lists, and flags suspect names not yet on known lists, reducing false negatives and increasing compliance accuracy."
     }
-  agent: product_manager
+  agent: managing_partner
   context:
-    - patent_analysis_task
-  output_file: output/nlp/US-2020073983-A1_output.json 
+    - document_analysis_task
+    - document_visual_analysis_task
+    - market_fit_research_task
+    - usp_validation_task
+  output_file: "output/nlp/{publication_number}_output.json" # Dynamic output file path using placeholder 

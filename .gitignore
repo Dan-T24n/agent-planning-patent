@@ -1,4 +1,4 @@
-
+# python
 __pycache__/
 .DS_Store
 
@@ -7,7 +7,11 @@ __pycache__/
 .venv/
 .env
 
+#working files
+roadmap.md
+
 # folders
 data/
-tests/
 docs/
+knowledge/
+output/

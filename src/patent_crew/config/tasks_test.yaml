@@ -1,0 +1,26 @@
+document_visual_analysis_task:
+  description: >
+    Analyze the patent images for {publication_number}.
+    You have a list of absolute image paths:
+
+    {image_path_str}
+
+    For each image path in the list: load and carefully examine the image using **VisionTool**.
+    1. Identify domain-specific technical concepts from flowcharts, system architecture diagrams, and technical drawings.
+    2. Keep track of entities and relationships between entities in the image.
+    3. Append each image's analysis to the the result of the next image.
+    
+    You need to process ALL images! Do not quit early. Provide a comprehensive analysis of all visual elements from all images. 
+    Output format: Valid JSON only, start with { and end with }.
+
+  expected_output: >
+    The output should be a JSON object with the following fields:
+    {
+      "publication_number": "{publication_number}",
+      "images_processed": "[number of images successfully analyzed]",
+      "core_technology": "[300 words describing the core technology based on visual analysis of all images]",
+      "technical_aspects": "[300 words describing domain-specific technical aspects inferred from diagrams across all images]",
+      "entities_relationships": "[300 words describing entities and relationships between entities in the images]"
+    }
+  agent: patent_analyst_visual
+  output_file: output/nlp/{publication_number}_output_test.json
