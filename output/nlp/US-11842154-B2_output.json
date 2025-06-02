@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11842154-B2",
+  "title": "SmartQuery: Intelligent Natural Language Interface for Data Analytics",
+  "product_description": "SmartQuery empowers business analysts and healthcare professionals to navigate complex datasets effortlessly. By utilizing advanced natural language processing, it transforms vague inputs into precise data queries, providing real-time feedback and simplifying data visualization tasks for non-technical users.",
+  "implementation": "Integrate the patented NLP method to parse user inputs, mapping terms to database fields accordingly. The system visually emphasizes recognized terms and de-emphasizes others, thus enhancing user interaction via a dynamic graphical user interface that provides instant contextual feedback.",
+  "differentiation": "SmartQuery stands out by enabling partial queries, allowing users to receive immediate insights without needing complete phrases. Its real-time feedback and intuitive design make it uniquely accessible, targeting areas like finance and healthcare where timely data access is critical, unlike existing cumbersome solutions."
+}

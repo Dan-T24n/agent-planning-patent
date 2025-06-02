@@ -21,7 +21,6 @@ class PatentJsonLoaderTool(BaseTool):
     def _run(self, json_file_path: str) -> Dict[str, Any] | str:
         """Loads JSON data from the specified patent file."""
         full_path = os.path.join(self.knowledge_base_root, json_file_path)
-        print(f"[DEBUG custom_tool.py] PatentJsonLoaderTool attempting to load: {full_path}") # DEBUG PRINT
         
         if not os.path.exists(full_path):
             return f"Error: File not found at {full_path}. Please ensure the json_file_path is correct and relative to the '{self.knowledge_base_root}' directory."
@@ -29,7 +28,6 @@ class PatentJsonLoaderTool(BaseTool):
         try:
             with open(full_path, 'r') as f:
                 patent_data = json.load(f)
-            print(f"[DEBUG custom_tool.py] PatentJsonLoaderTool successfully loaded {full_path}. Data snippet: {str(patent_data)[:200]}...") # DEBUG PRINT
             return patent_data
         except json.JSONDecodeError:
             error_msg = f"Error: Could not decode JSON from file {full_path}. The file might be corrupted or not in valid JSON format."

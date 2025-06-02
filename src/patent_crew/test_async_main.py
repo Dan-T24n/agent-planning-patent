@@ -1,9 +1,12 @@
 '''
-Main script for single patent crew execution. Tested OK.
+Main script for async crew execution. Tested OK.
+Renamed to keep the original main.py for testing.
+!DO NOT RUN:$$$! Only run when all tests are done.
 '''
 
 import warnings
 import os
+import asyncio  # Add asyncio import for async operations
 from typing import List, Dict, Any
 from pathlib import Path
 import json
@@ -83,21 +86,21 @@ def get_patent_metadadata(category: str, knowledge_root_dir: str = KNOWLEDGE_ROO
     except Exception as e:
         print(f"Error: An unexpected error occurred while processing {base_jsonl_path}: {str(e)}")
 
-    if patent_info_list: # Check if list is not empty before accessing index 0
+    if patent_info_list: # Check if list is not empty
       print(f"Compile patent_info_list successfully. Proceed to analyze patents.")
     
     return patent_info_list
 
-def run():
+async def run_async():
     """
-    Run the Patent Analysis crew for the first patent found in the specified category's JSONL file using simple kickoff.
-    Processes only one single patent.
+    Run the Patent Analysis crew for each patent found in the specified category's JSONL file using async kickoff.
+    Processes patents in batches of 10.
     """
     # Initialize AgentOps: avoid circular import issues by calling in run()
     print("## Initializing AgentOps...")
     agentops.init()
     
-    print("## Starting Patent Analysis Crew (Single Patent Processing)")
+    print("## Starting Patent Analysis Crew (Async Batch Processing)")
     print('---------------------------------------')
 
     output_base_dir = Path(OUTPUT_DIR) / DEFAULT_CATEGORY 
@@ -109,44 +112,83 @@ def run():
         print("No patents found to process.")
         return
 
-    # ---Process only the first patent---
-    single_patent_input = patent_processing_inputs[0]
-    publication_number = single_patent_input.get('publication_number', 'Unknown')
-    # ---End single patent selection---
+    # ---Create batches---
+    total_patents = len(patent_processing_inputs)
+    batch_size = 10
+    print(f"Found {total_patents} patent(s) in total. Processing in batches of {batch_size}.")
+    
+    batches = []
+    for i in range(0, total_patents, batch_size):
+        batch = patent_processing_inputs[i:i+batch_size]
+        batches.append(batch)
+    
+    print(f"Created {len(batches)} batch(es) to process.")
+    for i, batch in enumerate(batches):
+        print(f"  Batch {i+1}: {len(batch)} patents")
+    # ---End of batching---
 
-    # ---Running the crew for single patent---
-    start_time = time.monotonic()
+    # ---Running the crew for all patents in batches---
+    all_results = []
+    total_start_time = time.monotonic()
     
     try:
         crew_instance_manager = PatentAnalysisCrew() # choose the Crew to run
         crew = crew_instance_manager.crew() 
 
-        print(f"Starting crew execution for patent: {publication_number}")
+        for batch_idx, batch in enumerate(batches):
+            batch_num_patents = len(batch)
+            print(f"\n=== Processing Batch {batch_idx + 1}/{len(batches)} ({batch_num_patents} patents) ===")
+            
+            # Print patents in this batch
+            for i, input_data in enumerate(batch):
+                print(f"  Patent {i+1}: {input_data.get('publication_number', 'Unknown')}")
+            
+            batch_start_time = time.monotonic()
+            print(f"[DEBUG main.py] Starting async crew execution for batch {batch_idx + 1}...")
+            
+            # Use kickoff_for_each_async for this batch
+            batch_results = await crew.kickoff_for_each_async(inputs=batch)
+            
+            batch_end_time = time.monotonic()
+            batch_duration = batch_end_time - batch_start_time
+            average_duration_per_patent = batch_duration / batch_num_patents if batch_num_patents > 0 else 0
+            
+            print(f"--- Batch {batch_idx + 1} completed ---")
+            print(f"Number of results: {len(batch_results) if batch_results else 0}")
+            print(f"Batch processing time: {batch_duration:.2f} seconds")
+            print(f"Average time per patent in batch: {average_duration_per_patent:.2f} seconds")
+            
+            # Store results from this batch
+            if batch_results:
+                all_results.extend(batch_results)
+            
+        total_end_time = time.monotonic()
+        total_duration = total_end_time - total_start_time
+        overall_average_duration = total_duration / total_patents if total_patents > 0 else 0
         
-        # Use simple kickoff for single patent
-        result = crew.kickoff(inputs=single_patent_input)
-        
-        end_time = time.monotonic()
-        duration = end_time - start_time
-        
-        print(f"--- Patent processing completed ---")
-        print(f"Patent: {publication_number}")
-        print(f"Processing time: {duration:.2f} seconds")
-        
-        # Process result correctly for single patent operation
-        if result:
-            print(f"\n--- Verifying output file ---")
-            # Construct expected output file path relative to the dynamic output_base_dir
-            expected_output_file = output_base_dir / f"{publication_number}_output.json"
-            if expected_output_file.exists(): # Check existence of the file in the correct output directory
-                print(f"  ✓ Confirmed output file: {expected_output_file}")
-            else:
-                print(f"  ⚠ WARNING: Output file not found at {expected_output_file}")
+        print(f"\n=== All batches completed ===")
+        print(f"Total patents processed: {total_patents}")
+        print(f"Total processing time: {total_duration:.2f} seconds")
+        print(f"Overall average time per patent: {overall_average_duration:.2f} seconds")
+
+        # Process results correctly for async operations
+        if all_results:
+            print(f"\n--- Verifying output files ---")
+            for i, result in enumerate(all_results):
+                if i < len(patent_processing_inputs):
+                    processed_input = patent_processing_inputs[i]
+                    publication_number = processed_input.get('publication_number', 'Unknown')
+                    # Construct expected output file path relative to the dynamic output_base_dir
+                    expected_output_file = output_base_dir / f"{publication_number}_output.json"
+                    if expected_output_file.exists(): # Check existence of the file in the correct output directory
+                        print(f"  ✓ Confirmed output file: {expected_output_file}")
+                    else:
+                        print(f"  ⚠ WARNING: Output file not found at {expected_output_file}")
         else:
-            print("No result returned from crew execution.")
+            print("No results returned from async execution.")
 
     except Exception as e:
-        print(f"An error occurred during the single patent processing: {e}")
+        print(f"An error occurred during the async batch patent processing: {e}")
         import traceback
         traceback.print_exc()
     finally:
@@ -154,6 +196,13 @@ def run():
         agentops.end_session('Success')
         print("## AgentOps session ended")
 
+def run():
+    """
+    Wrapper function to run the async crew execution.
+    """
+    asyncio.run(run_async())
+
 
 if __name__ == "__main__":
-    run() 
+    run()
+
