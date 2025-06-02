@@ -1,7 +1,7 @@
 {
   "publication_number": "US-11423042-B2",
-  "title": "DocuStruct: Advanced NLP Solution for Unstructured Data Transformation",
-  "product_description": "DocuStruct empowers healthcare, finance, and legal professionals to extract key insights from unstructured documents. Utilizing advanced NLP, it preserves contextual integrity, enabling swift and accurate data retrieval critical for decision-making and compliance.",
-  "implementation": "Integrate the patented NLP methods to transform documents into structured formats, allowing for efficient data extraction. The system will utilize domain-specific NLP engines and knowledge graphs to correlate and retrieve data while preserving the original context.",
-  "differentiation": "DocuStruct uniquely combines context preservation with domain-specific NLP solutions, addressing critical gaps in current document processing tools. It enhances data accuracy and usability, streamlining navigation through complex documents and ensuring compliance in high-stakes sectors."
+  "title": "DocuNLP: Advanced Information Extraction for Unstructured Documents",
+  "product_description": "DocuNLP empowers industries by transforming unstructured documents into actionable insights using advanced NLP technologies. Designed for healthcare, legal, and finance professionals, it provides precise information extraction while preserving contextual integrity, enabling better decision-making.",
+  "implementation": "Integrate the patented relevancy model and knowledge graph within DocuNLP's architecture. This will enable seamless extraction of relevant data within documents, converting dynamic and complex information into structured formats while maintaining original positional context for intuitive navigation.",
+  "differentiation": "DocuNLP stands out with its unique ability to combine relevancy models and knowledge graphs, ensuring that critical information remains contextually relevant. Unlike generic NLP solutions that risk losing this context, DocuNLP delivers exceptional accuracy and efficiency, catering specifically to the needs of sectors reliant on nuanced data interpretation."
 }

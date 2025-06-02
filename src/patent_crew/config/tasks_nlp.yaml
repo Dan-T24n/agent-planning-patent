@@ -183,6 +183,7 @@ product_definition_task:
   context:
     - document_analysis_task
     # - document_visual_analysis_task
+    - patent_context_research_task
     - market_fit_research_task
     - usp_validation_task
   output_file: "output/nlp/{publication_number}_output.json" # Dynamic output file path using placeholder 

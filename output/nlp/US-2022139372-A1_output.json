@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2022139372-A1",
+  "title": "AutoLingua: Automated Domain-Specific NLP Dataset Generator",
+  "product_description": "AutoLingua automates the generation of diverse natural language datasets, catering to businesses in healthcare, finance, and customer service. It addresses complexities in user intent recognition by creating multilingual corpuses, enhancing AI capabilities to interpret varied linguistic expressions effectively.",
+  "implementation": "The product leverages the patent's methodology by incorporating a translation module that converts base utterances into multiple languages and employs back-translation techniques to enrich dataset diversity. Intent parameters are analyzed using advanced NLP algorithms to ensure comprehensive understanding.",
+  "differentiation": "What sets AutoLingua apart is its automated dataset creation that reflects diverse user intents, significantly reducing reliance on manual labor by language experts. Unlike competitors, it provides localized, adaptable datasets improving model accuracy for non-native speakers, fulfilling a growing market need for sophisticated NLP solutions."
+}
