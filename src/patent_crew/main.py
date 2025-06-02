@@ -10,7 +10,12 @@ import json
 import agentops
 import time # Added for timing
 
-from patent_crew.crew import PatentAnalysisCrew # Import the correct crew class
+from dotenv import load_dotenv
+load_dotenv() 
+
+# from tests.vision_crew_test import VisualTestCrew # Import the crew for testing
+from crew import PatentAnalysisCrew # Import the crew for analysis
+
 
 # --- Global Configuration ---
 DEFAULT_CATEGORY = "nlp"  # Choose category to process: {nlp, material_chemistry, computer_science}
@@ -31,6 +36,7 @@ def get_patent_metadadata(category: str, knowledge_root_dir: str = KNOWLEDGE_ROO
         A list of dictionaries, where each dictionary contains:
         - 'publication_number': The publication number of the patent.
         - 'json_file_path': Path to the JSON file, made relative to knowledge_root_dir.
+        - 'pdf_file_path': Path to the PDF file, derived from json_file_path.
         - 'category': The category of the patent.
         - 'absolute_image_paths': A list of verified absolute file paths for associated images.
     """
@@ -58,6 +64,8 @@ def get_patent_metadadata(category: str, knowledge_root_dir: str = KNOWLEDGE_ROO
                     # Check if publication_number and json_path_str are present
                     if publication_number and json_path_str:
                         print(f"[DEBUG main.py] Found publication_number: {publication_number}")
+                        # Assuming the PDF file has the same name but .pdf extension
+                        pdf_path_str = json_path_str.rsplit('.', 1)[0] + '.pdf'
                         #verify each image_path_from_jsonl is an absolute path and valid
                         for image_path in image_paths_from_jsonl:
                             if not os.path.isabs(image_path):
@@ -75,7 +83,8 @@ def get_patent_metadadata(category: str, knowledge_root_dir: str = KNOWLEDGE_ROO
                             'json_file_path': json_path_str, 
                             'category': category,
                             'absolute_image_paths': image_paths_from_jsonl,
-                            'image_path_str': image_paths_str     
+                            'image_path_str': image_paths_str,
+                            'pdf_file_path': pdf_path_str     
                         })
                 except json.JSONDecodeError:
                     print(f"Warning: Skipping malformed JSON line in {base_jsonl_path}: {line.strip()}")
