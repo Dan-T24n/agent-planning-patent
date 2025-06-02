@@ -1,17 +1,91 @@
+# document_analysis_task:
+#   description: >
+#     Use the 'Patent JSON Loader' tool to load the content of the patent JSON file. 
+#     The path to the JSON file for patent {publication_number} is '{json_file_path}'.
+#     Perform an in-depth analysis of THIS loaded patent data. Focus on:
+#     1.  Identifying core inventive concepts and the specific problem solved, paying close
+#         attention to semantic nuances and specific technical terminology FOUND IN THE LOADED DATA.
+#     2.  Extracting key technical components, specific methodologies (e.g., algorithms, 
+#         data processing steps, model architectures if mentioned), and any explicitly technical concepts FROM THE LOADED DATA.
+#         Keep exact technical terms as they are in the patent.
+#     3.  Highlighting explicitly stated advantages, novel aspects, and potential applications,
+#         supported by relevant evidence from THE LOADED DATA. If failed to process loaded data, clearly state that "failed to process text data" in the output.
+#     4.  Summarizing any claims specifically related to language understanding, generation, 
+#         information retrieval, or text processing if present IN THE LOADED DATA.
+#     **The output should be in JSON format.**
+#   expected_output: >
+#     A structured, technically-focused summary based on the loaded patent data:
+#     - The patent's core technology from a language processing perspective (up to 200 words)
+#     - The specific problem it addresses and the proposed technical solution, as detailed in the loaded data. (up to 200 words)
+#     - A concise list of claims or functionalities that leverage specific language processing techniques. (up to 200 words)
+#     - Examples of use-cases or potential applications mentioned in the patent. (up to 200 words)
+#   agent: patent_analyst
+
+# document_analysis_task:
+#   description: >
+#     Use the 'Patent PDF Loader (via Gemini)' tool to load and get a comprehensive textual representation 
+#     (including descriptions of visual elements) of the patent PDF file. 
+#     The path to the PDF file for patent {publication_number} is '{pdf_file_path}'.
+#     Perform an in-depth analysis of THIS loaded patent data. Focus on:
+#     1.  Identifying core inventive concepts and the specific problem solved, paying close
+#         attention to semantic nuances and specific technical terminology FOUND IN THE LOADED DATA.
+#     2.  Extracting key technical components, specific methodologies (e.g., algorithms, 
+#         data processing steps, model architectures if mentioned), and any explicitly technical concepts FROM THE LOADED DATA.
+#         Keep exact technical terms as they are in the patent.
+#     3.  Highlighting explicitly stated advantages, novel aspects, and potential applications,
+#         supported by relevant evidence from THE LOADED DATA. If failed to process loaded data, clearly state that "failed to process text data" in the output.
+#     4.  Summarizing any claims specifically related to language understanding, generation, 
+#         information retrieval, or text processing if present IN THE LOADED DATA.
+#     5.  Synthesize information from the comprehensive textual representation provided by the loading tool, 
+#         which includes both original text and descriptions of diagrams/figures,
+#         to provide a thorough understanding.
+#     **The output should be in JSON format.**
+#   expected_output: >
+#     A structured, technically-focused summary based on the loaded patent data:
+#     - The patent's core technology from a language processing perspective (up to 200 words)
+#     - The specific problem it addresses and the proposed technical solution, as detailed in the loaded data. (up to 200 words)
+#     - A concise list of claims or functionalities that leverage specific language processing techniques. (up to 200 words)
+#     - Examples of use-cases or potential applications mentioned in the patent. (up to 200 words)
+#   agent: patent_analyst
+
+# Combines JSON Loader and PDF Loader tools
 document_analysis_task:
   description: >
-    Use the 'Patent JSON Loader' tool to load the content of the patent JSON file. 
-    The path to the JSON file for patent {publication_number} is '{json_file_path}'.
-    Perform an in-depth analysis of THIS loaded patent data. Focus on:
-    1.  Identifying core inventive concepts and the specific problem solved, paying close
-        attention to semantic nuances and specific technical terminology FOUND IN THE LOADED DATA.
-    2.  Extracting key technical components, specific methodologies (e.g., algorithms, 
-        data processing steps, model architectures if mentioned), and any explicitly technical concepts FROM THE LOADED DATA.
+    Your goal is to conduct a comprehensive analysis of patent {publication_number}
+    by integrating structured textual information with insights from visual diagrams.
+
+    **Step 1: Load Structured Textual Data**
+    First, use the 'Patent JSON Loader' tool to load the content of the patent JSON file.
+    The path to this JSON file is '{json_file_path}'. This JSON contains textual data extracted
+    from the patent, such as abstract, description, and claims. Treat this as your primary source for textual understanding.
+
+    **Step 2: Load and Analyze PDF for Visual Context**
+    Second, use the 'Patent PDF Loader (via Gemini)' tool (or your designated PDF loader tool)
+    to load and obtain a comprehensive representation of the patent PDF file, focusing on its visual elements.
+    The path to this PDF file is '{pdf_file_path}'. The tool will provide text content and descriptions of figures/diagrams.
+    Your main interest from this step is to understand the **visuals** and how they illustrate or clarify
+    the concepts described in the text (which you primarily get from the JSON).
+
+    **Step 3: Integrate and Analyze**
+    After obtaining information from both tools, perform an in-depth analysis.
+    Use the textual information from the JSON as your foundation. Then, enrich this understanding
+    with the descriptions of diagrams and figures obtained from processing the PDF.
+    Focus on how the visual elements clarify, illustrate, or provide additional context to the
+    textual information.
+
+    Specifically:
+    1.  Identify core inventive concepts and the specific problem solved, using the JSON text
+        and using the PDF's visual descriptions to better understand these concepts.
+    2.  Extract key technical components and methodologies mentioned in the JSON. Refer to the
+        PDF's visual descriptions to see how these components are depicted or how methodologies flow.
         Keep exact technical terms as they are in the patent.
-    3.  Highlighting explicitly stated advantages, novel aspects, and potential applications,
-        supported by relevant evidence from THE LOADED DATA. If failed to process loaded data, clearly state that "failed to process text data" in the output.
-    4.  Summarizing any claims specifically related to language understanding, generation, 
-        information retrieval, or text processing if present IN THE LOADED DATA.
+    3.  Highlight explicitly stated advantages, novel aspects, and potential applications from the JSON.
+        See if the PDF's visuals provide supporting evidence or clearer examples for these.
+    4.  Summarize any claims from the JSON, particularly those related to language understanding,
+        generation, information retrieval, or text processing. Note if any diagrams in the PDF
+        directly illustrate aspects of these claims.
+    5.  Synthesize the textual information (primarily from JSON) with the visual information
+        (from PDF processing) to provide a richer, more complete understanding of the invention.
     **The output should be in JSON format.**
   expected_output: >
     A structured, technically-focused summary based on the loaded patent data:
@@ -36,7 +110,7 @@ patent_context_research_task:
   agent: product_manager
   context:
     - document_analysis_task
-    - document_visual_analysis_task
+    # - document_visual_analysis_task
 
 market_fit_research_task:
   description: >
@@ -108,7 +182,7 @@ product_definition_task:
   agent: managing_partner
   context:
     - document_analysis_task
-    - document_visual_analysis_task
+    # - document_visual_analysis_task
     - market_fit_research_task
     - usp_validation_task
   output_file: "output/nlp/{publication_number}_output.json" # Dynamic output file path using placeholder 

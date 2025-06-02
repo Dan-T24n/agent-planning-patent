@@ -43,8 +43,8 @@ Use CrewAI documentation for central concepts: Agents, Task, Crew, Knowledge, To
 Features:
 [x] multi-agent coordination
 [x] web search 
-[x] custom tool: json loading
-[-] vision capabilities: tested, not working well given multiple images at once
+[x] custom tool: json loading, PDF loading
+[x] vision capabilities: sends PDF to LLM for visual interpretation
 [ ] task validation
 [ ] validator
 [ ] async kick off
@@ -89,6 +89,7 @@ Example output:
    - OPENAI_API_KEY
    - SERPER_API_KEY
    - AGENTOPS_API_KEY
+   - GOOGLE_API_KEY # for Gemini vision tool
 3. Run `setup_data.py` to prepare knowledge base
 4. Change `src/patent_crew/crew.py` to load correct config in `/src/config/xyz.yaml`
 5. Run crew with `uv run src/patent_crew/main.py`

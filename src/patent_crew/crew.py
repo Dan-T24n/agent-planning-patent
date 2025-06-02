@@ -4,10 +4,9 @@ from crewai import Agent, Task, Crew, Process
 from crewai.project import CrewBase, agent, crew, task
 from crewai.knowledge.knowledge_config import KnowledgeConfig
 from crewai_tools import SerperDevTool
-from dotenv import load_dotenv
 
 # Import the new tool
-from patent_crew.tools.custom_tool import PatentJsonLoaderTool
+from patent_crew.tools.custom_tool import PatentJsonLoaderTool, PatentGeminiPdfLoaderTool
 
 # Ensure the output directory exists
 output_dir = "output/nlp"
@@ -29,6 +28,8 @@ class PatentAnalysisCrew():
         n_results=5
     )
     patent_json_loader_tool = PatentJsonLoaderTool()
+    patent_gemini_pdf_loader_tool = PatentGeminiPdfLoaderTool()
+    
 
     # Define knowledge config (can be kept if it has other uses, or removed if only for JSONKnowledgeSource)
     # For now, assuming it might be used by the agent or other tools for general knowledge handling if any.
@@ -41,7 +42,10 @@ class PatentAnalysisCrew():
     def patent_analyst(self) -> Agent:
         return Agent(
             config=self.agents_config['patent_analyst'],
-            tools=[self.search_tool, self.patent_json_loader_tool],
+            tools=[
+                self.search_tool, 
+                self.patent_json_loader_tool, 
+                self.patent_gemini_pdf_loader_tool ],
             verbose=True,
             knowledge_config=self.custom_knowledge_config # Keep for now
         )
