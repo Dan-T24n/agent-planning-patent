@@ -8,10 +8,9 @@ __pycache__/
 .env
 
 #working files
+docs/Logs.md
 roadmap.md
 
-# folders
+# large folders
 data/
-docs/
 knowledge/
-output/

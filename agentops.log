@@ -1,5 +1,2 @@
-2025-06-01 19:32:57,776 - INFO - Session Replay for default trace: https://app.agentops.ai/sessions?trace_id=67d7286885fc0357517a0ef41303f202
-2025-06-01 19:32:57,835 - ERROR - Error instrumenting crewai: cannot import name 'Agent' from partially initialized module 'crewai.agent' (most likely due to a circular import) (/Users/mbp16/Desktop/AgentScen/patent_crew/.venv/lib/python3.11/site-packages/crewai/agent.py)
-2025-06-01 19:32:57,997 - ERROR - Error instrumenting crewai: cannot import name 'Agent' from partially initialized module 'crewai.agent' (most likely due to a circular import) (/Users/mbp16/Desktop/AgentScen/patent_crew/.venv/lib/python3.11/site-packages/crewai/agent.py)
-2025-06-01 19:32:58,001 - ERROR - Error instrumenting crewai: cannot import name 'Agent' from partially initialized module 'crewai.agent' (most likely due to a circular import) (/Users/mbp16/Desktop/AgentScen/patent_crew/.venv/lib/python3.11/site-packages/crewai/agent.py)
-2025-06-01 19:33:42,589 - INFO - Session Replay for default.session trace: https://app.agentops.ai/sessions?trace_id=67d7286885fc0357517a0ef41303f202
+2025-06-02 09:34:12,844 - INFO - Session Replay for default trace: https://app.agentops.ai/sessions?trace_id=02982da6daa1ccb075c0886e3ae74387
+2025-06-02 09:34:13,436 - INFO - Session Replay for default.session trace: https://app.agentops.ai/sessions?trace_id=02982da6daa1ccb075c0886e3ae74387

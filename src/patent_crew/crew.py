@@ -5,13 +5,9 @@ from crewai.project import CrewBase, agent, crew, task
 from crewai.knowledge.knowledge_config import KnowledgeConfig
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
-# import agentops
 
 # Import the new tool
-from patent_crew.tools.custom_tool import PatentJsonLoaderTool, PatentImageLoaderTool
-
-# Initialize AgentOps
-# agentops.init()
+from patent_crew.tools.custom_tool import PatentJsonLoaderTool
 
 # Ensure the output directory exists
 output_dir = "output/nlp"
@@ -27,15 +23,12 @@ class PatentAnalysisCrew():
     agents: List[Agent]
     tasks: List[Task]
 
-    # Removed json_knowledge_source and agent_knowledge_sources that used JSONKnowledgeSource directly
-
     # Instantiate tools
     search_tool = SerperDevTool(
         country="us",
         n_results=5
     )
     patent_json_loader_tool = PatentJsonLoaderTool()
-    patent_image_loader_tool = PatentImageLoaderTool()
 
     # Define knowledge config (can be kept if it has other uses, or removed if only for JSONKnowledgeSource)
     # For now, assuming it might be used by the agent or other tools for general knowledge handling if any.
@@ -51,22 +44,8 @@ class PatentAnalysisCrew():
             tools=[self.search_tool, self.patent_json_loader_tool],
             verbose=True,
             knowledge_config=self.custom_knowledge_config # Keep for now
-            # Removed knowledge_sources that pointed to the old JSONKnowledgeSource
         )
 
-    @agent
-    def patent_analyst_visual(self) -> Agent:
-        return Agent(
-            config=self.agents_config['patent_analyst_visual'],
-            tools=[
-                self.search_tool,
-                self.patent_json_loader_tool,
-                self.patent_image_loader_tool
-            ],
-            verbose=True,
-            multimodal=True # Ensure multimodal is enabled
-            # knowledge_config can be added if needed
-        )
 
     @agent
     def product_manager(self) -> Agent:
@@ -81,7 +60,6 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['managing_partner'],
             verbose=True
-            # Add tools here if the managing_partner needs them, e.g., tools=[self.search_tool]
         )
 
     @task
@@ -92,19 +70,11 @@ class PatentAnalysisCrew():
         )
 
     @task
-    def document_visual_analysis_task(self) -> Task:
-        task_config = self.tasks_config['document_visual_analysis_task']
-        return Task(
-            config=task_config,
-            agent=self.patent_analyst_visual()
-        )
-
-    @task
     def patent_context_research_task(self) -> Task:
         return Task(
             config=self.tasks_config['patent_context_research_task'],
             agent=self.product_manager(), 
-            context=[self.document_visual_analysis_task()]
+            context=[self.document_analysis_task()]
         )
 
     @task
@@ -113,7 +83,7 @@ class PatentAnalysisCrew():
             config=self.tasks_config['market_fit_research_task'],
             agent=self.product_manager(),
             context=[
-                self.document_visual_analysis_task()
+                self.document_analysis_task()
             ]
         )
 
@@ -123,9 +93,9 @@ class PatentAnalysisCrew():
             config=self.tasks_config['usp_validation_task'],
             agent=self.product_manager(),
             context=[
-                self.document_visual_analysis_task(),
+                self.document_analysis_task(),
                 self.patent_context_research_task(),
-                self.market_fit_research_task() # As per plan
+                self.market_fit_research_task()
             ]
         )
 
@@ -137,7 +107,7 @@ class PatentAnalysisCrew():
             config=self.tasks_config['product_definition_task'],
             agent=self.managing_partner(),
             context=[
-                self.document_visual_analysis_task(),
+                self.document_analysis_task(),
                 self.patent_context_research_task(),
                 self.market_fit_research_task(),
                 self.usp_validation_task()
@@ -146,15 +116,10 @@ class PatentAnalysisCrew():
 
     @crew
     def crew(self) -> Crew:
-        # print(f"[DEBUG crew.py] ..Assembling crew for patent {self.publication_number}..") # Original, self.publication_number might not be set here
-        print(f"[DEBUG crew.py] Assembling crew with agents: {[agent.role for agent in self.agents]}") # DEBUG PRINT
-        print(f"[DEBUG crew.py] Assembling crew with tasks: {[task.description[:50] + '...' for task in self.tasks]}") # DEBUG PRINT
-
         return Crew(
             agents=self.agents,
             tasks=self.tasks,
             process=Process.sequential,
             memory=True,
-            # Removed knowledge_sources that pointed to the old JSONKnowledgeSource
             verbose=True
         )

@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2020073983-A1",
+  "title": "NaviQuery: AI-Driven Natural Language Database Interface",
+  "product_description": "NaviQuery empowers users to effortlessly query databases in natural language without needing to learn SQL. Ideal for business analysts, customer service, and academia, it enhances data accessibility and decision-making by transforming complex nested queries into actionable insights.",
+  "implementation": "Integrate the patented intelligent reasoning engine to convert natural language inputs into semantic representations related to the database schema. Employ advanced parsing techniques to differentiate between nested queries, ensuring accurate SQL generation seamlessly integrated into existing workflows.",
+  "differentiation": "NaviQuery stands out by accurately processing nested natural language queries using innovative reasoning methods, unlike traditional NLIDB systems. Its user-friendly design caters to non-technical users, democratizing data access and delivering unparalleled accuracy and efficiency in query handling."
+}

@@ -1,17 +1,13 @@
 #!/usr/bin/env python
 import warnings
 import os
-import glob
 from typing import List, Dict, Any
 from pathlib import Path
 import json
 import agentops
 import time # Added for timing
 
-# Initialize AgentOps
-agentops.init()
-
-from tests.vision_crew_test import VisualTestCrew # Updated import
+# from tests.vision_crew_test import VisualTestCrew # Import the crew for testing
 
 # --- Global Configuration ---
 DEFAULT_CATEGORY = "nlp"  # Define the category to process here
@@ -21,9 +17,9 @@ OUTPUT_DIR = "output"
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
-def get_patent_processing_details(category: str, knowledge_root_dir: str = KNOWLEDGE_ROOT_DIR) -> List[Dict[str, Any]]:
+def get_patent_metadadata(category: str, knowledge_root_dir: str = KNOWLEDGE_ROOT_DIR) -> List[Dict[str, Any]]:
     """
-    Reads the {category}.jsonl file to get patent processing details.
+    Reads the {category}.jsonl file to get patent metadata.
     Args:
         category: The category of patents to process (e.g., 'nlp').
         knowledge_root_dir: The root directory of the knowledge base, used as a reference.
@@ -93,31 +89,35 @@ def run():
     """
     Run the Patent Analysis crew for each patent found in the specified category's JSONL file.
     """
+    # Initialize AgentOps: avoid circular import issues by calling in run()
+    print("## Initializing AgentOps...")
+    agentops.init()
+    
     print("## Starting Patent Analysis Crew")
     print('---------------------------------------')
 
     output_base_dir = Path(OUTPUT_DIR) / DEFAULT_CATEGORY 
     output_base_dir.mkdir(parents=True, exist_ok=True)
 
-    patent_processing_inputs = get_patent_processing_details(DEFAULT_CATEGORY, KNOWLEDGE_ROOT_DIR)
+    patent_processing_inputs = get_patent_metadadata(DEFAULT_CATEGORY, KNOWLEDGE_ROOT_DIR)
 
     if not patent_processing_inputs:
         print("No patents found to process.")
         return
 
     # ---Testing with one patent---
-    print(f"[DEBUG main.py] Total patents found: {len(patent_processing_inputs)}") 
     print(f"Found {len(patent_processing_inputs)} patent(s) in total. Processing only the first one for this run.")
     patent_processing_inputs = [patent_processing_inputs[0]]
     print(f"[DEBUG main.py] Processing input for the first patent: {patent_processing_inputs[0]}")
-    # ---End of testing with one patent---
+    # ---Comment out this block to run for all patents---
 
-    num_patents = len(patent_processing_inputs)
-    print(f"Processing {num_patents} patent(s) (selected for this run).")
 
     # ---Running the crew for all patents---
+    num_patents = len(patent_processing_inputs)
+    print(f"Processing {num_patents} patent(s) (selected for this run).")
+    
     try:
-        crew_instance_manager = VisualTestCrew() 
+        crew_instance_manager = VisualTestCrew() # change to PatentAnalysisCrew
         crew = crew_instance_manager.crew() 
 
         print(f"Kicking off crew for {num_patents} inputs...")
@@ -152,4 +152,13 @@ def run():
         print(f"An error occurred during the batch patent processing: {e}")
         import traceback
         traceback.print_exc()
+    finally:
+        # End AgentOps session
+        agentops.end_session('Success')
+        print("## AgentOps session ended")
+
+
+
+if __name__ == "__main__":
+    run()
 

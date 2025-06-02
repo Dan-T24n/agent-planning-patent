@@ -34,9 +34,9 @@ Within each patent {publication_number}/ directory, there should be a json file 
 3. For each category, create a new JSONL file: knowledge/{category}/{category}.jsonl
 - each entry is a dictionary that tracks available files for each patent:
   - publication_number: the publication number of the patent
-  - json_file_path: the path to the json file
-  - pdf_file_path: the path to the pdf file
-  - image_file_paths: list of image file paths [path_to_{1.png}, path_to_{2.png}, etc.]
+  - json_file_path: absolute path to the json file
+  - pdf_file_path: absolute path to the pdf file
+  - image_file_paths: list of image absolute file paths [path_to_{1.png}, path_to_{2.png}, etc.]
 
 4. At the end, we have the final knowledge base structure:
 - knowledge/{category}/pdf_and_image/{publication_number}/ with the following files:
@@ -55,23 +55,44 @@ from pathlib import Path
 
 # --- Configuration ---
 
-#change one category at a time {nlp, computer_science, material_chemistry}
-CATEGORY = "nlp" # reload the crew config to get specialized agents
+# Detect project root directory (where this script is located)
+PROJECT_ROOT = Path(__file__).parent.resolve()
 
-# Path to the input JSONL file
-INPUT_FILE_PATH = Path(f"data/{CATEGORY}/{CATEGORY}.jsonl")
-# Directory containing the source patent artifacts (subdirectories named by publication number)
-SOURCE_PATENT_ARTIFACTS_DIR = Path(f"data/{CATEGORY}/pdf_and_image/")
-# Base directory for the knowledge base output.
-KNOWLEDGE_BASE_OUTPUT_DIR = Path(f"knowledge/{CATEGORY}/pdf_and_image/")
+# Change one category at a time {nlp, computer_science, material_chemistry}
+CATEGORY = "nlp"  # reload the crew config to get specialized agents
+
+# All paths are now absolute and relative to project root
+INPUT_FILE_PATH = PROJECT_ROOT / f"data/{CATEGORY}/{CATEGORY}.jsonl"
+SOURCE_PATENT_ARTIFACTS_DIR = PROJECT_ROOT / f"data/{CATEGORY}/pdf_and_image/"
+KNOWLEDGE_BASE_OUTPUT_DIR = PROJECT_ROOT / f"knowledge/{CATEGORY}/pdf_and_image/"
+
 # --- End Configuration ---
+
+def validate_paths() -> bool:
+    """
+    Validate that all required paths exist before processing.
+    
+    Returns:
+        bool: True if all paths are valid, False otherwise.
+    """
+    
+    if not INPUT_FILE_PATH.exists():
+        print(f"Error: Input JSONL file not found at {INPUT_FILE_PATH}")
+        return False
+    
+    if not SOURCE_PATENT_ARTIFACTS_DIR.exists():
+        print(f"Error: Source artifacts directory not found at {SOURCE_PATENT_ARTIFACTS_DIR}")
+        return False
+    
+    print("✓ All required paths validated successfully")
+    return True
 
 def load_all_patent_data_from_jsonl(jsonl_file_path: Path) -> dict:
     """
     Reads a JSONL file and loads all patent data into a dictionary.
 
     Args:
-        jsonl_file_path (Path): The path to the input JSONL file.
+        jsonl_file_path (Path): Absolute path to the input JSONL file.
 
     Returns:
         dict: A dictionary where keys are publication numbers and values are
@@ -79,13 +100,13 @@ def load_all_patent_data_from_jsonl(jsonl_file_path: Path) -> dict:
               if the file is not found or in case of other errors.
     """
     patent_data_map = {}
-    absolute_jsonl_file_path = jsonl_file_path.resolve()
 
-    if not absolute_jsonl_file_path.is_file():
-        print(f"Error: Input JSONL file not found at {absolute_jsonl_file_path}")
+    if not jsonl_file_path.is_file():
+        print(f"Error: Input JSONL file not found at {jsonl_file_path}")
+        return patent_data_map
 
     try:
-        with open(absolute_jsonl_file_path, 'r', encoding='utf-8') as f_in:
+        with open(jsonl_file_path, 'r', encoding='utf-8') as f_in:
             for line_number, line in enumerate(f_in, 1):
                 try:
                     patent_data = json.loads(line.strip())
@@ -93,12 +114,12 @@ def load_all_patent_data_from_jsonl(jsonl_file_path: Path) -> dict:
                     if publication_number:
                         patent_data_map[publication_number] = patent_data
                     else:
-                        print(f"Warning: Missing 'publication_number' in line {line_number} of {absolute_jsonl_file_path}")
+                        print(f"Warning: Missing 'publication_number' in line {line_number} of {jsonl_file_path}")
                 except json.JSONDecodeError:
-                    print(f"Warning: Skipping invalid JSON line {line_number} in {absolute_jsonl_file_path}: {line.strip()}")
+                    print(f"Warning: Skipping invalid JSON line {line_number} in {jsonl_file_path}: {line.strip()}")
                     continue
     except Exception as e:
-        print(f"An error occurred while reading {absolute_jsonl_file_path}: {e}")
+        print(f"An error occurred while reading {jsonl_file_path}: {e}")
     
     return patent_data_map
 
@@ -109,9 +130,9 @@ def synchronize_patent_knowledge_base(jsonl_data_path: Path, source_artifacts_pa
     Also creates a category-level JSONL summary of available artifacts.
 
     Args:
-        jsonl_data_path (Path): Path to the JSONL file containing patent data.
-        source_artifacts_path (Path): Path to the directory containing source patent artifacts.
-        knowledge_base_path (Path): Path to the base directory for the knowledge base output.
+        jsonl_data_path (Path): Absolute path to the JSONL file containing patent data.
+        source_artifacts_path (Path): Absolute path to the directory containing source patent artifacts.
+        knowledge_base_path (Path): Absolute path to the base directory for the knowledge base output.
     """
     all_patent_data = load_all_patent_data_from_jsonl(jsonl_data_path)
 
@@ -119,29 +140,26 @@ def synchronize_patent_knowledge_base(jsonl_data_path: Path, source_artifacts_pa
         print("No patent data loaded from JSONL file. Exiting synchronization.")
         return
 
-    absolute_source_artifacts_path = source_artifacts_path.resolve()
-    absolute_knowledge_base_path = knowledge_base_path.resolve()
-
     try:
-        absolute_knowledge_base_path.mkdir(parents=True, exist_ok=True)
-        print(f"Knowledge base directory ensured at: {absolute_knowledge_base_path}")
+        knowledge_base_path.mkdir(parents=True, exist_ok=True)
+        print(f"Knowledge base directory ensured at: {knowledge_base_path}")
     except Exception as e:
-        print(f"Error creating knowledge base directory {absolute_knowledge_base_path}: {e}")
+        print(f"Error creating knowledge base directory {knowledge_base_path}: {e}")
         return
 
-    if not absolute_source_artifacts_path.is_dir():
-        print(f"Error: Source artifacts directory not found at {absolute_source_artifacts_path}")
+    if not source_artifacts_path.is_dir():
+        print(f"Error: Source artifacts directory not found at {source_artifacts_path}")
         return
 
-    print(f"Starting synchronization for category '{CATEGORY}' from {absolute_source_artifacts_path} to {absolute_knowledge_base_path}")
+    print(f"Starting synchronization for category '{CATEGORY}' from {source_artifacts_path} to {knowledge_base_path}")
 
     processed_publication_numbers = [] 
 
-    for item in absolute_source_artifacts_path.iterdir():
+    for item in source_artifacts_path.iterdir():
         if item.is_dir():
             publication_number = item.name
             source_patent_subdir = item
-            target_patent_subdir = absolute_knowledge_base_path / publication_number
+            target_patent_subdir = knowledge_base_path / publication_number
             files_copied_count = 0
 
             try:
@@ -170,7 +188,6 @@ def synchronize_patent_knowledge_base(jsonl_data_path: Path, source_artifacts_pa
                 try:
                     with open(output_json_path, 'w', encoding='utf-8') as f_out:
                         json.dump(patent_specific_data, f_out, indent=4)
-                    # print(f"Saved JSON for {publication_number} to {output_json_path}") # Kept for debugging if needed
                     processed_publication_numbers.append(publication_number) 
                 except Exception as e:
                     print(f"Error saving JSON for {publication_number} to {output_json_path}: {e}")
@@ -181,7 +198,7 @@ def synchronize_patent_knowledge_base(jsonl_data_path: Path, source_artifacts_pa
     if processed_publication_numbers:
         category_knowledge_entries = []
         for pub_num in processed_publication_numbers:
-            current_patent_knowledge_dir = absolute_knowledge_base_path / pub_num
+            current_patent_knowledge_dir = knowledge_base_path / pub_num
             
             json_file_path = (current_patent_knowledge_dir / f"{pub_num}.json").resolve()
             pdf_file_path = (current_patent_knowledge_dir / f"{pub_num}.pdf").resolve()
@@ -200,7 +217,7 @@ def synchronize_patent_knowledge_base(jsonl_data_path: Path, source_artifacts_pa
             }
             category_knowledge_entries.append(patent_entry)
 
-        category_jsonl_output_path = absolute_knowledge_base_path.parent / f"{CATEGORY}.jsonl"
+        category_jsonl_output_path = knowledge_base_path.parent / f"{CATEGORY}.jsonl"
         try:
             with open(category_jsonl_output_path, 'w', encoding='utf-8') as f_out_jsonl:
                 for entry in category_knowledge_entries:
@@ -214,9 +231,15 @@ def synchronize_patent_knowledge_base(jsonl_data_path: Path, source_artifacts_pa
     print(f"Synchronization process completed for category '{CATEGORY}'.")
 
 if __name__ == "__main__":
-    # Ensure the configuration Path objects are correctly defined at the top of the script.
+    # Validate all paths before proceeding
+    if not validate_paths():
+        print("Path validation failed. Exiting.")
+        exit(1)
+    
+    # Ensure the configuration Path objects are correctly defined
     if not (INPUT_FILE_PATH and SOURCE_PATENT_ARTIFACTS_DIR and KNOWLEDGE_BASE_OUTPUT_DIR):
         print("Error: Configuration paths (INPUT_FILE_PATH, SOURCE_PATENT_ARTIFACTS_DIR, KNOWLEDGE_BASE_OUTPUT_DIR) must be set.")
+        exit(1)
     else:
         # Call the function to synchronize the patent knowledge base
         synchronize_patent_knowledge_base(INPUT_FILE_PATH, SOURCE_PATENT_ARTIFACTS_DIR, KNOWLEDGE_BASE_OUTPUT_DIR)

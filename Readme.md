@@ -85,6 +85,10 @@ Example output:
 # Usage
 
 1. Setup CrewAI project as in Quickstart guide: https://docs.crewai.com/quickstart
-2. Run `extract_json.py` to prepare knowledge base
-3. Change `src/patent_crew/crew.py` to load correct config in `/src/config/xyz.yaml`
-4. Run crew with `uv run src/patent_crew/main.py`
+2. Make sure .env exist:
+   - OPENAI_API_KEY
+   - SERPER_API_KEY
+   - AGENTOPS_API_KEY
+3. Run `setup_data.py` to prepare knowledge base
+4. Change `src/patent_crew/crew.py` to load correct config in `/src/config/xyz.yaml`
+5. Run crew with `uv run src/patent_crew/main.py`
