@@ -1,7 +1,7 @@
 {
   "publication_number": "US-11423042-B2",
-  "title": "DocuNLP: Advanced Information Extraction for Unstructured Documents",
-  "product_description": "DocuNLP empowers industries by transforming unstructured documents into actionable insights using advanced NLP technologies. Designed for healthcare, legal, and finance professionals, it provides precise information extraction while preserving contextual integrity, enabling better decision-making.",
-  "implementation": "Integrate the patented relevancy model and knowledge graph within DocuNLP's architecture. This will enable seamless extraction of relevant data within documents, converting dynamic and complex information into structured formats while maintaining original positional context for intuitive navigation.",
-  "differentiation": "DocuNLP stands out with its unique ability to combine relevancy models and knowledge graphs, ensuring that critical information remains contextually relevant. Unlike generic NLP solutions that risk losing this context, DocuNLP delivers exceptional accuracy and efficiency, catering specifically to the needs of sectors reliant on nuanced data interpretation."
+  "title": "DocuStruct: Intelligent Document Structuring for Seamless Data Extraction",
+  "product_description": "DocuStruct employs advanced NLP techniques to convert unstructured documents into structured formats, aiding professionals in healthcare, finance, and legal sectors. Targeting document-heavy industries, it enhances decision-making and user experience through accurate data extraction while preserving original context.",
+  "implementation": "The product will utilize patented NLP methodologies to analyze unstructured documents, converting them into structured templates. Extracted information is linked to the original document positions, facilitating easy navigation. Custom schemas enhance retrieval efficiency, ensuring relevance and context are maintained.",
+  "differentiation": "DocuStruct stands out with its domain-specific NLP engines that optimize accuracy and context understanding. Unlike traditional document processing, it uniquely links extracted data to their original document positions. This feature, combined with structured navigation, minimizes inaccuracies and promotes compliance, setting it apart in the market."
 }

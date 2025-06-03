@@ -48,7 +48,7 @@ class PatentGeminiPdfLoaderInput(BaseModel):
     """Input schema for PatentGeminiPdfLoaderTool."""
     pdf_file_path: str = Field(..., description="The relative path from the 'knowledge' directory to the patent's PDF file. E.g., 'nlp/pdf_and_image/US-XYZ/US-XYZ.pdf'.")
     # Optional: Model name if you want to allow selection, defaults to a capable one
-    model_name: str = Field(default="gemini-1.5-flash-latest", description="The Gemini model to use for processing the PDF.") # Or "gemini-1.5-pro-latest"
+    model_name: str = Field(default="gemini-2.5-flash-preview-05-20", description="The Gemini model to use for processing the PDF.") # Or "gemini-1.5-pro-latest"
 
 class PatentGeminiPdfLoaderTool(BaseTool):
     name: str = "Patent PDF Loader (via Gemini)"
