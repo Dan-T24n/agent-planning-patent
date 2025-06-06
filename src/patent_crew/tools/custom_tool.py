@@ -79,14 +79,13 @@ class PatentGeminiPdfLoaderTool(BaseTool):
             # not to summarize or analyze, as that's the job of the subsequent agent.
             # The tool's job is to "load" the information.
             extraction_prompt = (
-                "You are an expert patent analyst. Your task is to process the provided patent PDF document. "
-                "Extract all textual content from the document. "
-                "For any figures, diagrams, or important visual elements, describe them in detail, "
-                "explaining what they depict and their relevance to the invention. "
-                "Combine all this extracted text and visual descriptions into a single, comprehensive "
-                "text output. Ensure the output is well-structured, perhaps by clearly "
-                "separating general text from descriptions of visuals (e.g., using headings like 'Figure X Description')."
-                "Present the information factually as it appears in the document."
+                "You are an expert patent analyst. First, extract the patent title and abstract to establish context. "
+                "Then extract visual content of figures/diagrams. For each figure, provide detailed analysis maintaining "
+                "overall patent context: 1) Overall design and layout of the figure, 2) Specific entities, components, "
+                "and labeled elements present, 3) Relationships and connections between entities, 4) Key features and "
+                "interactions among entities. Cross-reference figure descriptions in text with visual elements. "
+                "Structure output: PATENT CONTEXT (title, abstract), VISUAL CONTENT for each figure: "
+                "FIGURE [X] ANALYSIS with subsections for Design, Entities, Relationships, Features."
             )
             
             client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
@@ -125,26 +124,3 @@ class PatentGeminiPdfLoaderTool(BaseTool):
             print(f"[DEBUG custom_tool.py] PatentGeminiPdfLoaderTool error: {error_msg}")
             return error_msg
 
-# Obsolete: pass paths directly to the agent as string inputs
-
-# class PatentImageLoaderInput(BaseModel):
-#     """Input schema for PatentImageLoaderTool."""
-#     image_paths: List[str] = Field(..., description="A list of absolute file paths for the patent's images.")
-
-# class PatentImageLoaderTool(BaseTool):
-#     name: str = "Patent Image Path Provider"
-#     description: str = (
-#         "Accepts a list of pre-resolved absolute image file paths and makes them available to the agent. "
-#         "This tool does not perform any I/O or path resolution itself; it expects paths to be fully resolved by the caller."
-#     )
-#     args_schema: Type[BaseModel] = PatentImageLoaderInput
-#     # knowledge_base_root: str = "knowledge" # No longer strictly needed as paths are pre-resolved
-
-#     def _run(self, image_paths: List[str]) -> List[str] | str:
-#         """Returns the provided list of absolute image paths."""
-#         print(f"[DEBUG custom_tool.py] PatentImageLoaderTool received image_paths: {image_paths}") # DEBUG PRINT
-#         if not image_paths:
-#             print("[DEBUG custom_tool.py] PatentImageLoaderTool received empty image_paths list.") # DEBUG PRINT
-#             return "Input 'image_paths' list is empty."
-        
-#         return image_paths
