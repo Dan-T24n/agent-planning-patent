@@ -1,4 +1,3 @@
-2025-06-02 16:37:49,203 - INFO - Session Replay for default trace: https://app.agentops.ai/sessions?trace_id=ba323a0fea4234a84c356038dd0b5190
-2025-06-02 16:41:15,901 - INFO - Session Replay for default.session trace: https://app.agentops.ai/sessions?trace_id=ba323a0fea4234a84c356038dd0b5190
-2025-06-02 16:41:17,111 - WARNING - end_session called but no active trace context found.
-
+2025-06-02 20:08:39,192 - INFO - Session Replay for default trace: https://app.agentops.ai/sessions?trace_id=801ed8a030361981fa9e610a64b32d5b
+2025-06-02 20:12:01,091 - INFO - Session Replay for default.session trace: https://app.agentops.ai/sessions?trace_id=801ed8a030361981fa9e610a64b32d5b
+2025-06-02 20:12:02,728 - WARNING - end_session called but no active trace context found.
