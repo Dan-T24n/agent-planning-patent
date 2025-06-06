@@ -1,9 +1,9 @@
 import os
 from typing import List 
-from crewai import Agent, Task, Crew, Process
+from crewai import Agent, Task, Crew, Process, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai.knowledge.knowledge_config import KnowledgeConfig
-from crewai_tools import SerperDevTool
+from crewai_tools import SerperDevTool, LinkupSearchTool, BraveSearchTool
 
 # Import the new tool
 from patent_crew.tools.custom_tool import PatentJsonLoaderTool, PatentGeminiPdfLoaderTool
@@ -12,11 +12,17 @@ from patent_crew.tools.custom_tool import PatentJsonLoaderTool, PatentGeminiPdfL
 output_dir = "output/nlp"
 os.makedirs(output_dir, exist_ok=True)
 
+
 @CrewBase
 class PatentAnalysisCrew():
     """PatentAnalysisCrew"""
     agents_config = 'config/agents_nlp.yaml'
     tasks_config = 'config/tasks_nlp.yaml'
+
+    llm = LLM(
+        model="gemini/gemini-2.5-flash-preview-05-20",
+        temperature=1.0,
+    )
 
     # Type hints for agents and tasks lists, to be populated by decorators
     agents: List[Agent]
@@ -27,6 +33,12 @@ class PatentAnalysisCrew():
         country="us",
         n_results=5
     )
+    linkup_search_tool = LinkupSearchTool(api_key=os.getenv("LINKUP_API_KEY"))
+    brave_search_tool = BraveSearchTool(
+        country="us",
+        n_results=5,
+    )
+    
     patent_json_loader_tool = PatentJsonLoaderTool()
     patent_gemini_pdf_loader_tool = PatentGeminiPdfLoaderTool()
     
@@ -60,7 +72,11 @@ class PatentAnalysisCrew():
     def product_manager(self) -> Agent:
         return Agent(
             config=self.agents_config['product_manager'],
-            tools=[self.search_tool],
+            tools=[
+                self.search_tool,
+                self.brave_search_tool,
+                self.linkup_search_tool,
+                ],
             verbose=True
         )
 

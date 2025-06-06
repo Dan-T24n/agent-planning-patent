@@ -2080,6 +2080,19 @@ wheels = [
 ]
 
 [[package]]
+name = "linkup-sdk"
+version = "0.2.6"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "httpx" },
+    { name = "pydantic" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/23/d0/524a2c07863579299e09bda303f5e1d4a11b176b8153cd7af05d163ce5af/linkup_sdk-0.2.6.tar.gz", hash = "sha256:7b438f4208c04c2cc79843e5b6435b55b0ad718bae1084e1ef569b3b4657e495", size = 9530 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/64/df/25b5723a2659f2454526f550666ea29e9e66120d01048917519aec8e7a7c/linkup_sdk-0.2.6-py3-none-any.whl", hash = "sha256:63b1039bf3f2a705c59e7ca055be0bfc4bce6a98a641b1d5d606c741c07a6433", size = 8523 },
+]
+
+[[package]]
 name = "litellm"
 version = "1.68.0"
 source = { registry = "https://pypi.org/simple" }
@@ -3188,6 +3201,7 @@ dependencies = [
     { name = "crewai-tools" },
     { name = "docling" },
     { name = "google-genai" },
+    { name = "linkup-sdk" },
     { name = "pydantic" },
     { name = "python-dotenv" },
 ]
@@ -3200,6 +3214,7 @@ requires-dist = [
     { name = "crewai-tools", specifier = ">=0.45.0" },
     { name = "docling", specifier = ">=2.34.0" },
     { name = "google-genai", specifier = ">=1.18.0" },
+    { name = "linkup-sdk", specifier = ">=0.2.6" },
     { name = "pydantic", specifier = ">=2.0.0" },
     { name = "python-dotenv", specifier = ">=1.1.0" },
 ]
