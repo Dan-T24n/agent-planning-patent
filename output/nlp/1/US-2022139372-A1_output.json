@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2022139372-A1",
+  "title": "PolyLingo: Lean NLU Corpus Generator via Round-Trip Translation",
+  "product_description": "PolyLingo automatically builds diverse, high-quality training datasets for Natural Language Understanding (NLU) systems via bidirectional round-trip translation and cognitive enrichment. Designed for AI developers, chatbot creators, and enterprises, it minimizes manual curation while scaling multilingual corpus generation for swift model deployment.",
+  "implementation": "PolyLingo uses a patented method by inputting a base utterance and intent profile into a bidirectional translation engine. The system translates into multiple languages and back, then applies cognitive enrichment to rank outputs. Cloud API endpoints enable scalable, modular deployment for automated corpus generation.",
+  "differentiation": "PolyLingo stands out by combining bidirectional round-trip translation with semantic enrichment to produce varied, normalized datasets with high precision. Its automated, lean approach cuts manual costs and accelerates Natural Language Understanding model training, offering enterprises a clear competitive advantage."
+}

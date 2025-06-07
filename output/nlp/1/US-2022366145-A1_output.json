@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2022366145-A1",
+  "title": "SentimentSense: AI-Driven Granular Aspect Analysis Engine for Accurate Consumer Insights",
+  "product_description": "SentimentSense delivers advanced few-shot (learning method requiring minimal training examples) aspect based sentiment analysis to extract precise sentiment pairs from diverse texts. Designed for e-commerce professionals, market researchers, and social media analysts, it converts raw feedback into actionable insights while enhancing customer engagement.",
+  "implementation": "The solution integrates a patented generative language model built on the Generative Pre-trained Transformer 2 framework into a cloud-based service. It operates in single-task, joint-task, and multi-task modes to extract aspect terms and sentiment polarities in real time, ensuring scalable and seamless integration.",
+  "differentiation": "SentimentSense stands apart by employing advanced few-shot learning, which reduces the need for extensive manual data labeling. Its unified real-time extraction of detailed sentiment insights lowers operational costs and furnishes businesses with a competitive edge through unmatched accuracy and rapid adaptability."
+}

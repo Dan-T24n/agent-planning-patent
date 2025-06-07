@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2023274743-A1",
+  "title": "ConvoGuardian: Secure AI Multi-Turn Dialogue for Smart Robotics",
+  "product_description": "ConvoGuardian is a secure artificial intelligence multi-turn dialogue system designed for interactive robots in education, healthcare, smart homes, and customer service. It provides natural, context-aware conversations that reduce user friction while ensuring safe, engaging interactions.",
+  "implementation": "The system combines cloud-based natural language processing (NLP) with on-device edge processing. Speech inputs are converted to text, filtered for prohibited content, and analyzed for intent and sentiment in real time, ensuring secure and contextual dialogue management.",
+  "differentiation": "Unlike traditional chatbots and voice assistants, ConvoGuardian maintains continuous dialogue context and adjusts responses using emotional cues. Its innovative hybrid edge-cloud design and dynamic content filtering deliver unmatched user safety and engagement, surpassing legacy systems."
+}

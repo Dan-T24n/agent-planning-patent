@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-10795922-B2",
+  "title": "AuthentiQuery: AI-Powered Authorship-Driven NLP for Precision Insights",
+  "product_description": "AuthentiQuery leverages patented authorship-enhanced corpus ingestion to deliver high-precision Natural Language Processing outputs for healthcare, finance, legal, and academic sectors. It filters content by credibility, offering accurate and authoritative data for efficient decision support.",
+  "implementation": "AuthentiQuery implements a cloud-based Natural Language Processing engine integrating the patented method. Documents are profiled and matched against curated author profiles using machine learning algorithms, ensuring credible content selection for real-time, reliable data retrieval and answer generation.",
+  "differentiation": "AuthentiQuery distinguishes itself by uniquely ranking information based on author credibility, rather than uniform data processing. This innovative approach enhances accuracy, reduces noise and bias, and delivers superior contextual insights to empower high-stakes decision-making."
+}

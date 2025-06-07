@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2022309360-A1",
+  "title": "XplainText AI: Granular Natural Language Processing Explainability Engine for Regulated Industries",
+  "product_description": "XplainText AI delivers detailed regional explanations for complex Natural Language Processing models. Targeting healthcare, finance, legal, and government sectors, it transforms opaque model inferences into clear, actionable insights that support regulatory compliance and informed decision-making.",
+  "implementation": "The solution employs the patented approach by first generating initial model inferences, then applying topic modeling and iterative content perturbation. It creates perturbed document copies to extract token-level contributions and integrates via modular application programming interfaces for real-time regional analysis.",
+  "differentiation": "Unlike traditional explainability tools, XplainText AI offers fine-grained, iterative regional explanations tailored to the semantic nuances of text. Its method enhances auditability, transparency, and compliance in regulated industries, providing a significant competitive edge."
+}

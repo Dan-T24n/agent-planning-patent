@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-10956181-B2",
+  "title": "IntelliCommand: Automated Video Instruction-to-Action Conversion Platform",
+  "product_description": "IntelliCommand automatically transforms natural language video instructions into executable commands for Robotic Process Automation (RPA). Tailored for enterprise IT, support centers, e-learning and smart factories, it reduces human error and accelerates automation to optimize operations.",
+  "implementation": "The system deploys parallel processing modules for audio-to-text and video Optical Character Recognition (OCR) to precisely extract synchronized data from video streams. Semantic mapping integrates visual cues with transcribed instructions, converting them into context-aware commands that drive Robotic Process Automation (RPA) workflows.",
+  "differentiation": "IntelliCommand distinguishes itself by unifying multimodal inputs including audio, video and user interface events. Its context-aware semantic mapping minimizes manual corrections while delivering superior accuracy and speed, providing a significant competitive edge in digital transformation."
+}

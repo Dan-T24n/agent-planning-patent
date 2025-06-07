@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2020073983-A1",
+  "title": "NLQuery Master: Intelligent Nested SQL Navigator for Democratized Data Access",
+  "product_description": "NLQuery Master empowers non-technical business analysts, data scientists, and decision makers by transforming natural language queries into complex Structured Query Language requests. It delivers rapid insights, minimizes IT dependency, and enhances decision-making across diverse industry sectors.",
+  "implementation": "The solution integrates a patented approach that tokenizes user queries and applies advanced Natural Language Processing (NLP) for semantic analysis and nested query detection. It employs a modular pipeline to segregate query components and dynamically map join conditions for real-time execution on both cloud and on-premise platforms.",
+  "differentiation": "Distinct from rule-based systems, NLQuery Master offers a domain-agnostic, modular framework that accurately infers nested query structures without extensive retraining. Its dynamic error reduction, scalable performance, and adaptable design deliver a transformative competitive advantage in business intelligence and automated data analysis."
+}

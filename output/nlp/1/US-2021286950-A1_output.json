@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2021286950-A1",
+  "title": "Conversational Navigator: Adaptive Artificial Intelligence Middleware for Real-Time Dynamic Engagement",
+  "product_description": "The Conversational Navigator provides dynamic, context-aware interactions by integrating external data sources into artificial intelligence-driven chat systems. Designed for large enterprises in healthcare, finance, and customer service, it meets the need for real-time adaptation, reducing manual configuration while boosting response accuracy.",
+  "implementation": "Leveraging the patent's middleware, the system analyzes user inputs to detect insufficient context and issues natural language processing queries to external databases. It then dynamically updates conversation artifacts via an automated engine that generates intents and entities, ensuring adaptive real-time responses.",
+  "differentiation": "Unlike conventional static chat systems, Conversational Navigator distinguishes itself by dynamically integrating external data and continuously refining its algorithms. Its unique middleware approach enables faster context switching, enhanced personalization, and superior accuracy, providing a significant competitive edge."
+}

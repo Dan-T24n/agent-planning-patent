@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11222236-B2",
+  "title": "InsightFusion VQA: Dual-Attention Visual Query Intelligence Platform",
+  "product_description": "InsightFusion VQA harnesses dual-channel attention by integrating convolutional neural network based global image feature extraction with recurrent neural network derived query semantics. Designed for healthcare, surveillance, autonomous vehicles, and retail, it delivers fast, precise visual data interpretation that reduces manual review and enhances decision-making.",
+  "implementation": "InsightFusion VQA is built on a dual-attention framework that combines convolutional neural networks for comprehensive image analysis with recurrent neural networks for processing textual queries. The system dynamically assigns attention weights to image regions, ensuring real-time accuracy and efficient responsiveness across various applications.",
+  "differentiation": "InsightFusion VQA distinguishes itself by fusing global image context with localized detail through its dual-channel attention mechanism. Unlike standard visual query systems, it provides real-time error handling and robust safety filters, delivering superior reliability and a competitive edge in high-stakes markets."
+}

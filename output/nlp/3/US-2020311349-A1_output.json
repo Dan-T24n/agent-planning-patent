@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2020311349-A1",
+  "title": "NLP Navigator: AI-Driven Self-Service Data Query & Insight Engine",
+  "product_description": "NLP Navigator empowers non-technical users to query diverse databases using natural language. Leveraging advanced deep learning for semantic parsing (Natural Language Processing) and intent recognition, it converts everyday queries into precise Structured Query Language (SQL) and Not Only SQL (NoSQL) commands, serving managers, analysts, and SMEs across finance, healthcare, and retail to streamline data access and decision-making.",
+  "implementation": "The platform implements the patent's natural language interface by converting user input into vector representations for deep learning-based extraction of entities and intents. It compiles an intermediate semantic form into Structured Query Language (SQL) and Not Only SQL (NoSQL) commands, ensuring modular, secure, and scalable connectivity for real-time analytics across varied data systems.",
+  "differentiation": "NLP Navigator stands out with its unique intermediate language method that bridges everyday language and complex database queries. This innovative approach minimizes errors and technical dependencies while delivering rapid, accurate insights and a competitive edge in self-service data analysis for a broad range of industries."
+}

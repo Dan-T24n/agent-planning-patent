@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11132509-B1",
+  "title": "VocalEdge: Smart Voice Processor for Local Natural Language Understanding (NLU) Optimization",
+  "product_description": "VocalEdge is a cutting-edge voice processing solution that leverages local natural language understanding to minimize latency and conserve battery power. It targets manufacturers of smart home devices, automotive systems, and wearable technology, delivering rapid, private voice interactions and efficient resource utilization without heavy cloud dependency.",
+  "implementation": "VocalEdge employs patented selective domain evaluation by converting speech to text and using a domain classifier to sequentially activate domain-specific Natural Language Understanding (NLU) models. The system halts once a high confidence threshold is met, balancing local and remote processing for optimal real-time performance.",
+  "differentiation": "Unlike conventional parallel processing solutions that expend excessive power and time, VocalEdge uses an adaptive, confidence-driven sequential evaluation approach. This innovative method reduces energy consumption and delays, ensuring superior accuracy, enhanced privacy, and a competitive edge in smart home, automotive, and wearable markets."
+}

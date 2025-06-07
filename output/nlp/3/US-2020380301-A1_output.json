@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2020380301-A1",
+  "title": "Integrated ML-IDE Accelerator: Streamlined Model Building & Deployment Suite",
+  "product_description": "Integrated machine learning integrated development environment (IDE) Accelerator consolidates model creation, training, and testing. It offers pre-built templates for images, text, sound, and live sensor data, empowering enterprise developers, startups, and Internet of Things (IoT) engineers to quickly prototype, validate, and deploy models while reducing integration overhead and errors.",
+  "implementation": "The patented technology integrates modular components into the integrated development environment (IDE) to manage data ingestion, template selection, and live performance visualization. Developers benefit from drag-and-drop sensor inputs, automated data splitting and evaluation, and seamless code exporting for rapid deployment.",
+  "differentiation": "This solution distinguishes itself by uniting machine learning model design and application development in a single platform. Its real-time sensor integration, intuitive graphical user interface, and pre-defined templates streamline workflows, significantly cutting development cycles and minimizing integration errors for a competitive market edge."
+}

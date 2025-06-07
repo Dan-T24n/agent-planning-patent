@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-10657124-B2",
+  "title": "QueryEase AI: Self-Service Natural Language Query Engine for Data Insights",
+  "product_description": "QueryEase AI is a self-service natural language query engine designed to empower non-technical business users, analysts, and marketing teams with effortless data access. It addresses the need for rapid insight generation by converting everyday language into precise SQL queries, reducing IT dependency and accelerating decision-making processes.",
+  "implementation": "The product integrates the patented Natural Language Processing engine into a cloud-native platform. It tokenizes and semantically analyzes user input using design-time artifacts and a robust rules engine, converting natural language into structured SQL queries in real time to facilitate seamless Business Intelligence integration.",
+  "differentiation": "QueryEase AI distinguishes itself by combining adaptive real-time feedback with automated error handling and a lean low-code interface. Its rapid, accurate conversion of language into SQL commands, augmented by cloud scalability and superior processing speed, provides a significant competitive edge over traditional multi-step query systems."
+}

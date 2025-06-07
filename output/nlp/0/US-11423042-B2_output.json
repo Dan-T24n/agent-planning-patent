@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11423042-B2",
+  "title": "IntelliDoc Structurer: Advanced Artificial Intelligence-Powered Contextual Data Extraction",
+  "product_description": "IntelliDoc Structurer leverages advanced Natural Language Processing and domain-specific ontologies to convert unstructured data into organized, context-rich formats. Designed for healthcare, finance, and legal professionals, it addresses critical compliance and operational challenges by reducing manual verification and enhancing decision-making efficiency.",
+  "implementation": "IntelliDoc Structurer employs patented technology by converting documents into text using Optical Character Recognition and processing the text with a specialized Natural Language Processing engine to extract data. It builds dynamic knowledge graphs in real time, linking extracted details to original context via a scalable, cloud-based client-server model.",
+  "differentiation": "Distinct from conventional Natural Language Processing systems, IntelliDoc Structurer preserves original context and positional data through domain-specific models and deep relevancy scoring. Its cutting-edge knowledge graph approach minimizes manual reviews and errors, ensuring robust audit trails and enhanced regulatory compliance in high-stakes industries."
+}
