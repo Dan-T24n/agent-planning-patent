@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11151320-B1",
+  "title": "GraphPrime NLP: Optimized Domain-Specific AI Interaction Engine",
+  "product_description": "GraphPrime Natural Language Processing (NLP) revolutionizes human-computer interaction by priming artificial intelligence models with optimized examples derived from a structured knowledge graph. It targets smart device manufacturers, enterprise software developers, and automation integrators, ensuring precise command recognition, reducing errors, and streamlining operational workflows.",
+  "implementation": "GraphPrime NLP employs a patented approach by analyzing a labeled knowledge graph to produce multiple Natural Language Processing training examples that fine-tune a pre-trained artificial intelligence model. The solution is deployed in voice interfaces, Internet of Things (IoT) devices, and enterprise automation platforms to deliver real-time, context-sensitive responses.",
+  "differentiation": "GraphPrime NLP differentiates itself by automatically generating context-aware training examples from structured knowledge graphs. Its dynamic generation process minimizes error rates and enhances command accuracy, offering a distinct competitive advantage in smart home automation, enterprise customer relationship management, and data analytics."
+}

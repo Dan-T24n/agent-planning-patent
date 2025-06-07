@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11081104-B1",
+  "title": "ContextCore: Adaptive NLP Engine for Multi-Device Interactions",
+  "product_description": "ContextCore is an adaptive Natural Language Processing engine that leverages contextual re-ranking to precisely interpret user commands across diverse devices. Targeting smart home systems, automotive interfaces, and enterprise solutions, it meets the need for accurate, reliable multi-device interactions while reducing misinterpretations.",
+  "implementation": "ContextCore integrates advanced technology by collecting intent, Named Entity Recognition (NER) and domain scores, then combining them with device-specific contextual data into a unified feature vector. A trained log-linear model processes this vector, enabling real-time recalibration across cloud and edge platforms for precise command execution.",
+  "differentiation": "ContextCore distinguishes itself by dynamically re-ranking Natural Language Understanding hypotheses using rich contextual data, offering superior accuracy over traditional one-size-fits-all solutions. Its modular design and scalable architecture ensure optimal performance across smart devices, automotive systems, and enterprise applications."
+}

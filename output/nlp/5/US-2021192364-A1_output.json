@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2021192364-A1",
+  "title": "SemanticFusion: AI-Powered Joint NLP and Graph Analyzer for Enterprises",
+  "product_description": "SemanticFusion delivers an agile text processing platform that fuses natural language processing with knowledge graph learning for precise semantic representations. It serves enterprises, academic institutions, and artificial intelligence startups by providing fast, accurate insights to improve customer service, automate content analysis, and enhance decision support.",
+  "implementation": "The system bootstraps by integrating the joint learning model from the patent. It combines a natural language processing layer with a knowledge graph learning layer via streamlined read-write modules. Utilizing pre-trained models on cloud and edge devices through an API-driven architecture, it enables rapid and efficient semantic analysis.",
+  "differentiation": "SemanticFusion stands out by unifying dual-modality analysis that merges unstructured text with structured data from knowledge graphs into one cohesive system. This integration reduces technical overhead, accelerates processing speeds, and offers significant competitive advantages by enhancing operational agility and data accuracy."
+}

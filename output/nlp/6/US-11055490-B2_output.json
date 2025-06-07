@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11055490-B2",
+  "title": "MediSense Pro: Advanced Semantic Natural Language Processing for Rapid Clinical Predictions",
+  "product_description": "MediSense Pro leverages a patented semantic Natural Language Processing (NLP) engine to accurately extract and adjust key features from clinical notes. Designed for hospitals, clinics, and healthcare information technology vendors, it minimizes manual review, enhances diagnostic accuracy, and streamlines real-time decision support to meet critical patient care needs.",
+  "implementation": "The product integrates the patent’s semantic feature extraction into a bootstrap-friendly microservices platform. It indexes clinical texts, applies graph-based adjustments to replace low-occurrence phrases, and channels structured data into efficient machine learning models for real-time prediction. Open-source tools and cloud application programming interfaces ensure rapid, cost-effective scalability.",
+  "differentiation": "MediSense Pro distinguishes itself by dynamically converting unstructured clinical data into actionable insights using advanced graph-based semantic adjustments. Unlike traditional rule-based systems, it reduces noise, improves prediction accuracy, and offers an efficient, scalable design to meet budget constraints and evolving needs in automated, real-time clinical analytics."
+}

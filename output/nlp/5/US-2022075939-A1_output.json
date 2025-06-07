@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2022075939-A1",
+  "title": "SmartText Insights: Advanced Natural Language Processing Unstructured Data Segmentation Platform",
+  "product_description": "SmartText Insights leverages advanced natural language processing (NLP) to automatically partition unstructured text into clear, actionable segments. Designed for healthcare, finance, legal, and enterprise teams, it fulfills compliance, risk monitoring, and efficiency needs for data-driven organizations.",
+  "implementation": "The platform integrates the patented natural language processing (NLP) engine within a scalable cloud-based architecture. It processes raw text in real time by scoring and segmenting content into logical units, dynamically linking files to centralized repositories, and ensuring swift, automated risk compliance.",
+  "differentiation": "SmartText Insights distinguishes itself through industry-specific segmentation and adaptive learning models that continuously refine output quality. Its minimal need for manual intervention, real time analytics, and seamless API integrations provide a competitive edge by reducing costs and enhancing precise risk management."
+}

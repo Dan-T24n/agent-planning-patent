@@ -68,9 +68,118 @@ PROJECT_ROOT = Path(__file__).parent.resolve()
 CATEGORY = "nlp"  # reload the crew config to get specialized agents
 
 # All paths are now absolute and relative to project root
-INPUT_FILE_PATH = PROJECT_ROOT / f"data/{CATEGORY}/{CATEGORY}.jsonl"
-SOURCE_PATENT_ARTIFACTS_DIR = PROJECT_ROOT / f"data/{CATEGORY}/pdf_and_image/"
-KNOWLEDGE_BASE_OUTPUT_DIR = PROJECT_ROOT / f"knowledge/{CATEGORY}/pdf_and_image/"
+INPUT_JSONL_FILE = PROJECT_ROOT / f"knowledge/{CATEGORY}/{CATEGORY}.jsonl"
+OUTPUT_JSONL_FILE = PROJECT_ROOT / f"output/{CATEGORY}/{CATEGORY}_output.jsonl"
+OUTPUT_DIR = PROJECT_ROOT / f"output/{CATEGORY}"
 
 # --- End Configuration ---
+
+def get_expected_publication_numbers(jsonl_file: Path) -> set:
+    """Reads a JSONL file and returns a set of publication numbers."""
+    if not jsonl_file.exists():
+        print(f"Input file not found: {jsonl_file}")
+        return set()
+    
+    expected_numbers = set()
+    with open(jsonl_file, "r") as f:
+        for line in f:
+            try:
+                data = json.loads(line)
+                if "publication_number" in data:
+                    expected_numbers.add(data["publication_number"])
+            except json.JSONDecodeError:
+                print(f"Warning: Could not decode JSON from line in {jsonl_file}: {line.strip()}")
+    return expected_numbers
+
+def validate_entry(entry: dict) -> bool:
+    """Validates a single JSON entry based on the docstring requirements."""
+    required_fields = {
+        "publication_number": float('inf'),
+        "title": 100,
+        "product_description": 300,
+        "implementation": 300,
+        "differentiation": 300,
+    }
+
+    for field, max_len in required_fields.items():
+        if field not in entry:
+            print(f"Validation failed for {entry.get('publication_number', 'Unknown')}: Missing field '{field}'")
+            return False
+        
+        field_len = len(entry[field])
+        if field_len > max_len:
+            print(f"Validation failed for {entry.get('publication_number', 'Unknown')}: Field '{field}' is too long ({field_len} > {max_len})")
+            return False
+    return True
+
+def main():
+    """Main function to compile and validate patent data."""
+    print(f"Starting compilation for category: {CATEGORY}")
+
+    # 1. Read Expected Patents from knowledge base
+    expected_pub_numbers = get_expected_publication_numbers(INPUT_JSONL_FILE)
+    if not expected_pub_numbers:
+        print(f"Warning: No expected publication numbers found in {INPUT_JSONL_FILE}.")
+    else:
+        print(f"Found {len(expected_pub_numbers)} expected patents in {INPUT_JSONL_FILE}.")
+
+    # 2. Find all individual output JSON files
+    json_files = list(OUTPUT_DIR.glob("**/*_output.json"))
+    print(f"Found {len(json_files)} individual JSON files to process in {OUTPUT_DIR}.")
+
+    valid_entries = []
+    processed_pub_numbers = set()
+
+    # 3. Process and Validate each JSON file
+    for file_path in json_files:
+        try:
+            with open(file_path, "r") as f:
+                data = json.load(f)
+            
+            if validate_entry(data):
+                valid_entries.append(data)
+                if "publication_number" in data:
+                    processed_pub_numbers.add(data["publication_number"])
+            else:
+                print(f"Skipping invalid data in file: {file_path}")
+
+        except json.JSONDecodeError:
+            print(f"Warning: Could not decode JSON from file: {file_path}")
+        except Exception as e:
+            print(f"An error occurred while processing {file_path}: {e}")
+
+    print(f"Processed {len(valid_entries)} valid entries.")
+
+    # 4. Write Compiled Output
+    if valid_entries:
+        # Sort entries by publication_number for consistent output
+        valid_entries.sort(key=lambda x: x.get("publication_number", ""))
+        with open(OUTPUT_JSONL_FILE, "w") as f_out:
+            for entry in valid_entries:
+                json.dump(entry, f_out)
+                f_out.write('\n')
+        print(f"Successfully compiled results to {OUTPUT_JSONL_FILE}")
+    else:
+        print("No valid entries to write.")
+
+    # 5. Verify and Report Missing Patents
+    if expected_pub_numbers:
+        missing_pub_numbers = expected_pub_numbers - processed_pub_numbers
+        if missing_pub_numbers:
+            print("\n--- Missing Patents ---")
+            print(f"{len(missing_pub_numbers)} expected patents were not found in the output:")
+            for number in sorted(list(missing_pub_numbers)):
+                print(f"- {number}")
+        else:
+            print("\nAll expected patents were processed and included in the output.")
+    
+        unexpected_pub_numbers = processed_pub_numbers - expected_pub_numbers
+        if unexpected_pub_numbers:
+            print("\n--- Unexpected Patents ---")
+            print(f"{len(unexpected_pub_numbers)} patents were found in output but not in the knowledge base:")
+            for number in sorted(list(unexpected_pub_numbers)):
+                print(f"- {number}")
+
+if __name__ == "__main__":
+    main()
 

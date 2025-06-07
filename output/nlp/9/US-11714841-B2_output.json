@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11714841-B2",
+  "title": "DataSpeak Analytics: Comprehensive Natural Language Self-Service Data Query Platform",
+  "product_description": "DataSpeak Analytics harnesses natural language processing (NLP) technology to convert everyday queries into actionable insights from spreadsheets and databases. Designed for business analysts, finance teams, and small-to-medium enterprises, it simplifies data analysis, reduces IT dependency, and accelerates decision-making.",
+  "implementation": "DataSpeak Analytics employs a robust, cloud-based architecture integrating a natural language query interpreter. It processes user queries by identifying relevant data grids, auto-generating executable formulas, and refining outputs through adaptive feedback loops to ensure seamless, real-time analytics.",
+  "differentiation": "DataSpeak Analytics stands apart with real-time adaptive learning and an intuitive interface that delivers accurate, immediate insights without specialized IT support. Its innovative design streamlines data querying and outperforms traditional multi-step processes in speed and precision."
+}

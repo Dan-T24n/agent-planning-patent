@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11500865-B1",
+  "title": "DataQuery AI Navigator: Intelligent Business Intelligence Data Discovery Platform",
+  "product_description": "DataQuery AI Navigator transforms natural language queries into executable actions across complex business intelligence ecosystems. Utilizing a multi-stage filtering pipeline with artificial intelligence and deep learning, it empowers enterprise decision-makers, data analysts, and information technology teams by simplifying access to integrated fixed-schema datasets while reducing training requirements and operational overhead.",
+  "implementation": "The product integrates the patent’s multi-stage filtering pipeline by first applying advanced entity recognition and candidate linkage ranking, then generating metadata snapshots to select the optimal dataset. It seamlessly connects cloud-based business intelligence systems and large data warehouses, converting everyday language into efficient, real-time database queries.",
+  "differentiation": "DataQuery AI Navigator stands out by leveraging artificial intelligence, deep learning, and dynamic multi-stage filtering to overcome traditional query limitations. Its precise entity linkage and robust ambiguity resolution across heterogeneous data sources ensure superior accuracy, scalability, and reduced operational costs compared to conventional business intelligence tools."
+}

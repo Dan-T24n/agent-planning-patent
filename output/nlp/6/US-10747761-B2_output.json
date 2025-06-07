@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-10747761-B2",
+  "title": "QueryEase: Intelligent Natural Language to Structured Query Language Converter for Analytics",
+  "product_description": "QueryEase empowers non-technical business users, data teams, and analysts to convert everyday language into precise Structured Query Language queries. It simplifies data access for finance, healthcare, e-commerce, and customer relationship management by reducing technical barriers and accelerating insights.",
+  "implementation": "QueryEase integrates patented modular deep learning models that map natural language to distinct Structured Query Language components. A Long Short-Term Memory-based column predictor, aggregation classifier, and reinforcement learning-driven condition module work in tandem to synthesize and optimize accurate queries.",
+  "differentiation": "QueryEase stands out by delivering self-correcting query translation with adaptive reinforcement learning that minimizes semantic errors. It supports dynamic schema changes and integrates seamlessly with Business Intelligence tools, outperforming traditional natural language processing to Structured Query Language systems."
+}

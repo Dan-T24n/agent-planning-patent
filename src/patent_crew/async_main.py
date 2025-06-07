@@ -22,7 +22,7 @@ KNOWLEDGE_ROOT_DIR = "knowledge" # This is used as the base for making json_file
 OUTPUT_DIR = "output"
 MAX_BATCHES_TO_PROCESS = 11 # Set to 1 to process only first batch of 10 patents
 BATCH_SIZE = 5  # Number of patents to process in each batch
-START_BATCH_IDX = 3 # Set to a specific batch index to start from (e.g., 3)
+START_BATCH_IDX = 7 # Set to a specific batch index to start from (e.g., 3)
 # ---------------------------
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
@@ -85,6 +85,7 @@ async def run_async():
     Run the Patent Analysis crew for each patent found in the specified category's JSONL file using async kickoff.
     """
     
+    print("Debug: Initiating async and agentops...")
     agentops.init(auto_start_session=False)
 
     output_base_dir = Path(OUTPUT_DIR) / DEFAULT_CATEGORY
@@ -100,14 +101,20 @@ async def run_async():
         batch = patent_processing_inputs[i:i+BATCH_SIZE]
         batches.append(batch)
     
+    print(f"Debug: Created {len(batches)} batches of size {BATCH_SIZE}.")
+    
     crew_instance_manager = PatentAnalysisCrew()
     crew = crew_instance_manager.crew() 
 
+    print("Debug: Starting batch processing loop...")
     for batch_idx, batch in enumerate(batches):
+        print(f"Debug: Loop check: batch_idx={batch_idx}, START_BATCH_IDX={START_BATCH_IDX}, MAX_BATCHES_TO_PROCESS={MAX_BATCHES_TO_PROCESS}")
         # Skip batches if the current batch index is less than the starting index
         if batch_idx < START_BATCH_IDX:
+            print(f"Debug: Skipping batch {batch_idx + 1}...")
             continue
         if batch_idx >= MAX_BATCHES_TO_PROCESS:
+            print(f"Debug: Max batches reached. Stopping loop.")
             break
         
         print(f" ********** Processing Batch {batch_idx + 1} **********")
@@ -135,6 +142,8 @@ async def run_async():
             print("Continuing to next batch after 30 seconds...")
             await asyncio.sleep(30)
 
+    print("Debug: Batch processing loop finished.")
+
 def run():
     """
     Wrapper function to run the async crew execution.
@@ -144,4 +153,5 @@ def run():
 
 if __name__ == "__main__":
     run()
+    print("Debug: Script finished.")
 
