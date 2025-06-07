@@ -1,4 +1,5 @@
-2025-06-07 15:50:51,140 - INFO - Session Replay for session trace: https://app.agentops.ai/sessions?trace_id=8adbb03696b92f28925fb4ff59bebd58
-2025-06-07 15:56:22,708 - INFO - Session Replay for session.session trace: https://app.agentops.ai/sessions?trace_id=8adbb03696b92f28925fb4ff59bebd58
-2025-06-07 15:56:32,712 - INFO - Session Replay for session trace: https://app.agentops.ai/sessions?trace_id=e277a3c589583bd81f14500157d9d50a
-2025-06-07 16:01:45,020 - INFO - Session Replay for session.session trace: https://app.agentops.ai/sessions?trace_id=e277a3c589583bd81f14500157d9d50a
+2025-06-07 16:47:15,360 - INFO - Session Replay for session trace: https://app.agentops.ai/sessions?trace_id=4c79e402e0dffc01e718927ccfedc197
+2025-06-07 16:51:17,273 - INFO - Session Replay for session.session trace: https://app.agentops.ai/sessions?trace_id=4c79e402e0dffc01e718927ccfedc197
+2025-06-07 16:51:27,277 - INFO - Session Replay for session trace: https://app.agentops.ai/sessions?trace_id=41e6a36bb08ef94c297aa0833fe78a58
+2025-06-07 16:55:25,136 - INFO - Session Replay for session.session trace: https://app.agentops.ai/sessions?trace_id=41e6a36bb08ef94c297aa0833fe78a58
+2025-06-07 16:55:35,140 - INFO - Session Replay for session trace: https://app.agentops.ai/sessions?trace_id=56d7dae15377636b8b2a721f9339c077

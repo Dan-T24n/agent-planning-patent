@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2021374516-A1",
+  "title": "TransparaX: Natural Language Explainability Engine for Artificial Intelligence Decision Transparency",
+  "product_description": "TransparaX employs breakthrough dual-classifier technology to convert complex Artificial Intelligence outputs into clear, natural language explanations. Targeting healthcare, finance, and legal sectors, it meets regulatory compliance while empowering non-expert users with trustworthy, actionable insights.",
+  "implementation": "TransparaX integrates a dual-classifier framework, combining a primary statistical classifier with micro classifiers that generate plain language justifications. Data is processed in real time to assign labels and produce immediate explanations, while continuous feedback refines accuracy.",
+  "differentiation": "TransparaX differentiates itself by transforming opaque, black-box Artificial Intelligence decisions into clear, verified, human-readable explanations. Its dual-classifier approach enhances interpretability and trust, surpassing conventional models with superior accuracy and regulatory compliance."
+}

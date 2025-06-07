@@ -1,7 +1,6 @@
 '''
 Main script for async crew execution. Tested OK.
 Renamed to keep the original main.py for testing.
-!DO NOT RUN:$$$! Only run when all tests are done.
 '''
 
 import warnings
@@ -21,8 +20,9 @@ from patent_crew.crew import PatentAnalysisCrew # Import the original crew class
 DEFAULT_CATEGORY = "nlp"  # Choose category to process: {nlp, material_chemistry, computer_science}
 KNOWLEDGE_ROOT_DIR = "knowledge" # This is used as the base for making json_file_path relative
 OUTPUT_DIR = "output"
-MAX_BATCHES_TO_PROCESS = 2 # Set to 1 to process only first batch of 10 patents
+MAX_BATCHES_TO_PROCESS = 11 # Set to 1 to process only first batch of 10 patents
 BATCH_SIZE = 5  # Number of patents to process in each batch
+START_BATCH_IDX = 3 # Set to a specific batch index to start from (e.g., 3)
 # ---------------------------
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
@@ -104,6 +104,9 @@ async def run_async():
     crew = crew_instance_manager.crew() 
 
     for batch_idx, batch in enumerate(batches):
+        # Skip batches if the current batch index is less than the starting index
+        if batch_idx < START_BATCH_IDX:
+            continue
         if batch_idx >= MAX_BATCHES_TO_PROCESS:
             break
         
@@ -126,6 +129,7 @@ async def run_async():
             agentops.end_session('Success')
             await asyncio.sleep(10)
         except Exception as e:
+            print("*" * 100)
             print(f"Error processing batch {batch_idx + 1}: {e}")
             agentops.end_session('Fail')
             print("Continuing to next batch after 30 seconds...")

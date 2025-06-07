@@ -33,7 +33,7 @@ class PatentAnalysisCrew():
     tasks: List[Task]
     
     llm_small= LLM(
-        model="gemini/gemini-2.5-flash-preview-04-17",
+        model="gemini/gemini-2.0-flash",
         temperature=0.1
     )
 
@@ -71,7 +71,7 @@ class PatentAnalysisCrew():
             config=self.agents_config['patent_analyst'],
             tools=[self.patent_json_loader_tool],
             verbose=False,
-            llm=self.llm_openai_mini,
+            llm=self.llm_small,
             max_retries=3
         )
 
@@ -81,7 +81,7 @@ class PatentAnalysisCrew():
             config=self.agents_config['patent_analyst_visual'],
             tools=[self.patent_gemini_pdf_loader_tool],
             verbose=False,
-            llm=self.llm_openai_mini,
+            llm=self.llm_openai_o3,
             max_retries=3
         )
 

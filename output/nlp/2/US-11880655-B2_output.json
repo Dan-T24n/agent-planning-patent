@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11880655-B2",
+  "title": "SmartFact Corrector: AI-Driven Real-Time Misinformation & Fact Correction System",
+  "product_description": "SmartFact Corrector harnesses cutting-edge Artificial Intelligence and advanced machine learning to verify and amend factual inaccuracies in digital text. Designed for journalists, educators, legal experts, and enterprise creators, it delivers swift, reliable corrections that maintain credibility.",
+  "implementation": "SmartFact Corrector is implemented with a patented three-model architecture. It first generates sentence embeddings, then identifies and masks inaccuracies, and finally predicts precise corrections using structured data tables. This approach ensures seamless integration with content management systems.",
+  "differentiation": "Distinctively, SmartFact Corrector not only flags errors but automatically corrects misinformation in real time. Its multi-model design cross-references structured data and applies token-level edits for superior accuracy, offering unmatched efficiency and a strong competitive edge over conventional fact-checkers."
+}

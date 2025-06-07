@@ -1,7 +1,7 @@
 {
   "publication_number": "US-2022139372-A1",
-  "title": "NLP-Boost: Automated Multi-Lingual Corpus Generation for Enhanced Natural Language Understanding",
-  "product_description": "NLP-Boost leverages advanced machine translation and cognitive enrichment (artificial intelligence-based validation) to generate diverse, high-quality natural language corpora. Targeting AI developers, enterprises, and research institutions, it boosts training data accuracy while minimizing manual annotation and reducing costs.",
-  "implementation": "The product employs a patented round-trip translation process where a base utterance and intent profile are sequentially translated across multiple languages and then normalized using cognitive ranking. A cloud-integrated API ensures seamless incorporation into existing natural language processing pipelines.",
-  "differentiation": "Distinguished by its complete automation, NLP-Boost eliminates laborious data preparation. Its innovative translation and cognitive ranking system delivers semantically enriched, scalable corpora with minimal expert intervention, offering a significant competitive edge in efficient AI model training."
+  "title": "PolyLingo: Lean NLU Corpus Generator via Round-Trip Translation",
+  "product_description": "PolyLingo automatically builds diverse, high-quality training datasets for Natural Language Understanding (NLU) systems via bidirectional round-trip translation and cognitive enrichment. Designed for AI developers, chatbot creators, and enterprises, it minimizes manual curation while scaling multilingual corpus generation for swift model deployment.",
+  "implementation": "PolyLingo uses a patented method by inputting a base utterance and intent profile into a bidirectional translation engine. The system translates into multiple languages and back, then applies cognitive enrichment to rank outputs. Cloud API endpoints enable scalable, modular deployment for automated corpus generation.",
+  "differentiation": "PolyLingo stands out by combining bidirectional round-trip translation with semantic enrichment to produce varied, normalized datasets with high precision. Its automated, lean approach cuts manual costs and accelerates Natural Language Understanding model training, offering enterprises a clear competitive advantage."
 }

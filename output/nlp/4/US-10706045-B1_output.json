@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-10706045-B1",
+  "title": "DataSpeak NLQ: Advanced Natural Language Query Platform for Enterprise Data Lakes",
+  "product_description": "DataSpeak Natural Language Query leverages advanced natural language processing (NLP) techniques to convert everyday speech into precise Structured Query Language (SQL) commands. It is ideal for business analysts, healthcare professionals, finance experts, and retail managers seeking democratized data access, actionable insights, and enhanced decision-making efficiency.",
+  "implementation": "The system integrates a patented natural language processing engine with contextual knowledge bases to parse and softly match user queries. Employing dependency mapping, it converts plain language into structured SQL commands executed on vast, cloud-based data lakes while auto-generating dynamic, tailored visualizations for actionable insights.",
+  "differentiation": "DataSpeak NLQ stands apart with advanced entity recognition and comprehensive fuzzy matching that eliminate reliance on technical experts. Its streamlined conversion process and automated visualization set a new standard for error-tolerant, rapid insights, boosting operational efficiency and competitive edge."
+}
