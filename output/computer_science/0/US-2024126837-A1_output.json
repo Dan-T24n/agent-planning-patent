@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024126837-A1",
+  "title": "PredictEdge: Proactive Storage Maintenance via AI-Driven Telemetry Analysis",
+  "product_description": "PredictEdge leverages real-time Streaming Machine Telemetry data and Long Short-Term Memory modeling to accurately forecast storage failures. This solution caters to data centers, cloud providers, and IT managers, offering automated maintenance alerts that reduce downtime and repair costs.",
+  "implementation": "Deploying a lightweight microservice architecture, the solution collects real-time Streaming Machine Telemetry from storage systems and processes it with a Long Short-Term Memory model. Containerized in cloud environments with modular APIs, it ensures rapid failure detection and continuous feedback for model improvement.",
+  "differentiation": "PredictEdge distinguishes itself with a streamlined, agile design that delivers instant, automated alerts and continuous prediction improvements. Its integration of deep learning with a simple API interface provides an immediate return on investment and superior operational efficiency compared to traditional reactive maintenance approaches."
+}

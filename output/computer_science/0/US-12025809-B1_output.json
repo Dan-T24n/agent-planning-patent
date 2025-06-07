@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-12025809-B1",
+  "title": "OptiFocus VR: Automated Diopter Adjustment for Personalized Immersive Clarity",
+  "product_description": "OptiFocus VR introduces automated diopter adjustment in virtual reality headsets, delivering crystal-clear, personalized visuals for prescription wearers, gamers, and professionals. It minimizes eye strain and provides optimal focus for immersive digital experiences while addressing diverse vision needs.",
+  "implementation": "The system utilizes a dedicated pupil image acquisition unit to capture real-time eye images. A processor then analyzes the images using a closed-loop feedback algorithm to compute the precise diopter correction. A gear-driven transmission mechanism smoothly adjusts the lens ring for consistent focus.",
+  "differentiation": "OptiFocus VR stands apart by integrating advanced image processing with a precision mechanical adjustment system. Its fully automated closed-loop control and gear-driven mechanism provide dynamic, real-time focus adjustments, reducing manual intervention and ensuring superior visual clarity."
+}

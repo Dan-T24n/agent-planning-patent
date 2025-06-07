@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024015164-A1",
+  "title": "SecuriFusion: Unified Security Dashboard & Insight Engine for Enterprises",
+  "product_description": "SecuriFusion is a centralized security platform that automates data aggregation into unified manifestations of user, device, and application logs. It targets Security Operations Center teams, Chief Information Security Officers (CISOs), and Managed Security Service Providers, delivering real-time anomaly detection and intuitive visualizations to enhance threat mitigation and compliance.",
+  "implementation": "SecuriFusion employs a lean microservices architecture integrating APIs from security, human resources, and information technology systems. It builds containerized data manifestations and leverages continuous integration for rapid prototyping, anomaly scoring, encryption, and automated notifications, ensuring swift feature rollout.",
+  "differentiation": "SecuriFusion distinguishes itself by converging disparate security data into a unified, real-time dashboard. Its agile microservices and containerized approach reduce system overhead while providing rapid incident response, streamlined compliance, and a significant competitive advantage over traditional bulky solutions."
+}

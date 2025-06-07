@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11989233-B2",
+  "title": "GraphMIPS Navigator: Advanced Graph-Based Maximum Inner Product Search Engine",
+  "product_description": "GraphMIPS Navigator uses advanced graph-indexing and a patented Möbius transformation (patented method for inner product search) to deliver rapid, precise searches on high-dimensional datasets. It is designed for AI-powered e-commerce, advertising technology, and analytics teams needing low-latency, high-accuracy data retrieval.",
+  "implementation": "The solution applies the patented Möbius transformation to convert inner product similarity into a metric space. It builds an approximate two-dimensional Delaunay graph using advanced techniques such as Hierarchical Navigable Small World or SONG, then employs a greedy search to efficiently identify top candidates.",
+  "differentiation": "GraphMIPS Navigator differentiates itself by converting a non-metric search challenge into an efficient metric-based graph traversal. Its innovative use of the patented Möbius transformation and streamlined graph construction delivers superior speed, precision, and reduced computational overhead compared to traditional approximate nearest neighbor methods."
+}

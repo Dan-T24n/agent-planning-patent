@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024126713-A1",
+  "title": "ThrottlEdge: Dynamic Hardware Input/Output Throttling for NextGen Data Centers",
+  "product_description": "ThrottlEdge is a state-of-the-art hardware-based Input/Output management solution designed to overcome congestion and latency challenges in high-performance data centers and storage networks. Targeting hyperscale cloud operators, enterprise Storage Area Networks, and high-speed trading platforms, it ensures efficient per-device throughput, minimizes bottlenecks, and optimizes resource allocation.",
+  "implementation": "Leveraging core principles from patent US-2024126713-A1, ThrottlEdge incorporates a dedicated throttle module, a register file, and a pend list to dynamically manage Input/Output commands. The system continuously monitors queue depth and device load in real time, issuing or deferring Input/Output operations without Operating System intervention, ensuring rapid response and precise control.",
+  "differentiation": "ThrottlEdge stands out with its hardware-centric approach, delivering granular, per-device Input/Output throttling that software-based systems cannot match. Its innovative real-time queue management and elimination of Operating System-induced delays significantly reduce latency and congestion, offering a scalable and cost-effective competitive advantage for high-demand environments."
+}

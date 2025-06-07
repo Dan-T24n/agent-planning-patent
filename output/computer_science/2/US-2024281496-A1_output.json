@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024281496-A1",
+  "title": "DynamicPad: Intelligent Convolution Accelerator for AI Efficiency",
+  "product_description": "DynamicPad is an Artificial Intelligence accelerator that utilizes innovative dynamic padding technology to optimize convolution operations. Designed for semiconductor designers, cloud data center engineers, and autonomous system developers, it minimizes memory usage and latency while boosting throughput and energy efficiency.",
+  "implementation": "The implementation embeds a pad supervisor module in the convolution processor that intercepts Direct Memory Access (DMA) requests to conditionally suppress unnecessary padding reads. Utilizing a two-dimensional circular register array and configurable control registers, the system generates padding on-the-fly to optimize memory bandwidth and processing efficiency.",
+  "differentiation": "DynamicPad distinguishes itself by eliminating redundant memory transactions with real-time, on-the-fly padding generation. Its intelligent design minimizes hardware overhead while delivering scalable performance, energy savings, and unmatched efficiency for deep neural network processing."
+}

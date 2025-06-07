@@ -8,7 +8,7 @@ from crewai_tools import LinkupSearchTool
 from patent_crew.tools.custom_tool import PatentJsonLoaderTool, PatentGeminiPdfLoaderTool
 
 # Ensure the output directory exists
-output_dir = "output/nlp"
+output_dir = "output/material_chemistry"
 os.makedirs(output_dir, exist_ok=True)
 
 # Guardrail Definition
@@ -25,8 +25,8 @@ def ensure_output_exists(task_output: TaskOutput) -> Tuple[bool, Any]:
 @CrewBase
 class PatentAnalysisCrew():
     """Enhanced Patent-to-Product Analysis Crew with 11 tasks and 9 agents"""
-    agents_config = 'config/agents.yaml'
-    tasks_config = 'config/tasks.yaml'
+    agents_config = 'config/agents_mc.yaml'
+    tasks_config = 'config/tasks_mc.yaml'
 
     # Type hints for agents and tasks lists, to be populated by decorators
     agents: List[Agent]

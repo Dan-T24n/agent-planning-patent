@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11876787-B2",
+  "title": "HoppSecure: Adaptive Dynamic Encryption for Resilient Communication Networks",
+  "product_description": "HoppSecure provides an adaptive dynamic encryption solution that secures communications through real-time automated protocol switching based on time, date, and sequence criteria. Designed for telecommunications, enterprise Information Technology, Internet of Things, and defense sectors, it offers quantum safe protection and reduced integration costs.",
+  "implementation": "HoppSecure's implementation employs lean microservices architecture and cloud-based Application Programming Interfaces. Independent encryption hopping modules, managed by a central hub, enable agile updates and optional hardware acceleration plugins that boost overall performance for fast network integration.",
+  "differentiation": "HoppSecure differentiates itself by automatically changing encryption protocols in real time without transmitting encryption keys. Its agile plug-and-play design minimizes deployment time and costs while ensuring scalable, quantum safe protection and compliance with strict regulatory security standards."
+}

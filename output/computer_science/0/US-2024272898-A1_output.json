@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024272898-A1",
+  "title": "SyncPro Config: Unified IT and OT Change Manager for Industrial Automation",
+  "product_description": "SyncPro Config offers a unified Integrated Development Environment (IDE) and Version Control System (VCS) platform for real-time configuration management in industrial automation. It serves large manufacturers and industrial DevOps by delivering automated conflict resolution, live synchronization, and minimized downtime.",
+  "implementation": "Utilizing a modular microservice architecture with lightweight container orchestration, SyncPro Config integrates an Integrated Development Environment (IDE) and Version Control System (VCS) approach. It efficiently manages configuration files, drives real-time data visualization, and optimizes cloud resources for rapid iteration cycles.",
+  "differentiation": "SyncPro Config differentiates itself with a lean, agile solution that simplifies multi-user conflict resolution across Information Technology and Operational Technology (OT) systems. Its intuitive design and automated updates overcome complex legacy tools, ensuring faster deployment and robust operational reliability."
+}

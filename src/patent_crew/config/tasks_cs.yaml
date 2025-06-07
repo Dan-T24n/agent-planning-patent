@@ -446,4 +446,4 @@ final_product_selection_task:
     - product_evaluation_pm_task
     - product_evaluation_entrepreneur_task
     - product_evaluation_research_task
-  output_file: "output/cs/{batch_idx}/{publication_number}_output.json" 
+  output_file: "output/computer_science/{batch_idx}/{publication_number}_output.json" 

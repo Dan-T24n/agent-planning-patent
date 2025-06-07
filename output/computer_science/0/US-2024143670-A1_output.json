@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024143670-A1",
+  "title": "NovaSeg: Adaptive Unsupervised Segmentation & Analytics Platform",
+  "product_description": "NovaSeg harnesses breakthrough adaptive unsupervised clustering using medoid selection and Key Performance Indicator-based optimization to convert raw user session data into dynamic, actionable segments. Targeted for digital marketers, online retailers, and enterprises, it meets the need for real-time data interpretation and enhanced customer engagement.",
+  "implementation": "NovaSeg converts individual user sessions into structured string representations and calculates pairwise similarities using an edit distance algorithm. It employs hierarchical clustering enhanced by Key Performance Indicator-driven medoid selection and integrates with cloud-based analytics platforms to enable continuous, real-time segmentation.",
+  "differentiation": "NovaSeg distinguishes itself with a fully automated, adaptive unsupervised clustering process that adjusts to evolving user behavior. Unlike traditional methods, it leverages Key Performance Indicator-based optimizations and medoid selection to lower computational overhead while delivering precise, natural language insights for proactive digital strategies."
+}

@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024168863-A1",
+  "title": "VisionFlow Debug: Real-Time Visual Programming for Image Processing",
+  "product_description": "VisionFlow Debug empowers expert and novice developers with a drag-and-drop interface that delivers live visual outputs for each image processing unit. Designed for healthcare, automotive, and industrial automation, it fulfills the need for rapid prototyping and iterative refinement by offering dynamic filter adjustments and real-time feedback to optimize algorithm performance.",
+  "implementation": "The platform uses a modular engine to interconnect visual processing units. Each unit computes image data and employs application programming interface (API) overlays, such as heat maps, to deliver continuous real-time feedback. Dynamic controls allow on-the-fly parameter adjustments with immediate validation during execution.",
+  "differentiation": "Unlike conventional batch-testing tools that delay feedback, VisionFlow Debug combines live heat map overlays with an intuitive drag-and-drop interface for continuous visual insight. This unique approach significantly reduces development cycles and enhances the precision of image algorithm tuning."
+}

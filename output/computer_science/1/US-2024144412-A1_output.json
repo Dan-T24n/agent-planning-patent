@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024144412-A1",
+  "title": "GeoAd Mobility: Dynamic Ride Matching & Ad-Promoted Driver Platform",
+  "product_description": "GeoAd Mobility is an innovative platform that harnesses real-time geographic location data and dynamic advertisement prioritization to match drivers with riders. Targeting urban commuters, gig drivers, and logistics operators, it meets needs for transparent pricing, integrated Save Our Souls (SOS) alerts, and enhanced revenue opportunities.",
+  "implementation": "The system employs a streamlined architecture with cross-platform mobile applications connected to a centralized lightweight server via Representational State Transfer (REST) Application Programming Interfaces. It integrates advanced geolocation services, dynamic pricing algorithms, and Save Our Souls (SOS) alert mechanisms, enabling rapid prototyping and efficient real‐time matching.",
+  "differentiation": "GeoAd Mobility stands out by enabling driver pricing autonomy and promotional control through a transparent matching algorithm. Its unique blend of dynamic advertisement prioritization, real-time geographic location tracking, and integrated Save Our Souls (SOS) safety alerts offers superior service efficiency and a clear competitive advantage over conventional ride‐hailing platforms."
+}

@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024135091-A1",
+  "title": "AutoTypesetter Pro: Intelligent Dual-Sided Document Scanning & Layout System",
+  "product_description": "AutoTypesetter Pro leverages patented intelligent typesetting technology to automate double-sided document scanning and layout. It precisely aligns images using preset parameters, reducing manual adjustments and errors. Ideal for offices, government, healthcare, and legal sectors, it drives digital transformation and improves productivity.",
+  "implementation": "AutoTypesetter Pro's implementation integrates advanced image capture and processing modules that utilize preset scanning parameters to detect and align document images. Custom algorithms select optimal horizontal or vertical layouts while a cloud-connected feedback loop refines typesetting for seamless workflow integration.",
+  "differentiation": "Unlike traditional scanners that require manual setup, AutoTypesetter Pro employs dual-path computational techniques to automatically apply optimal typesetting parameters. Its adaptive layout selection, modular design, and cloud-enabled continuous learning significantly lower errors, boost efficiency, and enhance competitive performance."
+}

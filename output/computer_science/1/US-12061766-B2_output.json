@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-12061766-B2",
+  "title": "SmartID Capture: Seamless Optical Character Recognition Auto-Entry for Mobile Device Management Systems",
+  "product_description": "SmartID Capture uses Optical Character Recognition (OCR) to extract International Mobile Equipment Identity (IMEI), serial, and Media Access Control (MAC) addresses from screenshots. It serves enterprise IT teams and Mobile Device Management (MDM) providers by streamlining registration and reducing errors.",
+  "implementation": "SmartID Capture employs Optical Character Recognition (OCR) and image retrieval using a lightweight Application Programming Interface (API). It integrates with Mobile Device Management (MDM) systems through cloud functions and containerized microservices while providing an intuitive graphical user interface for quick, error-free onboarding.",
+  "differentiation": "SmartID Capture stands out by eliminating manual data entry through automated Optical Character Recognition (OCR) extraction of device identifiers. Its agile microservice-based architecture drastically minimizes setup time and errors, offering a distinct operational edge for enterprise and Bring Your Own Device (BYOD) environments."
+}

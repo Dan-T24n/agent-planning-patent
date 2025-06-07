@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024152347-A1",
+  "title": "SecureBridge FirmwareUpdater: Agile, Controlled Firmware Updates for IoT & Embedded Systems",
+  "product_description": "SecureBridge FirmwareUpdater delivers secure, dual-phase firmware updates using temporary bridging firmware, allowing controlled updates for data storage, Internet of Things (IoT) and embedded systems. It meets the needs of enterprise IT and automotive developers by reducing downtime.",
+  "implementation": "SecureBridge FirmwareUpdater uses a two-phase update process. A designated bridging firmware temporarily unlocks secure update protections, while a memory controller monitors lock indicators to manage firmware transitions. Segmented Unified Protocol for Inter-Unit (UPIU) messages guarantee compliant data transfer.",
+  "differentiation": "SecureBridge FirmwareUpdater stands apart with its dual-phase update that uses a bridging firmware to toggle lock indicators, enabling agile updates and safe rollbacks. This innovation minimizes system disruption and delivers unmatched flexibility and robust security in complex, high-demand settings."
+}

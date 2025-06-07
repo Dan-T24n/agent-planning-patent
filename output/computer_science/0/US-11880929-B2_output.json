@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11880929-B2",
+  "title": "VoxelVis: Dynamic Three-Dimensional Visualization with Adaptive Transparency",
+  "product_description": "VoxelVis delivers advanced three-dimensional (3D) visualization by dynamically adjusting voxel transparency and color based on sensor inputs. Targeted at medical, automotive, and industrial sectors, it improves data clarity, enabling swift diagnostics and informed decisions.",
+  "implementation": "VoxelVis implements the patented technology by computing each voxel's opacity from the absolute difference between a target value and its state. Predefined color scales and optional spatial filters merge sensor data and context for dynamic three-dimensional visualization.",
+  "differentiation": "VoxelVis differentiates itself by offering real-time visualization that calculates voxel transparency from numerical differences. Integrating sensor data with contextual overlays, it delivers superior clarity and rapid diagnostics for high-precision imaging."
+}

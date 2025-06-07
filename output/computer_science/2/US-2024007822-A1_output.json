@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024007822-A1",
+  "title": "AgroVision Navigator: Dual-Mode Imaging for Precision Crop Management",
+  "product_description": "AgroVision Navigator leverages dual-mode imaging (using low-resolution scans for speed and high-resolution captures when needed) and geolocation analytics to classify crops and weeds in real time. It is tailored for large-scale commercial farms and agri-tech innovators, reducing labor costs while enhancing yield, disease control, and resource management.",
+  "implementation": "The system employs a two-phased imaging approach, initiating with low-resolution scans for rapid detection and switching to high-resolution capture upon detecting anomalies. It integrates machine learning classifiers with digital planting maps and Global Positioning System (GPS) data to deliver precise plant and disease analysis.",
+  "differentiation": "AgroVision Navigator distinguishes itself by fusing dual-mode imaging with geo-contextual analytics to minimize false positives through cross-referenced field boundaries. This adaptive solution delivers superior crop and weed discrimination, optimizing field management and supporting sustainable agriculture."
+}

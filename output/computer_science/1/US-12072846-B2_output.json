@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-12072846-B2",
+  "title": "Decoupled Web Application Open Platform Suite: Adaptive Cloud Collaboration",
+  "product_description": "Decoupled Web Application Open Platform Interface (WOPI) Enterprise Suite leverages breakthrough cloud-based document management by isolating legacy Instant Messaging (IM) servers from online editing. Designed for enterprises in finance, healthcare, and legal sectors, it addresses critical needs for high security, scalability, and performance.",
+  "implementation": "The solution applies the patented decoupling framework from US-12072846-B2 by introducing an intermediary Web Application Open Platform Interface (WOPI) Host. It employs RESTful APIs, dual storage models, and in-memory caching to manage token locks, caching, and real-time synchronization between legacy Instant Messaging (IM) servers and online clients.",
+  "differentiation": "Unlike conventional systems that force legacy Instant Messaging (IM) servers to adhere to rigid WOPI constraints, this product isolates protocol-specific operations through an innovative intermediary. This unique separation minimizes bottlenecks, simplifies integration, and enhances scalability, reliability, and collaborative efficiency for enterprise document management."
+}

@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024265097-A1",
+  "title": "CyberSequence Insight: AI-Driven Behavioral Analysis for Proactive Cybersecurity",
+  "product_description": "CyberSequence Insight leverages advanced sequence analysis and Artificial Intelligence to classify time-ordered user behaviors accurately. Designed for cybersecurity teams, financial institutions, and e-commerce professionals, it mitigates fraud, reduces insider threats, and automates risk assessment.",
+  "implementation": "The product employs a modular system capturing timestamped user actions and converting them into ordered datasets processed through encoder-decoder neural networks for sequence matching. Continuous machine learning updates ensure dynamic, precise classification in real time.",
+  "differentiation": "CyberSequence Insight distinguishes itself by utilizing sequence-based analysis instead of static, rule-driven methods. Its innovative neural network approach minimizes false positives, rapidly adapts to emerging threats, and provides a proactive competitive edge in cybersecurity."
+}

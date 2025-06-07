@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-12067410-B2",
+  "title": "Adaptive Cloud Desktop Optimizer – Dynamic Virtual Resource Manager",
+  "product_description": "Adaptive Cloud Desktop Optimizer improves virtual desktop efficiency by dynamically managing computing resources. Using predictive machine learning (ML) to shut down idle instances and reattach storage, it reduces operational costs for IT administrators and cloud service providers in modern digital workspaces.",
+  "implementation": "The system continuously monitors network packet traffic and connection patterns in virtual desktops. A machine learning (ML) model analyzes historical data to predict idle periods, triggering policy‐driven shutdowns with temporary storage detachment and rapid reattachment upon user reconnection.",
+  "differentiation": "Unlike conventional static auto-scaling, this solution integrates real-time monitoring with adaptive machine learning (ML) predictive models to allocate resources dynamically. It delivers superior cost efficiency and a granular time-based billing mechanism while enhancing the user experience in virtual desktops."
+}

@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024103913-A1",
+  "title": "UltraSwitch: Integrated Hardware Task Scheduler for Real-Time, Zero-Latency Systems",
+  "product_description": "UltraSwitch is a transformative hardware task scheduler that leverages hardware-level prefetching to achieve near-zero task switching latency. It caters to data centers, High Performance Computing (HPC) facilities, cloud infrastructures, and mobile platforms, ensuring rapid response and improved energy efficiency for mission-critical operations.",
+  "implementation": "UltraSwitch embeds a dedicated hardware scheduler within modern CPU architectures, prefetching task metadata into high-speed caches before request. This solution combines on-die integration with parallel software coordination to deliver real-time, low-latency task switching under heavy multi-core workloads.",
+  "differentiation": "Unlike conventional software schedulers that require multiple processing steps, UltraSwitch employs a proactive hardware-centric approach to pre-position task data. Its integrated on-die design and novel algorithmic prefetch strategy provide a clear competitive edge by consistently reducing latency in high-demand computing environments."
+}
