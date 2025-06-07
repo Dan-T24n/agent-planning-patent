@@ -1,7 +1,0 @@
-{  
-  "publication_number": "US-2021286950-A1",  
-  "title": "ContextAI: Dynamic Middleware for Enhanced Conversational Interfaces",  
-  "product_description": "ContextAI utilizes advanced NLP and middleware technology to enhance user interaction in chatbots and virtual assistants. By dynamically querying external data, it identifies user intent accurately, making it ideal for customer service, healthcare, and education sectors requiring contextual responses.",  
-  "implementation": "The product integrates a middleware component that receives user input, assesses context, and queries external data sources when necessary. This approach allows for real-time updates to conversation spaces, adapting ongoing interactions based on enriched understanding of user intent and context.",  
-  "differentiation": "Unlike existing conversational systems, ContextAI goes beyond static responses and adapts to user interactions by leveraging real-time data. This unique methodology improves accuracy in intent recognition and offers richer, contextually aware interactions, setting it apart in the growing conversational AI market."  
-}

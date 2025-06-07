@@ -45,9 +45,81 @@ Features:
 [x] web search 
 [x] custom tool: json loading, PDF loading
 [x] vision capabilities: sends PDF to LLM for visual interpretation
-[ ] task validation
-[ ] validator
-[ ] async kick off
+[x] validator
+[x] async kick off
+
+# Enhanced Multi-Agent Framework
+
+The system implements a 4-phase pipeline with 11 agents working in parallel and sequential coordination:
+
+## Phase 1: Patent & Technology Analysis (2 Agents)
+- **Patent Analyst**: Extracts technical details from patent JSON text data
+- **Patent Analyst Visual**: Analyzes patent PDF documents for visual elements and diagrams
+
+## Phase 2: Market Research & Validation (2 Agents) 
+- **Market Research Analyst**: Identifies market opportunities and competitive landscape (top-down approach)
+- **Product Research Analyst**: Analyzes user pain points and positioning opportunities (bottom-up approach)
+
+## Phase 3: Product Concept Generation (3 Agents)
+- **Product Manager**: Generates concepts using traditional PM methodologies
+- **Serial Entrepreneur**: Creates alternative concepts with startup execution mindset
+- **Research Commercialization Expert**: Bridges academic innovation with market applications
+
+## Phase 4: Evaluation & Output Formatting (4 Agents)
+- **Product Evaluator 1-3**: Evaluate each concept using 6-criteria framework (technical validity, innovativeness, specificity, need validity, market size, competitive advantage)
+- **Output Summarizer**: Compares evaluated products, selects winner, formats into final JSON output
+
+## Workflow Architecture
+
+```mermaid
+graph TD
+    A["Patent Analysis<br/>(JSON Text)<br/>patent_analyst"] --> PC1["Phase 1 Context<br/>Patent & Technology Analysis"]
+    B["Patent Visual Analysis<br/>(PDF)<br/>patent_analyst_visual"] --> PC1
+    
+    PC1 --> D["Market Opportunity &<br/>Competitive Analysis<br/>market_research_analyst"]
+    PC1 --> E["User Pain Point &<br/>Positioning Analysis<br/>product_research_analyst"]
+    
+    D --> PC2["Phase 2 Context<br/>Market Research & Validation"]
+    E --> PC2
+    
+    PC1 --> PC3["Phase 3 Context<br/>Product Concept Generation"]
+    PC2 --> PC3
+    
+    PC3 --> G["Product Concept<br/>Generation (PM)<br/>product_manager"]
+    PC3 --> H["Product Concept<br/>Generation (Entrepreneur)<br/>serial_entrepreneur"]
+    PC3 --> I["Product Concept<br/>Generation (Research)<br/>research_commercialization_expert"]
+    
+    G --> PC4["Phase 4 Context<br/>Evaluation & Output"]
+    H --> PC4
+    I --> PC4
+    
+    PC4 --> J1["Product 1<br/>Evaluation<br/>product_evaluator"]
+    PC4 --> J2["Product 2<br/>Evaluation<br/>product_evaluator"]
+    PC4 --> J3["Product 3<br/>Evaluation<br/>product_evaluator"]
+    
+    J1 --> M["JSON Output<br/>Formatting<br/>output_summarizer"]
+    J2 --> M
+    J3 --> M
+    
+    style A stroke:#1e88e5,stroke-width:3px
+    style B stroke:#1e88e5,stroke-width:3px
+    style PC1 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    
+    style D stroke:#ff9800,stroke-width:3px
+    style E stroke:#ff9800,stroke-width:3px
+    style PC2 fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    
+    style G stroke:#9c27b0,stroke-width:3px
+    style H stroke:#9c27b0,stroke-width:3px
+    style I stroke:#9c27b0,stroke-width:3px
+    style PC3 fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    
+    style J1 stroke:#f44336,stroke-width:3px
+    style J2 stroke:#f44336,stroke-width:3px
+    style J3 stroke:#f44336,stroke-width:3px
+    style PC4 fill:#ffebee,stroke:#c62828,stroke-width:2px
+    style M stroke:#00796b,stroke-width:3px
+```
 
 # Outcome
 

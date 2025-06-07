@@ -1,43 +1,390 @@
-patent_analysis_task:
+# Enhanced Multi-Agent Patent-to-Product Task System
+# 13 Tasks across 4 phases with direct context flow
+
+# ===============================
+# PHASE 1: Patent & Technology Analysis
+# ===============================
+
+document_analysis_task:
   description: >
-    Analyze the patent data, which has been pre-loaded from a JSON file as a knowledge source.
-    Focus on understanding the patent's abstract, claims, and description.
-    Extract the following:
-    1. The core invention and the problem it solves.
-    2. Key technical components and methodologies described in the patent.
-    3. Any explicitly mentioned advantages or novel aspects of the invention.
+    Use the 'Patent JSON Loader' tool to load the content of the patent JSON file. 
+    The path to the JSON file for patent {publication_number} is '{json_file_path}'.
+    Perform an in-depth analysis of THIS loaded patent data. Focus on:
+    1.  Identifying core inventive concepts and the specific problem solved, paying close
+        attention to semantic nuances and specific technical terminology FOUND IN THE LOADED DATA.
+    2.  Extracting key technical components, specific methodologies (e.g., algorithms, 
+        data processing steps, model architectures if mentioned), and any explicitly technical concepts FROM THE LOADED DATA.
+        Keep exact technical terms as they are in the patent.
+    3.  Highlighting explicitly stated advantages, novel aspects, and potential applications,
+        supported by relevant evidence from THE LOADED DATA. If failed to process loaded data, clearly state that "failed to process text data" in the output.
+    4.  Summarizing any claims specifically related to language understanding, generation, 
+        information retrieval, or text processing if present IN THE LOADED DATA.
+    **The output should be in JSON format.**
   expected_output: >
-    A structured summary detailing the patent's core technology, the problem it addresses,
-    its solution, and its key distinguishing features. This summary will serve as context
-    for the product manager.
+    A structured, technically-focused summary based on the loaded patent data:
+    - The patent's core technology from a language processing perspective (150-200 words)
+    - The specific problem it addresses and the proposed technical solution, as detailed in the loaded data. (150-200 words)
+    - A concise list of claims or functionalities that leverage specific language processing techniques. (150-200 words)
+    - Examples of use-cases or potential applications mentioned in the patent. (150-200 words)
   agent: patent_analyst
 
-product_creation_task:
+document_visual_analysis_task:
   description: >
-    Using the structured summary provided by the patent analyst (available in context),
-    develop a product concept. Your output must be a JSON object.
-    Specifically, create the following fields:
-    - product_title: A concise name for the product (up to 100 characters).
-    - product_description: A brief explanation of the product outlining its essential features
-      and functions, the target users, their needs, and the benefits provided by the product
-      (up to 300 characters).
-    - implementation: An explanation describing how the patent's technology will be
-      implemented into the product (up to 300 characters).
-    - differentiation: An explanation highlighting what makes the product unique and why it
-      stands out from existing solutions (up to 300 characters).
+    Use the 'PatentGeminiPdfLoaderTool' to get a comprehensive description of the patent PDF, focusing on visual elements.
+    The path to the PDF file for patent {publication_number} is '{pdf_file_path}'.
+    Perform an in-depth analysis of THIS loaded patent data. Focus on:
+    1.  Identifying core inventive concepts and the specific problem solved, paying close
+        attention to semantic nuances and specific technical terminology FOUND IN THE LOADED DATA.
+    2.  Extracting key technical components, specific methodologies (e.g., algorithms, 
+        data processing steps, model architectures if mentioned), and any explicitly technical concepts FROM THE LOADED DATA.
+        Keep exact technical terms as they are in the patent.
+    3.  Highlighting explicitly stated advantages, novel aspects, and potential applications,
+        supported by relevant evidence from THE LOADED DATA. If failed to process loaded data, clearly state that "failed to process text data" in the output.
+    4.  Summarizing any claims specifically related to language understanding, generation, 
+        information retrieval, or text processing if present IN THE LOADED DATA.
+    **The output should be in JSON format.**
   expected_output: >
-    A JSON object containing the publication_number (use "US-2020073983-A1"),
-    title (for the product, map to 'product_title' from your task),
-    product_description, implementation, and differentiation.
-    The JSON structure should be exactly:
+    A structured, technically-focused summary based on the loaded patent data:
+    - The patent's core technology from a language processing perspective (150-200 words)
+    - The specific problem it addresses and the proposed technical solution, as detailed in the loaded data. (150-200 words)
+    - A concise list of claims or functionalities that leverage specific language processing techniques. (150-200 words)
+    - Examples of use-cases or potential applications mentioned in the patent. (150-200 words)
+  agent: patent_analyst_visual
+
+
+# ===============================
+# PHASE 2: Market Research & Validation
+# ===============================
+
+market_opportunity_analysis_task:
+  description: >
+    For patent {publication_number}, perform web searches to conduct top-down market opportunity analysis.
+    When searching, use queries leveraging the patent keywords, found in the title and abstract.
+    Focus on:
+    1. Total Addressable Market (TAM) and Serviceable Addressable Market (SAM) assessment
+    2. Market growth rates and trends supporting the patent technology
+    3. Industry sectors and application domains where patent could create value
+    Use maximum 1 search attempts to gather comprehensive market intelligence.
+    Max 1 search tool call! Retry if failed to get the result from tool calls. Max retry 3 times.
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object detailing market opportunity analysis:
+    - market_size_assessment: TAM/SAM estimates and market sizing analysis (150-200 words)
+    - growth_trends: Current market trends and growth drivers supporting the technology (150-200 words)
+    - target_industries: Key industry sectors and application domains identified (150-200 words)
+  agent: market_research_analyst
+  context:
+    - document_analysis_task
+    - document_visual_analysis_task
+
+user_pain_point_validation_task:
+  description: >
+    For patent {publication_number}, perform web searches to conduct bottom-up user research and pain point validation.
+    When searching, use queries leveraging the patent keywords, found in the title and abstract.
+    1. Specific user pain points and problems that patent technology could solve
+    2. Current solution gaps and limitations in existing approaches
+    3. User willingness to pay and value perception for proposed solutions
+    4. User segments most likely to adopt this type of innovation
+    Max 1 search tool calls! Retry if failed to get the result from tool calls. Max retry 3 times.
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object detailing user pain point validation:
+    - user_pain_points: Specific problems and pain points identified through research (150-200 words)
+    - solution_gaps: Where current solutions fall short and create opportunities (150-200 words)
+    - value_perception: User willingness to pay and perceived value analysis (150-200 words)
+    - target_user_segments: Most promising user segments for technology adoption (150-200 words)
+  agent: product_research_analyst
+  context:
+    - document_analysis_task
+    - document_visual_analysis_task
+
+
+# ===============================
+# PHASE 3: Product Concept Generation 
+# ===============================
+
+product_concept_pm_task:
+  description: >
+    Using patent analysis and market research insights, develop a commercial product concept for patent {publication_number}
+    from traditional Product Manager perspective.
+    Utilize all gathered insights to build a product concept with the following structure:
+    - product_title: A concise, compelling name for the product, highlighting its technological core (60-100 characters).
+    - product_description: Explain the product, its core technology features, target users (informed by research), their needs, and the
+      unique benefits derived from its underlying technology (200-300 characters).
+    - implementation: Describe how the patent's core technologies would be integrated into the product
+      architecture to deliver its key features (200-300 characters).
+    - differentiation: Highlight what makes this product unique, supported by your market research. Focus on how its specific
+      technological capabilities (e.g., superior accuracy, novel features, efficiency) set it apart
+      from existing solutions (200-300 characters).
+    Be specific with the product features, benefits, and implementation. Use short and concise sentences, following the provided example output.
+    Avoid technical jargon - use simple, clear language that business stakeholders can understand. Be specific but accessible.
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object containing product concept from PM perspective:
+    - concept_title: Product name reflecting core value proposition (60-100 characters)
+    - product_description: Product features, target users, and benefits (200-300 characters)
+    - implementation: Technical implementation approach using patent capabilities (200-300 characters)
+    - differentiation: Unique competitive advantages and market positioning (200-300 characters)
+    
+    Example of output, strictly follow the format:
     {
-      "publication_number": "US-2020073983-A1",
-      "title": "<Your Product Title>",
-      "product_description": "<Your Product Description>",
-      "implementation": "<Your Implementation Explanation>",
-      "differentiation": "<Your Differentiation Explanation>"
+      "publication_number": "US-202117564168-A",
+      "title": "NameGuard: AI-Powered Access Control for Enterprise Systems",
+      "product_description": "NameGuard helps IT admins and compliance teams block unauthorized access by checking user names against global deny lists and using AI to catch name variations. It\'s ideal for finance, defense, and critical infrastructure sectors needing strong security and compliance.",
+      "implementation": "Use the patented method to integrate a name screening API into login or user registration flows. Names are matched against an updated denylist, decomposed, and analyzed via a neural network to detect obfuscated identities. Access decisions are then returned to the enterprise system.",
+      "differentiation": "Unlike traditional DPL checks, NameGuard detects partial or altered name matches using name decomposition and machine learning. It adapts to evolving threats, aggregates multi-source deny lists, and flags suspect names not yet on known lists, reducing false negatives and increasing compliance accuracy."
     }
   agent: product_manager
   context:
-    - patent_analysis_task
-  output_file: output/nlp/US-2020073983-A1_output.json 
+    - market_opportunity_analysis_task
+    - user_pain_point_validation_task
+    - document_analysis_task
+    - document_visual_analysis_task
+
+product_concept_entrepreneur_task:
+  description: >
+    Using patent analysis and market research insights, develop a startup-oriented product concept for patent {publication_number}
+    from Serial Entrepreneur perspective. 
+    Utilize all gathered insights to build a product concept with the following structure:
+    - product_title: A concise, compelling name for the product, highlighting its technological core (60-100 characters).
+    - product_description: Explain the product, its core technology features, target users (informed by research), their needs, and the
+      unique benefits derived from its underlying technology (200-300 characters).
+    - implementation: Describe how the patent's core technologies would be integrated into the product
+      architecture to deliver its key features (200-300 characters).
+    - differentiation: Highlight what makes this product unique, supported by your market research. Focus on how its specific
+      technological capabilities (e.g., superior accuracy, novel features, efficiency) set it apart
+      from existing solutions (200-300 characters).
+    Be specific with the product features, benefits, and implementation. Use short and concise sentences, following the provided example output.
+    Avoid technical jargon - use simple, clear language that investors and team members can understand. Be specific but accessible.
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object containing product concept from Entrepreneur perspective:
+    - concept_title: Startup product name emphasizing lean execution (60-100 characters)
+    - product_description: MVP features, target users, and lean benefits (200-300 characters)
+    - implementation: Bootstrap-friendly technical implementation approach (200-300 characters)
+    - differentiation: Startup-specific competitive advantages and execution strategy (200-300 characters)
+
+    Example of output, strictly follow the format:
+    {
+      "publication_number": "US-5644727-A",
+      "title": "Amazon One-Click: Instant Purchase System for E-commerce",
+      "product_description": "Amazon One-Click enables online shoppers to complete purchases with a single mouse click, eliminating the need to re-enter payment and shipping information. It serves busy consumers and mobile users who want frictionless checkout experiences, significantly reducing cart abandonment and increasing conversion rates for e-commerce platforms.",
+      "implementation": "The system uses the patented single-action ordering method to securely store customer payment methods, shipping addresses, and preferences. When users click the One-Click button, the system automatically processes the order using pre-stored information, handles payment authorization, and initiates fulfillment without requiring additional user input or navigation through checkout pages.",
+      "differentiation": "Unlike traditional multi-step checkout processes that require users to navigate through cart, billing, and shipping pages, One-Click ordering completes purchases instantly with minimal user effort. This dramatically reduces purchase friction, decreases abandonment rates, and creates a competitive advantage through superior user experience, particularly on mobile devices where lengthy checkout flows are especially cumbersome."
+    }
+    
+  agent: serial_entrepreneur
+  context:
+    - market_opportunity_analysis_task
+    - user_pain_point_validation_task
+    - document_analysis_task
+    - document_visual_analysis_task
+
+product_concept_research_task:
+  description: >
+    Using patent analysis and market research insights, develop a research-to-market product concept for patent {publication_number}
+    from a leading researcher & sucessful entrepreneur perspective.
+    Utilize all gathered insights to build a product concept with the following structure:
+    - product_title: A concise, compelling name for the product, highlighting its technological core (60-100 characters).
+    - product_description: Explain the product, its core technology features, target users (informed by research), their needs, and the
+      unique benefits derived from its underlying technology (200-300 characters).
+    - implementation: Describe how the patent's core technologies would be integrated into the product
+      architecture to deliver its key features (200-300 characters).
+    - differentiation: Highlight what makes this product unique, supported by your market research. Focus on how its specific
+      technological capabilities (e.g., superior accuracy, novel features, efficiency) set it apart
+      from existing solutions (200-300 characters).
+    Be specific with the product features, benefits, and implementation. Use short and concise sentences, following the provided example output.
+    Avoid excessive technical jargon - use clear language that balances scientific accuracy with commercial accessibility. Be specific but understandable.
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object containing product concept from Research Commercialization perspective:
+    - concept_title: Research-focused product name highlighting innovation (60-100 characters)
+    - product_description: Research-based features, target users, and scientific benefits (200-300 characters)
+    - implementation: Research-to-market technical implementation approach (200-300 characters)
+    - differentiation: Scientific competitive advantages and research-based positioning (200-300 characters)
+
+    Example of output, strictly follow the format:
+    {
+      "publication_number": "US-5644727-A",
+      "title": "Amazon One-Click: Instant Purchase System for E-commerce",
+      "product_description": "Amazon One-Click enables online shoppers to complete purchases with a single mouse click, eliminating the need to re-enter payment and shipping information. It serves busy consumers and mobile users who want frictionless checkout experiences, significantly reducing cart abandonment and increasing conversion rates for e-commerce platforms.",
+      "implementation": "The system uses the patented single-action ordering method to securely store customer payment methods, shipping addresses, and preferences. When users click the One-Click button, the system automatically processes the order using pre-stored information, handles payment authorization, and initiates fulfillment without requiring additional user input or navigation through checkout pages.",
+      "differentiation": "Unlike traditional multi-step checkout processes that require users to navigate through cart, billing, and shipping pages, One-Click ordering completes purchases instantly with minimal user effort. This dramatically reduces purchase friction, decreases abandonment rates, and creates a competitive advantage through superior user experience, particularly on mobile devices where lengthy checkout flows are especially cumbersome."
+    } 
+    
+  agent: research_commercialization_expert
+  context:
+    - market_opportunity_analysis_task
+    - user_pain_point_validation_task
+    - document_analysis_task
+    - document_visual_analysis_task
+
+# ===============================
+# PHASE 4: Evaluation & Output Formatting (2 Tasks)
+# ===============================
+
+product_evaluation_pm_task:
+  description: >
+    Evaluate the product concept from the Product Manager for patent {publication_number} using the standardized 6-criteria framework.
+    Score the product on a 1-5 scale for each criterion (5=Excellent, 4=Good, 3=Average, 2=Poor, 1=Unacceptable):
+    
+    **Evaluation Criteria:**
+    - **Technical Validity**: Can the patented technology be practically implemented? (5=Proven tech, 1-2 years; 1=Not feasible)
+    - **Innovativeness**: How novel is the technology vs existing solutions? (5=Paradigm shift; 1=Widely available)
+    - **Specificity**: How clearly defined are the problem, users, and use cases? (5=Highly specific; 1=Too general)
+    - **Need Validity**: Do target users have genuine, pressing need? (5=Critical need; 1=No clear need)
+    - **Market Size**: What is the total addressable market potential? (5=>$1B TAM; 1=<$1M TAM)
+    - **Competitive Advantage**: What strategic benefits vs competitors? (5=Dominant advantage; 1=No advantage)
+    
+    Assess from both investment and execution perspectives. Calculate total score and provide comprehensive evaluation.
+    Do not use search tools - focus on provided product concept input.
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object with comprehensive evaluation of product_1:
+    {
+      "product_1": {
+        "product_1_full_json": {
+          "concept_source": "product_manager",
+          "concept_title": "Original title from PM",
+          "product_description": "Full product description",
+          "implementation": "Implementation details",
+          "differentiation": "Differentiation points"
+        },
+        "scores_1": {
+          "technical_validity": 4,
+          "innovativeness": 3,
+          "specificity": 4,
+          "need_validity": 5,
+          "market_size": 4,
+          "competitive_advantage": 3,
+          "total_score": 23
+        }
+      }
+    }
+  agent: product_evaluator_1
+  context:
+    - product_concept_pm_task
+
+product_evaluation_entrepreneur_task:
+  description: >
+    Evaluate the product concept from the Serial Entrepreneur for patent {publication_number} using the standardized 6-criteria framework.
+    Score the product on a 1-5 scale for each criterion (5=Excellent, 4=Good, 3=Average, 2=Poor, 1=Unacceptable):
+    
+    **Evaluation Criteria:**
+    - **Technical Validity**: Can the patented technology be practically implemented? (5=Proven tech, 1-2 years; 1=Not feasible)
+    - **Innovativeness**: How novel is the technology vs existing solutions? (5=Paradigm shift; 1=Widely available)
+    - **Specificity**: How clearly defined are the problem, users, and use cases? (5=Highly specific; 1=Too general)
+    - **Need Validity**: Do target users have genuine, pressing need? (5=Critical need; 1=No clear need)
+    - **Market Size**: What is the total addressable market potential? (5=>$1B TAM; 1=<$1M TAM)
+    - **Competitive Advantage**: What strategic benefits vs competitors? (5=Dominant advantage; 1=No advantage)
+    
+    Assess from both investment and execution perspectives. Calculate total score and provide comprehensive evaluation.
+    Do not use search tools - focus on provided product concept input.
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object with comprehensive evaluation of product_2:
+    {
+      "product_2": {
+        "product_2_full_json": {
+          "concept_source": "serial_entrepreneur",
+          "concept_title": "Original title from Entrepreneur",
+          "product_description": "Full product description",
+          "implementation": "Implementation details",
+          "differentiation": "Differentiation points"
+        },
+        "scores_2": {
+          "technical_validity": 5,
+          "innovativeness": 4,
+          "specificity": 3,
+          "need_validity": 4,
+          "market_size": 3,
+          "competitive_advantage": 4,
+          "total_score": 23
+        }
+      }
+    }
+  agent: product_evaluator_2
+  context:
+    - product_concept_entrepreneur_task
+
+product_evaluation_research_task:
+  description: >
+    Evaluate the product concept from the Research Commercialization Expert for patent {publication_number} using the standardized 6-criteria framework.
+    Score the product on a 1-5 scale for each criterion (5=Excellent, 4=Good, 3=Average, 2=Poor, 1=Unacceptable):
+    
+    **Evaluation Criteria:**
+    - **Technical Validity**: Can the patented technology be practically implemented? (5=Proven tech, 1-2 years; 1=Not feasible)
+    - **Innovativeness**: How novel is the technology vs existing solutions? (5=Groundbreaking; 1=Widely available)
+    - **Specificity**: How clearly defined are the problem, users, and use cases? (5=Highly specific; 1=Too general)
+    - **Need Validity**: Do target users have genuine, pressing need? (5=Critical need; 1=No clear need)
+    - **Market Size**: What is the total addressable market potential? (5=>$1B TAM; 1=<$1M TAM)
+    - **Competitive Advantage**: What strategic benefits vs competitors? (5=Dominant advantage; 1=No advantage)
+    
+    Assess from both investment and execution perspectives. Calculate total score and provide comprehensive evaluation.
+    Do not use search tools - focus on provided product concept input.
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object with comprehensive evaluation of product_3:
+    {
+      "product_3": {
+        "product_3_full_json": {
+          "concept_source": "research_commercialization_expert",
+          "concept_title": "Original title from Research Expert",
+          "product_description": "Full product description",
+          "implementation": "Implementation details",
+          "differentiation": "Differentiation points"
+        },
+        "scores_3": {
+          "technical_validity": 3,
+          "innovativeness": 5,
+          "specificity": 4,
+          "need_validity": 3,
+          "market_size": 4,
+          "competitive_advantage": 5,
+          "total_score": 24
+        }
+      }
+    }
+  agent: product_evaluator_3
+  context:
+    - product_concept_research_task
+
+final_product_selection_task:
+  description: >
+    Compare the 3 evaluated products for patent {publication_number}, select the winner with highest total score,
+    and transform into exact JSON format matching the existing system requirements. Ensure:
+    1. Select product with highest total score 
+    2. if ties, select the one of the product with highest score in order: technical_validity, market_size, competitive_advantage
+    3. Format selected product into exact existing JSON structure
+    4. Output ONLY pure JSON - NO markdown delimiters like ```json or ```, NO explanatory text, NO formatting
+  expected_output: >
+    A JSON object with EXACT structure matching:
+    {
+      "publication_number": "{publication_number}",
+      "title": "60-100 character product title",
+      "product_description": "200-300 character description with target users, needs, and benefits", 
+      "implementation": "200-300 character technical implementation approach",
+      "differentiation": "200-300 character unique competitive advantages"
+    }
+
+    The output MUST be PURE JSON starting with { and ending with }. 
+    Do NOT include:
+    - Markdown delimiters (```json, ```)
+    - Any explanatory text before or after the JSON
+    - Any formatting or comments
+    - Only raw JSON object
+    
+    Example of output:
+    {
+      "publication_number": "US-5644727-A",
+      "title": "Amazon One-Click: Instant Purchase System for E-commerce",
+      "product_description": "Amazon One-Click enables online shoppers to complete purchases with a single mouse click, eliminating the need to re-enter payment and shipping information. It serves busy consumers and mobile users who want frictionless checkout experiences, significantly reducing cart abandonment and increasing conversion rates for e-commerce platforms.",
+      "implementation": "The system uses the patented single-action ordering method to securely store customer payment methods, shipping addresses, and preferences. When users click the One-Click button, the system automatically processes the order using pre-stored information, handles payment authorization, and initiates fulfillment without requiring additional user input or navigation through checkout pages.",
+      "differentiation": "Unlike traditional multi-step checkout processes that require users to navigate through cart, billing, and shipping pages, One-Click ordering completes purchases instantly with minimal user effort. This dramatically reduces purchase friction, decreases abandonment rates, and creates a competitive advantage through superior user experience, particularly on mobile devices where lengthy checkout flows are especially cumbersome."
+    } 
+  agent: output_summarizer
+  context:
+    - product_evaluation_pm_task
+    - product_evaluation_entrepreneur_task
+    - product_evaluation_research_task
+  output_file: "output/nlp/{publication_number}_output.json" # Dynamic output file path using placeholder 

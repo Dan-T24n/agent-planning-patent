@@ -3,7 +3,7 @@ from typing import List
 from crewai import Agent, Task, Crew, Process
 from crewai.project import CrewBase, agent, crew, task
 from crewai.knowledge.knowledge_config import KnowledgeConfig
-from crewai_tools import SerperDevTool
+from crewai_tools import SerperDevTool, LinkupSearchTool
 
 # Import the new tool
 from patent_crew.tools.custom_tool import PatentJsonLoaderTool, PatentGeminiPdfLoaderTool
@@ -22,13 +22,17 @@ class PatentAnalysisCrew():
     agents: List[Agent]
     tasks: List[Task]
 
-    # Instantiate tools
-    search_tool = SerperDevTool(
-        country="us",
-        n_results=5
-    )
+    # # Instantiate tools
+    # search_tool = SerperDevTool(
+    #     country="us",
+    #     n_results=5
+    # )
+
+    
     patent_json_loader_tool = PatentJsonLoaderTool()
     patent_gemini_pdf_loader_tool = PatentGeminiPdfLoaderTool()
+    
+    linkup_search_tool = LinkupSearchTool(api_key=os.getenv("LINKUP_API_KEY"))
     
 
     # Define knowledge config (can be kept if it has other uses, or removed if only for JSONKnowledgeSource)
@@ -60,7 +64,7 @@ class PatentAnalysisCrew():
     def product_manager(self) -> Agent:
         return Agent(
             config=self.agents_config['product_manager'],
-            tools=[self.search_tool],
+            tools=[self.linkup_search_tool],
             verbose=True
         )
 
@@ -90,7 +94,10 @@ class PatentAnalysisCrew():
         return Task(
             config=self.tasks_config['patent_context_research_task'],
             agent=self.product_manager(), 
-            context=[self.document_analysis_task()]
+            context=[
+                self.document_analysis_task(),
+                self.document_visual_analysis_task()
+            ]
         )
 
     @task

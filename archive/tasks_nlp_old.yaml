@@ -44,53 +44,6 @@ document_visual_analysis_task:
     - Examples of use-cases or potential applications mentioned in the patent. (100-200 words)
   agent: patent_analyst_visual
 
-# # Combines JSON Loader and PDF Loader tools
-# document_analysis_task:
-#   description: >
-#     Your goal is to conduct a comprehensive analysis of patent {publication_number}
-#     by integrating structured textual information with insights from visual diagrams.
-
-#     **Step 1: Load Structured Textual Data**
-#     First, use the 'Patent JSON Loader' tool to load the content of the patent JSON file.
-#     The path to this JSON file is '{json_file_path}'. This JSON contains textual data extracted
-#     from the patent, such as abstract, description, and claims. Treat this as your primary source for textual understanding.
-
-#     **Step 2: Load and Analyze PDF for Visual Context**
-#     Second, use the 'Patent PDF Loader (via Gemini)' tool (or your designated PDF loader tool)
-#     to load and obtain a comprehensive representation of the patent PDF file, focusing on its visual elements.
-#     The path to this PDF file is '{pdf_file_path}'. The tool will provide text content and descriptions of figures/diagrams.
-#     Your main interest from this step is to understand the **visuals** and how they illustrate or clarify
-#     the concepts described in the text (which you primarily get from the JSON).
-
-#     **Step 3: Integrate and Analyze**
-#     After obtaining information from both tools, perform an in-depth analysis.
-#     Use the textual information from the JSON as your foundation. Then, enrich this understanding
-#     with the descriptions of diagrams and figures obtained from processing the PDF.
-#     Focus on how the visual elements clarify, illustrate, or provide additional context to the
-#     textual information.
-
-#     Specifically:
-#     1.  Identify core inventive concepts and the specific problem solved, using the JSON text
-#         and using the PDF's visual descriptions to better understand these concepts.
-#     2.  Extract key technical components and methodologies mentioned in the JSON. Refer to the
-#         PDF's visual descriptions to see how these components are depicted or how methodologies flow.
-#         Keep exact technical terms as they are in the patent.
-#     3.  Highlight explicitly stated advantages, novel aspects, and potential applications from the JSON.
-#         See if the PDF's visuals provide supporting evidence or clearer examples for these.
-#     4.  Summarize any claims from the JSON, particularly those related to language understanding,
-#         generation, information retrieval, or text processing. Note if any diagrams in the PDF
-#         directly illustrate aspects of these claims.
-#     5.  Synthesize the textual information (primarily from JSON) with the visual information
-#         (from PDF processing) to provide a richer, more complete understanding of the invention.
-#     **The output should be in JSON format.**
-#   expected_output: >
-#     A structured, technically-focused summary based on the loaded patent data:
-#     - The patent's core technology from a language processing perspective (up to 200 words)
-#     - The specific problem it addresses and the proposed technical solution, as detailed in the loaded data. (up to 200 words)
-#     - A concise list of claims or functionalities that leverage specific language processing techniques. (up to 200 words)
-#     - Examples of use-cases or potential applications mentioned in the patent. (up to 200 words)
-#   agent: patent_analyst
-
 patent_context_research_task:
   description: >
     Based on the analysis of the patent {publication_number}, utilize web search capabilities to:
@@ -175,13 +128,22 @@ product_definition_task:
     ONLY output the JSON object. Do NOT include any other text, commentary, or markdown formatting (like ```json).
     The output MUST be a valid JSON object starting with { and ending with }.
 
-    Example output, strictly follow the format:
+    Examples of output, strictly follow the format.
+    Example 1:
     {
       "publication_number": "US-202117564168-A",
       "title": "NameGuard: AI-Powered Access Control for Enterprise Systems",
       "product_description": "NameGuard helps IT admins and compliance teams block unauthorized access by checking user names against global deny lists and using AI to catch name variations. It\'s ideal for finance, defense, and critical infrastructure sectors needing strong security and compliance.",
       "implementation": "Use the patented method to integrate a name screening API into login or user registration flows. Names are matched against an updated denylist, decomposed, and analyzed via a neural network to detect obfuscated identities. Access decisions are then returned to the enterprise system.",
       "differentiation": "Unlike traditional DPL checks, NameGuard detects partial or altered name matches using name decomposition and machine learning. It adapts to evolving threats, aggregates multi-source deny lists, and flags suspect names not yet on known lists, reducing false negatives and increasing compliance accuracy."
+    }
+    Example 2:
+    {
+      "publication_number": "US-5644727-A",
+      "title": "Amazon One-Click: Instant Purchase System for E-commerce",
+      "product_description": "Amazon One-Click enables online shoppers to complete purchases with a single mouse click, eliminating the need to re-enter payment and shipping information. It serves busy consumers and mobile users who want frictionless checkout experiences, significantly reducing cart abandonment and increasing conversion rates for e-commerce platforms.",
+      "implementation": "The system uses the patented single-action ordering method to securely store customer payment methods, shipping addresses, and preferences. When users click the One-Click button, the system automatically processes the order using pre-stored information, handles payment authorization, and initiates fulfillment without requiring additional user input or navigation through checkout pages.",
+      "differentiation": "Unlike traditional multi-step checkout processes that require users to navigate through cart, billing, and shipping pages, One-Click ordering completes purchases instantly with minimal user effort. This dramatically reduces purchase friction, decreases abandonment rates, and creates a competitive advantage through superior user experience, particularly on mobile devices where lengthy checkout flows are especially cumbersome."
     }
   agent: managing_partner
   context:

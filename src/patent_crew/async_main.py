@@ -19,6 +19,7 @@ from patent_crew.crew import PatentAnalysisCrew # Import the correct crew class
 DEFAULT_CATEGORY = "nlp"  # Choose category to process: {nlp, material_chemistry, computer_science}
 KNOWLEDGE_ROOT_DIR = "knowledge" # This is used as the base for making json_file_path relative
 OUTPUT_DIR = "output"
+MAX_BATCHES_TO_PROCESS = 99  # Set to 1 to process only first batch of 10 patents
 # ---------------------------
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
@@ -61,6 +62,8 @@ def get_patent_metadadata(category: str, knowledge_root_dir: str = KNOWLEDGE_ROO
                     # Check if publication_number and json_path_str are present
                     if publication_number and json_path_str:
                         print(f"[DEBUG main.py] Found publication_number: {publication_number}")
+                        # Assuming the PDF file has the same name but .pdf extension
+                        pdf_path_str = json_path_str.rsplit('.', 1)[0] + '.pdf'
                         #verify each image_path_from_jsonl is an absolute path and valid
                         for image_path in image_paths_from_jsonl:
                             if not os.path.isabs(image_path):
@@ -78,7 +81,8 @@ def get_patent_metadadata(category: str, knowledge_root_dir: str = KNOWLEDGE_ROO
                             'json_file_path': json_path_str, 
                             'category': category,
                             'absolute_image_paths': image_paths_from_jsonl,
-                            'image_path_str': image_paths_str     
+                            'image_path_str': image_paths_str,
+                            'pdf_file_path': pdf_path_str     
                         })
                 except json.JSONDecodeError:
                     print(f"Warning: Skipping malformed JSON line in {base_jsonl_path}: {line.strip()}")
@@ -114,7 +118,7 @@ async def run_async():
 
     # ---Create batches---
     total_patents = len(patent_processing_inputs)
-    batch_size = 10
+    batch_size = 8
     print(f"Found {total_patents} patent(s) in total. Processing in batches of {batch_size}.")
     
     batches = []
@@ -136,8 +140,12 @@ async def run_async():
         crew = crew_instance_manager.crew() 
 
         for batch_idx, batch in enumerate(batches):
+            if batch_idx >= MAX_BATCHES_TO_PROCESS:
+                print(f"Reached maximum batch limit ({MAX_BATCHES_TO_PROCESS}). Stopping.")
+                break
+                
             batch_num_patents = len(batch)
-            print(f"\n=== Processing Batch {batch_idx + 1}/{len(batches)} ({batch_num_patents} patents) ===")
+            print(f"\n=== Processing Batch {batch_idx + 1}/{min(len(batches), MAX_BATCHES_TO_PROCESS)} ({batch_num_patents} patents) ===")
             
             # Print patents in this batch
             for i, input_data in enumerate(batch):
@@ -164,17 +172,18 @@ async def run_async():
             
         total_end_time = time.monotonic()
         total_duration = total_end_time - total_start_time
-        overall_average_duration = total_duration / total_patents if total_patents > 0 else 0
+        processed_patents = len(all_results)
+        overall_average_duration = total_duration / processed_patents if processed_patents > 0 else 0
         
-        print(f"\n=== All batches completed ===")
-        print(f"Total patents processed: {total_patents}")
+        print(f"\n=== Processing completed ===")
+        print(f"Total patents processed: {processed_patents} out of {total_patents} available")
         print(f"Total processing time: {total_duration:.2f} seconds")
         print(f"Overall average time per patent: {overall_average_duration:.2f} seconds")
 
         # Process results correctly for async operations
         if all_results:
             print(f"\n--- Verifying output files ---")
-            for i, result in enumerate(all_results):
+            for i, _ in enumerate(all_results):
                 if i < len(patent_processing_inputs):
                     processed_input = patent_processing_inputs[i]
                     publication_number = processed_input.get('publication_number', 'Unknown')

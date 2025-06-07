@@ -1,7 +1,0 @@
-{
-  "publication_number": "US-2022366145-A1",
-  "title": "SentimentInsight: AI-Driven Few-Shot Sentiment Analysis Solution",
-  "product_description": "SentimentInsight leverages an advanced generative language model for nuanced, few-shot aspect-based sentiment analysis. Targeting e-commerce, finance, and healthcare, it fulfills the need for rapid, accurate sentiment extraction on specific aspects, driving better customer insights and strategic decisions.",
-  "implementation": "Integrate the patented GPT-2 model architecture to perform simultaneous aspect term extraction and sentiment polarity classification. The model processes incoming user-generated text in real-time, generating actionable insights with reduced training data requirements.",
-  "differentiation": "Unlike traditional sentiment analysis tools, SentimentInsight's generative model excels in environments with limited data, providing adaptable, real-time analysis. Its ability to accurately identify sentiment across various aspects sets it apart in the growing NLP market, meeting the needs of resource-constrained industries."
-}

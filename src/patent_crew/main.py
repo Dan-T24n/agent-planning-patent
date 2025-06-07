@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv() 
 
 # from tests.vision_crew_test import VisualTestCrew # Import the crew for testing
-from crew import PatentAnalysisCrew # Import the crew for analysis
+from patent_crew.crew import PatentAnalysisCrew 
 
 
 # --- Global Configuration ---

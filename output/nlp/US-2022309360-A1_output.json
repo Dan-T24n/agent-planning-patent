@@ -1,7 +1,0 @@
-{
-  "publication_number": "US-2022309360-A1",
-  "title": "Explainable AI Insights: Intelligent NLP Interpretation Tool",
-  "product_description": "This AI-driven tool enhances interpretability in NLP using patented topic modeling and content perturbation techniques. Targeting compliance officers, data scientists, and business managers, it provides actionable insights and improves user trust in AI outputs by making complex predictions understandable.",
-  "implementation": "The product integrates the patented methods by applying iterative content perturbation to documents, generating multiple versions to identify influential topics. Machine learning models analyze these to provide coherent explanations on how specific terms impact predictions within diverse NLP applications.",
-  "differentiation": "Unlike existing solutions, this tool offers in-depth regional insights and tailored explanations. Its model-agnostic nature allows broad adaptability across NLP tasks, addressing the critical need for transparency and trust in AI systems, particularly in regulated sectors such as healthcare and finance."
-}
