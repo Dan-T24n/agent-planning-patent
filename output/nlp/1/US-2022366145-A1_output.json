@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2022366145-A1",
+  "title": "SentinelInsight: Few-Shot Multi-Aspect Sentiment Analytics Platform",
+  "product_description": "SentinelInsight harnesses a generative language model to deliver fine-grained, aspect-based sentiment analysis using few-shot learning. It serves marketing analysts, customer experience managers, and market researchers by providing precise insights from dynamic consumer texts while reducing manual data processing.",
+  "implementation": "The platform integrates a multi-task generative model within configurable pipelines for single-task, joint-task, and multi-task learning. It utilizes adaptive domain-specific training and a cloud-based scalable architecture to process user-generated content in real-time with robust accuracy.",
+  "differentiation": "SentinelInsight stands apart by minimizing the requirement for extensive labeled data via innovative few-shot learning. It delivers nuanced, multi-aspect sentiment analytics that lower training overhead and provide high-accuracy, real-time insights, ensuring competitive scalability across industries."
+}

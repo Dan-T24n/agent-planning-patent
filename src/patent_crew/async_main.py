@@ -21,7 +21,8 @@ from patent_crew.crew import PatentAnalysisCrew # Import the original crew class
 DEFAULT_CATEGORY = "nlp"  # Choose category to process: {nlp, material_chemistry, computer_science}
 KNOWLEDGE_ROOT_DIR = "knowledge" # This is used as the base for making json_file_path relative
 OUTPUT_DIR = "output"
-MAX_BATCHES_TO_PROCESS = 2  # Set to 1 to process only first batch of 10 patents
+MAX_BATCHES_TO_PROCESS = 2 # Set to 1 to process only first batch of 10 patents
+BATCH_SIZE = 5  # Number of patents to process in each batch
 # ---------------------------
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
@@ -94,11 +95,9 @@ async def run_async():
     if not patent_processing_inputs:
         return
 
-    batch_size = 3
-    
     batches = []
-    for i in range(0, len(patent_processing_inputs), batch_size):
-        batch = patent_processing_inputs[i:i+batch_size]
+    for i in range(0, len(patent_processing_inputs), BATCH_SIZE):
+        batch = patent_processing_inputs[i:i+BATCH_SIZE]
         batches.append(batch)
     
     crew_instance_manager = PatentAnalysisCrew()
@@ -116,16 +115,21 @@ async def run_async():
         
         session = agentops.start_session(tags=[f"batch_{batch_idx}"])
 
-        # Add batch_idx to each input for dynamic file path generation
-        inputs_with_batch_idx = [{**patent_input, 'batch_idx': batch_idx} for patent_input in batch]
-        await process_batch(crew, inputs_with_batch_idx)
-        
-        # Finished 1 batch: sleep and end session
-        print(f"Batch {batch_idx + 1} processed. Sleeping for 20 seconds...")
-        await asyncio.sleep(20)
-        agentops.end_session('Success')
-        await asyncio.sleep(10)
-        
+        try:
+            # Add batch_idx to each input for dynamic file path generation
+            inputs_with_batch_idx = [{**patent_input, 'batch_idx': batch_idx} for patent_input in batch]
+            await process_batch(crew, inputs_with_batch_idx)
+            
+            # Finished 1 batch: sleep and end session
+            print(f"Batch {batch_idx + 1} success. Sleeping for 30 seconds...")
+            await asyncio.sleep(30)
+            agentops.end_session('Success')
+            await asyncio.sleep(10)
+        except Exception as e:
+            print(f"Error processing batch {batch_idx + 1}: {e}")
+            agentops.end_session('Fail')
+            print("Continuing to next batch after 30 seconds...")
+            await asyncio.sleep(30)
 
 def run():
     """

@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2022309360-A1",
+  "title": "RegionSense: Adaptive Natural Language Processing Explainable AI for Transparent Model Insights",
+  "product_description": "RegionSense delivers a dynamic explainable artificial intelligence solution that demystifies decisions in Natural Language Processing models using regional topic analysis and content perturbation. Designed for regulated industries such as healthcare, finance, and legal, it provides granular insights that enhance trust, ensure compliance, and improve debugging efficiency across complex systems.",
+  "implementation": "RegionSense applies a patented method using topic modeling and iterative content perturbation to generate regional explanations from Natural Language Processing outputs. It processes original and disrupted texts, integrates with various machine learning models, and delivers real-time, auditable insights that satisfy rigorous compliance standards.",
+  "differentiation": "RegionSense distinguishes itself by offering model-agnostic, region-specific explanations that transform opaque results into clear, actionable insights. Its iterative topic refinement and content-driven perturbation guarantee superior accuracy and transparency, providing a competitive edge in regulatory compliance and trust building."
+}

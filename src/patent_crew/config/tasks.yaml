@@ -61,15 +61,27 @@ market_opportunity_analysis_task:
     For patent {publication_number}, perform web searches to conduct top-down market opportunity analysis.
     When searching, use queries leveraging the patent keywords, found in the title and abstract.
     Focus on:
-    1. Total Addressable Market (TAM) and Serviceable Addressable Market (SAM) assessment
+    1. Total Addressable Market (TAM) and potential demand assessment for the patented technology
     2. Market growth rates and trends supporting the patent technology
     3. Industry sectors and application domains where patent could create value
-    Use maximum 1 search attempts to gather comprehensive market intelligence.
-    Max 1 search tool call! Retry if failed to get the result from tool calls. Max retry 3 times.
+
+    Use search efficiently. Max 3 search tool calls! 
+    Use smart and simple queries to get the results, do not use complex queries.
+    Do not stack search queries with OR, neither AND. Use simple straight forward queries.
+    
+    Bad example search, avoid:
+    {'query': 'challenges information quality NLP OR source credibility in question answering OR pain points processing diverse data NLP OR value of authoritative sources NLP', 'depth': 'standard', 'output_type': 'searchResults'}
+    
+    Good example search, follow:
+    {'query': 'market size conversational AI social robots', 'depth': 'standard', 'output_type': 'searchResults'}
+    
+    Search query parameters, follow:
+    {'query': '{your query here}', 'depth': 'standard', 'output_type': 'searchResults'}
+
     **The output should be in JSON format.**
   expected_output: >
     A JSON object detailing market opportunity analysis:
-    - market_size_assessment: TAM/SAM estimates and market sizing analysis (150-200 words)
+    - market_size_assessment: TAM and market sizing analysis (150-200 words)
     - growth_trends: Current market trends and growth drivers supporting the technology (150-200 words)
     - target_industries: Key industry sectors and application domains identified (150-200 words)
   agent: market_research_analyst
@@ -81,16 +93,25 @@ user_pain_point_validation_task:
   description: >
     For patent {publication_number}, perform web searches to conduct bottom-up user research and pain point validation.
     When searching, use queries leveraging the patent keywords, found in the title and abstract.
-    1. Specific user pain points and problems that patent technology could solve
-    2. Current solution gaps and limitations in existing approaches
-    3. User willingness to pay and value perception for proposed solutions
-    4. User segments most likely to adopt this type of innovation
-    Max 1 search tool calls! Retry if failed to get the result from tool calls. Max retry 3 times.
+    1. Specific user pain points and current solution gaps that patent technology could solve
+    2. User willingness to pay and value perception for proposed solutions
+    3. User segments most likely to adopt this type of innovation
+
+    Use search efficiently. Max 3 search tool calls! 
+    Use smart and simple queries to get the results, do not use complex queries.
+
+    Bad example search, avoid:
+    {'query': 'challenges information quality NLP OR source credibility in question answering OR pain points processing diverse data NLP OR value of authoritative sources NLP', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    Good example search, follow:
+    {'query': 'market size conversational AI social robots', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    Search query parameters, follow:
+    {'query': '{your query here}', 'depth': 'standard', 'output_type': 'searchResults'}
     **The output should be in JSON format.**
   expected_output: >
     A JSON object detailing user pain point validation:
-    - user_pain_points: Specific problems and pain points identified through research (150-200 words)
-    - solution_gaps: Where current solutions fall short and create opportunities (150-200 words)
+    - solution_gaps: Where current solutions fall short and create opportunities for this patent technology (150-200 words)
     - value_perception: User willingness to pay and perceived value analysis (150-200 words)
     - target_user_segments: Most promising user segments for technology adoption (150-200 words)
   agent: product_research_analyst
@@ -228,6 +249,19 @@ product_evaluation_pm_task:
     Evaluate the product concept from the Product Manager for patent {publication_number} using the standardized 6-criteria framework.
     Score the product on a 1-5 scale for each criterion (5=Excellent, 4=Good, 3=Average, 2=Poor, 1=Unacceptable):
     
+    Use search efficiently to deterime the novelty of the product concept. Max 1 search tool calls! 
+    Use smart and simple queries to get the results, do not use complex queries.
+    Do not stack search queries with OR, neither AND. Use simple straight forward queries.
+
+    Bad example search, avoid:
+    {'query': 'challenges information quality NLP OR source credibility in question answering OR pain points processing diverse data NLP OR value of authoritative sources NLP', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    Good example search, follow:
+    {'query': 'market size conversational AI social robots', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    Search query parameters, follow:
+    {'query': '{your query here}', 'depth': 'standard', 'output_type': 'searchResults'}
+
     **Evaluation Criteria:**
     - **Technical Validity**: Can the patented technology be practically implemented? (5=Proven tech, 1-2 years; 1=Not feasible)
     - **Innovativeness**: How novel is the technology vs existing solutions? (5=Paradigm shift; 1=Widely available)
@@ -270,6 +304,19 @@ product_evaluation_entrepreneur_task:
     Evaluate the product concept from the Serial Entrepreneur for patent {publication_number} using the standardized 6-criteria framework.
     Score the product on a 1-5 scale for each criterion (5=Excellent, 4=Good, 3=Average, 2=Poor, 1=Unacceptable):
     
+    Use search efficiently to deterime the novelty of the product concept. Max 1 search tool calls! 
+    Use smart and simple queries to get the results, do not use complex queries.
+    Do not stack search queries with OR, neither AND. Use simple straight forward queries.
+
+    Bad example search, avoid:
+    {'query': 'challenges information quality NLP OR source credibility in question answering OR pain points processing diverse data NLP OR value of authoritative sources NLP', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    Good example search, follow:
+    {'query': 'market size conversational AI social robots', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    Search query parameters, follow:
+    {'query': '{your query here}', 'depth': 'standard', 'output_type': 'searchResults'}
+
     **Evaluation Criteria:**
     - **Technical Validity**: Can the patented technology be practically implemented? (5=Proven tech, 1-2 years; 1=Not feasible)
     - **Innovativeness**: How novel is the technology vs existing solutions? (5=Paradigm shift; 1=Widely available)
@@ -311,6 +358,19 @@ product_evaluation_research_task:
   description: >
     Evaluate the product concept from the Research Commercialization Expert for patent {publication_number} using the standardized 6-criteria framework.
     Score the product on a 1-5 scale for each criterion (5=Excellent, 4=Good, 3=Average, 2=Poor, 1=Unacceptable):
+    
+    Use search efficiently to deterime the novelty of the product concept. Max 1 search tool calls! 
+    Use smart and simple queries to get the results, do not use complex queries.
+    Do not stack search queries with OR, neither AND. Use simple straight forward queries.
+    
+    Bad example search, avoid:
+    {'query': 'challenges information quality NLP OR source credibility in question answering OR pain points processing diverse data NLP OR value of authoritative sources NLP', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    Good example search, follow:
+    {'query': 'market size conversational AI social robots', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    Search query parameters, follow:
+    {'query': '{your query here}', 'depth': 'standard', 'output_type': 'searchResults'}
     
     **Evaluation Criteria:**
     - **Technical Validity**: Can the patented technology be practically implemented? (5=Proven tech, 1-2 years; 1=Not feasible)

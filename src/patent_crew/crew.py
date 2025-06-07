@@ -34,18 +34,26 @@ class PatentAnalysisCrew():
     
     llm_small= LLM(
         model="gemini/gemini-2.5-flash-preview-04-17",
-        temperature=0
+        temperature=0.1
     )
 
+# Rate limit exceeded
     llm_large = LLM(
         model="gemini/gemini-2.5-pro-preview-05-06",
-        temperature=0.5
+        temperature=0.3
     )
 
-    llm_openai = LLM(
+    llm_openai_mini = LLM(
         model="gpt-4o-mini",
+        # model="openai/o3-mini",
         temperature=0
     )
+    
+    llm_openai_o3 = LLM(
+        # model="gpt-4o-mini",
+        model="openai/o3-mini",
+        temperature=0.2
+    )   
 
 
     # Instantiate tools
@@ -63,7 +71,7 @@ class PatentAnalysisCrew():
             config=self.agents_config['patent_analyst'],
             tools=[self.patent_json_loader_tool],
             verbose=False,
-            llm=self.llm_small,
+            llm=self.llm_openai_mini,
             max_retries=3
         )
 
@@ -73,7 +81,7 @@ class PatentAnalysisCrew():
             config=self.agents_config['patent_analyst_visual'],
             tools=[self.patent_gemini_pdf_loader_tool],
             verbose=False,
-            llm=self.llm_small,
+            llm=self.llm_openai_mini,
             max_retries=3
         )
 
@@ -87,7 +95,7 @@ class PatentAnalysisCrew():
             config=self.agents_config['market_research_analyst'],
             tools=[self.linkup_search_tool],
             verbose=False,
-            llm=self.llm_large,
+            llm=self.llm_openai_o3,
             max_retries=3
         )
 
@@ -97,7 +105,7 @@ class PatentAnalysisCrew():
             config=self.agents_config['product_research_analyst'],
             tools=[self.linkup_search_tool],
             verbose=False,
-            llm=self.llm_large,
+            llm=self.llm_openai_o3,
             max_retries=3
         )
 
@@ -110,7 +118,7 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['product_manager'],
             verbose=False,
-            llm=self.llm_large,
+            llm=self.llm_openai_o3,
             max_retries=3
         )
 
@@ -119,7 +127,7 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['serial_entrepreneur'],
             verbose=False,
-            llm=self.llm_large,
+            llm=self.llm_openai_o3,
             max_retries=3
         )
 
@@ -128,7 +136,7 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['research_commercialization_expert'],
             verbose=False,
-            llm=self.llm_large,
+            llm=self.llm_openai_o3,
             max_retries=3
         )
 
@@ -141,7 +149,7 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['product_evaluator_1'],
             verbose=False,
-            llm=self.llm_large,
+            llm=self.llm_openai_o3,
             max_retries=3
         )
 
@@ -150,7 +158,7 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['product_evaluator_2'],
             verbose=False,
-            llm=self.llm_large,
+            llm=self.llm_openai_o3,
             max_retries=3
         )
 
@@ -159,7 +167,7 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['product_evaluator_3'],
             verbose=False,
-            llm=self.llm_large,
+            llm=self.llm_openai_o3,
             max_retries=3
         )
 
@@ -168,7 +176,7 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['output_summarizer'],
             verbose=True,
-            llm=self.llm_openai,
+            llm=self.llm_openai_o3,
             max_retries=3
         )
 

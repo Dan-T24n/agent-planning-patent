@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11423042-B2",
+  "title": "DocGraph AI: Context-Aware Document Structuring for Digital Workflows",
+  "product_description": "DocGraph AI transforms unstructured documents into structured data using advanced Natural Language Processing and spatial preservation. It serves healthcare, legal, and financial sectors by delivering accurate, automated extraction that facilitates informed decision-making and accelerates digital transformation initiatives.",
+  "implementation": "DocGraph AI harnesses the patented domain-specific Natural Language Processing engine and a custom ontology to convert text segments into structured data while preserving original layouts. Its lightweight Application Programming Interface enables rapid integration with cloud platforms and enterprise systems for efficient data management.",
+  "differentiation": "DocGraph AI distinguishes itself by maintaining both contextual and positional information through its Application Programming Interface-driven design. This streamlined architecture supports swift deployment, minimizes resource usage, and enforces compliance standards, offering a competitive edge in complex data environments."
+}
