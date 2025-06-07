@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11550786-B1",
+  "title": "NexSQL Connect: Natural Language to SQL Accelerator for Enterprise Platforms",
+  "product_description": "NexSQL Connect transforms colloquial language into precise Structured Query Language commands for complex business-to-business databases. Designed for finance, healthcare, retail, and logistics, it empowers non-technical users to make swift, informed decisions while reducing IT overhead and streamlining operational workflows.",
+  "implementation": "Leveraging the patented multi-stage Natural Language Understanding engine, the system extracts user intents and tags entities before converting input into Structured Query Language commands. A lightweight middleware bridges legacy and cloud databases, ensuring rapid deployment and agile error handling.",
+  "differentiation": "NexSQL Connect distinguishes itself with advanced sequential matching and real-time user confirmation that resolve ambiguities in natural language queries. Its intuitive interface and robust algorithm reduce IT dependency and deliver rapid, secure data access, positioning enterprises ahead competitively."
+}

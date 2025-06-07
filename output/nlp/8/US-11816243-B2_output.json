@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11816243-B2",
+  "title": "SecureNLP Guardian: Dual-Layer Privacy Engine for NLP Applications",
+  "product_description": "SecureNLP Guardian is a state-of-the-art natural language processing (NLP) platform utilizing dual-layer differential privacy to safeguard user identities and sensitive textual data. Designed for healthcare, financial technology (fintech), social media, and regulated industries, it meets strict data protection requirements while ensuring high model accuracy.",
+  "implementation": "SecureNLP Guardian employs a patented dual-sampling method to separately process user and sensitive entity data. Localized gradient clipping and calibrated Gaussian noise injection are used, with parameter updates aggregated on a central server to ensure robust privacy, compliance, and optimal system performance.",
+  "differentiation": "SecureNLP Guardian distinguishes itself by simultaneously protecting both user identities and sensitive textual information through dual-layer differential privacy. Its innovative architecture minimizes data breaches while preserving model utility, offering a unique competitive edge in highly regulated, privacy-sensitive markets."
+}

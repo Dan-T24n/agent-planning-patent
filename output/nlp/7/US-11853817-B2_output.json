@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11853817-B2",
+  "title": "ContentPulse: AI-Enhanced Predictive Workflow & Content Management Suite",
+  "product_description": "ContentPulse leverages patented Artificial Intelligence (AI) to analyze user activity in enterprise content management systems, converting logs into insights that automate workflows and personalize content. It serves large enterprises and digital workspaces, boosting efficiency and compliance.",
+  "implementation": "The system integrates the patented method by converting real-time user activity data into structured tokens via a secure Application Programming Interface (API). A natural language model processes these tokens to predict actions that trigger automated workflow tasks.",
+  "differentiation": "Unlike traditional systems using static rule sets, ContentPulse employs advanced Natural Language Processing (NLP) to capture user behavior patterns from sequential events. This dynamic tokenization minimizes manual intervention and errors, adapting to digital workspace needs."
+}

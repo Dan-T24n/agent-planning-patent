@@ -76,6 +76,7 @@ class PatentAnalysisCrew():
             max_execution_time=180
         )
 
+
     @agent
     def patent_analyst_visual(self) -> Agent:
         return Agent(

@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11604626-B1",
+  "title": "CodeInsight Pro: AI-Driven Code Analysis with Natural Language Integration",
+  "product_description": "CodeInsight Pro automatically evaluates code using artificial intelligence by converting natural language best practices into actionable insights. Tailored for enterprise software teams, Developer Operations engineers, and cybersecurity units, it improves code quality, reduces manual reviews, and accelerates continuous integration/continuous delivery pipelines.",
+  "implementation": "The system leverages a patented dual encoder architecture to generate embeddings from both natural language descriptions and code snippets. It indexes and compares these embeddings in real time using a quadruplet loss-optimized model and integrates seamlessly into integrated development environments and continuous integration/continuous delivery pipelines.",
+  "differentiation": "Unlike static rule-based tools, CodeInsight Pro employs adaptive machine learning to transform language into dynamic code evaluations. Its real-time embedding comparisons and seamless integration deliver superior precision, scalability, and actionable insights that drive rapid development cycles and maintain consistent quality."
+}

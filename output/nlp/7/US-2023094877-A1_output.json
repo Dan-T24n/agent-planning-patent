@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2023094877-A1",
+  "title": "DynamicDoc: AI-Powered Real-Time Spreadsheet Updater with Natural Language Processing (NLP) Integration",
+  "product_description": "DynamicDoc automates spreadsheet updates using user-friendly Natural Language Processing (NLP) commands that pull live data from external sources like knowledge graphs and Application Programming Interfaces (APIs). It serves finance, inventory, business intelligence, and academic sectors by reducing manual input and errors while accelerating data-driven decision-making.",
+  "implementation": "DynamicDoc embeds a lightweight Document Update Manager into cloud-based spreadsheets. It processes user commands via Natural Language Processing (NLP), converting them into structured queries that activate both time-based and event-driven data pulls from external sources, ensuring real-time accuracy and efficiency.",
+  "differentiation": "DynamicDoc distinguishes itself with real-time data synchronization that surpasses conventional periodic updates. Its innovative dual trigger model—combining push and pull mechanisms—and granular control over spreadsheet elements deliver unmatched precision and efficiency for diverse enterprise needs."
+}

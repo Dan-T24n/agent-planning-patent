@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11755931-B2",
+  "title": "LegacyLink Navigator: AI-Driven CMDB Transformation & Automation Engine",
+  "product_description": "LegacyLink Navigator redefines information technology service automation by converting outdated configuration management database (CMDB) data into an interactive knowledge hub. Targeting IT teams, digital leaders, and managed service providers, it fulfills the need for rapid service request handling, reduced manual tasks, and improved system uptime.",
+  "implementation": "The solution converts outdated configuration management database (CMDB) data into a semantic Knowledge Graph using advanced natural language processing (NLP). It tokenizes input to detect user intent and employs microservices to map application programming interface (API) calls, analyze dependencies, and validate in real time, ensuring seamless integration with legacy IT infrastructures.",
+  "differentiation": "LegacyLink Navigator distinguishes itself with real-time natural language processing (NLP) and dynamic dependency discovery. Its modular architecture supports rapid deployment and scalability by delivering precise application programming interface (API) translation and continuous adaptation to evolving IT demands, setting it apart from traditional automation systems."
+}

@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2023124401-A1",
+  "title": "ClearGraph Chat: Transparent Conversational Artificial Intelligence for Compliance and Efficiency",
+  "product_description": "ClearGraph Chat leverages hyper-graph learning to offer transparent, context-aware chatbot interactions. Designed for finance, healthcare, retail, and customer support sectors, it satisfies strict regulatory and compliance needs by reducing risk and enhancing trust through clear audit trails.",
+  "implementation": "The product parses user input text, converts words into numerical vector representations, and maps them into learned language communities using a patented, cloud-based engine. It employs real-time similarity scoring to trigger predefined compliant action sets, ensuring auditable and scalable performance.",
+  "differentiation": "Unlike opaque deep-learning models, ClearGraph Chat exposes its decision logic through transparent, traceable linguistic communities. This approach offers superior auditability and compliance, reducing errors and fostering user trust while enabling rapid deployment in regulated industries."
+}

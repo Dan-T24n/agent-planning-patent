@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-10776586-B2",
+  "title": "VeracityAI: Blockchain-Verified Dynamic Knowledge Graph NLP Engine",
+  "product_description": "VeracityAI fuses natural language processing (NLP) with blockchain-backed knowledge graphs to deliver deterministic, real-time data extraction and augmentation. It targets highly regulated enterprises in finance, healthcare, legal, and public sectors, offering reliable, audit-ready insights through a lean minimum viable product (MVP) framework.",
+  "implementation": "The system employs a modular architecture in which a natural language processing (NLP) processor extracts data triplets from unstructured text, a dynamic knowledge graph is updated in real time, and a blockchain module assigns immutable veracity scores. Application Programming Interfaces (APIs) link each module for rapid integration, ensuring secure and efficient deployment with continuous audit trails.",
+  "differentiation": "VeracityAI delivers a competitive edge by combining deterministic natural language processing (NLP) outputs with self-correcting dynamic knowledge graphs and immutable blockchain records. This integrated approach ensures exceptional accuracy, minimizes redundancy, and fulfills rigorous regulatory compliance requirements, providing measurable benefits in highly competitive markets."
+}

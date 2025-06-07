@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2021232613-A1",
+  "title": "PrecisionQuery Navigator: Domain-Specific Artificial Intelligence Answer Generator",
+  "product_description": "PrecisionQuery Navigator leverages advanced natural language processing to generate context-aware, human-like responses from structured domain-specific knowledge bases. Designed for healthcare, finance, insurance, and legal professionals, it enhances decision-making, reduces manual oversight, and boosts operational efficiency.",
+  "implementation": "The system constructs a hierarchical JSON-formatted knowledge base and employs a Bi-Directional Attention Flow (BIDAF)-based Machine Reading Comprehension (MRC) model to accurately capture query features. A natural language generator produces tailored responses validated by an explainable AI interface to ensure transparency.",
+  "differentiation": "PrecisionQuery Navigator stands apart with superior contextual interpretation and transparency. Its unique blend of structured data processing and advanced deep learning techniques delivers highly accurate, human-like responses. This explainable approach offers unmatched reliability in mission-critical industries."
+}
