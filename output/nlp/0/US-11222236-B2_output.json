@@ -1,7 +1,0 @@
-{
-  "publication_number": "US-11222236-B2",
-  "title": "VisionQ: Dual-Attention Visual Question and Answer Platform for Intelligent Monitoring",
-  "product_description": "VisionQ is an artificial intelligence (AI) powered platform that answers visual queries using dual-channel attention. It targets healthcare, security, retail, and interactive customer service sectors that need accurate image interpretation, improving decision-making and operational efficiency by focusing on critical visual details.",
-  "implementation": "The platform integrates the patented convolutional neural network (CNN) and recurrent neural network (RNN) dual-attention mechanism to extract both global image features and localized object details. A lean backend processes images in real-time using API calls and cloud or edge computing, ensuring seamless integration with existing digital infrastructures.",
-  "differentiation": "VisionQ stands out by combining dual-attention to precisely fuse visual and textual data, offering superior accuracy in understanding and answering image-based queries. Its efficient, scalable design and ease of integration reduce manual oversight, lower costs, and provide a competitive edge in high-stakes environments."
-}

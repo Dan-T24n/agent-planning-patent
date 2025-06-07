@@ -8,7 +8,7 @@ from crewai_tools import LinkupSearchTool
 from patent_crew.tools.custom_tool import PatentJsonLoaderTool, PatentGeminiPdfLoaderTool
 
 # Ensure the output directory exists
-output_dir = "output/nlp"
+output_dir = "output/computer_science"
 os.makedirs(output_dir, exist_ok=True)
 
 # Guardrail Definition
@@ -25,15 +25,15 @@ def ensure_output_exists(task_output: TaskOutput) -> Tuple[bool, Any]:
 @CrewBase
 class PatentAnalysisCrew():
     """Enhanced Patent-to-Product Analysis Crew with 11 tasks and 9 agents"""
-    agents_config = 'config/agents.yaml'
-    tasks_config = 'config/tasks.yaml'
+    agents_config = 'config/agents_cs.yaml'
+    tasks_config = 'config/tasks_cs.yaml'
 
     # Type hints for agents and tasks lists, to be populated by decorators
     agents: List[Agent]
     tasks: List[Task]
     
     llm_small= LLM(
-        model="gemini/gemini-2.5-flash-preview-04-17",
+        model="gemini/gemini-2.0-flash",
         temperature=0.1
     )
 
@@ -71,8 +71,9 @@ class PatentAnalysisCrew():
             config=self.agents_config['patent_analyst'],
             tools=[self.patent_json_loader_tool],
             verbose=False,
-            llm=self.llm_openai_mini,
-            max_retries=3
+            llm=self.llm_small,
+            max_retries=3,
+            max_execution_time=180
         )
 
     @agent
@@ -81,8 +82,9 @@ class PatentAnalysisCrew():
             config=self.agents_config['patent_analyst_visual'],
             tools=[self.patent_gemini_pdf_loader_tool],
             verbose=False,
-            llm=self.llm_openai_mini,
-            max_retries=3
+            llm=self.llm_small,
+            max_retries=3,
+            max_execution_time=180
         )
 
     # ===============================
@@ -96,7 +98,8 @@ class PatentAnalysisCrew():
             tools=[self.linkup_search_tool],
             verbose=False,
             llm=self.llm_openai_o3,
-            max_retries=3
+            max_retries=3,
+            max_execution_time=180
         )
 
     @agent
@@ -106,7 +109,8 @@ class PatentAnalysisCrew():
             tools=[self.linkup_search_tool],
             verbose=False,
             llm=self.llm_openai_o3,
-            max_retries=3
+            max_retries=3,
+            max_execution_time=180
         )
 
     # ===============================
@@ -119,7 +123,8 @@ class PatentAnalysisCrew():
             config=self.agents_config['product_manager'],
             verbose=False,
             llm=self.llm_openai_o3,
-            max_retries=3
+            max_retries=3,
+            max_execution_time=180
         )
 
     @agent
@@ -128,7 +133,8 @@ class PatentAnalysisCrew():
             config=self.agents_config['serial_entrepreneur'],
             verbose=False,
             llm=self.llm_openai_o3,
-            max_retries=3
+            max_retries=3,
+            max_execution_time=180
         )
 
     @agent
@@ -137,11 +143,12 @@ class PatentAnalysisCrew():
             config=self.agents_config['research_commercialization_expert'],
             verbose=False,
             llm=self.llm_openai_o3,
-            max_retries=3
+            max_retries=3,
+            max_execution_time=180
         )
 
     # ===============================
-    # PHASE 4: Evaluation & Output Formatting (2 Agents)
+    # PHASE 4: Evaluation & Output Formatting (3 Agents)
     # ===============================
 
     @agent
@@ -150,7 +157,8 @@ class PatentAnalysisCrew():
             config=self.agents_config['product_evaluator_1'],
             verbose=False,
             llm=self.llm_openai_o3,
-            max_retries=3
+            max_retries=3,
+            max_execution_time=180
         )
 
     @agent
@@ -159,7 +167,8 @@ class PatentAnalysisCrew():
             config=self.agents_config['product_evaluator_2'],
             verbose=False,
             llm=self.llm_openai_o3,
-            max_retries=3
+            max_retries=3,
+            max_execution_time=180
         )
 
     @agent
@@ -168,7 +177,8 @@ class PatentAnalysisCrew():
             config=self.agents_config['product_evaluator_3'],
             verbose=False,
             llm=self.llm_openai_o3,
-            max_retries=3
+            max_retries=3,
+            max_execution_time=180
         )
 
     @agent
@@ -177,7 +187,8 @@ class PatentAnalysisCrew():
             config=self.agents_config['output_summarizer'],
             verbose=True,
             llm=self.llm_openai_o3,
-            max_retries=3
+            max_retries=3,
+            max_execution_time=180
         )
 
     # ===============================

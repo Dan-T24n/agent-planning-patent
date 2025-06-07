@@ -1,0 +1,407 @@
+# Enhanced Multi-Agent Patent-to-Product Task System
+# 13 Tasks across 4 phases with direct context flow
+
+# ===============================
+# PHASE 1: Patent & Technology Analysis
+# ===============================
+
+document_analysis_task:
+  description: >
+    Use the 'Patent JSON Loader' tool to load the content of the patent JSON file. 
+    The path to the JSON file for patent {publication_number} is '{json_file_path}'.
+    Perform an in-depth analysis of THIS loaded patent data. Focus on:
+    1.  Identifying core inventive concepts, such as novel chemical compounds, formulations, or manufacturing processes.
+    2.  Extracting key technical details like chemical structures, reaction conditions, material properties
+        and performance data FROM THE LOADED DATA.
+    3.  Highlighting explicitly stated advantages, novel aspects, and potential applications in fields like electronics, medicine, or construction,
+        supported by relevant evidence from THE LOADED DATA.
+    4.  Summarizing any claims specifically related to a material's composition, method of manufacture, or specific use cases.
+    **The output should be in JSON format.**
+  expected_output: >
+    A structured, technically-focused summary based on the loaded patent data:
+    - The patent's core technology from a materials chemistry perspective (150-200 words)
+    - The specific problem it addresses and the proposed material or chemical solution (150-200 words)
+    - A concise list of claims related to the material's composition, properties, or applications (150-200 words)
+    - Examples of use-cases or potential applications mentioned in the patent (150-200 words)
+  agent: patent_analyst
+
+document_visual_analysis_task:
+  description: >
+    Use the 'PatentGeminiPdfLoaderTool' to get a comprehensive description of the patent PDF, focusing on visual elements.
+    The path to the PDF file for patent {publication_number} is '{pdf_file_path}'.
+    Perform an in-depth analysis of THIS loaded patent data. Focus on:
+    1.  Analyzing molecular structures, process flow diagrams, and graphs showing material characterization (e.g., SEM, XRD, DSC data).
+    2.  Extracting key process parameters, component relationships, and experimental setup details FROM THE LOADED VISUAL DATA.
+    3.  Highlighting how visual data supports the patent's claims about the material's novelty and performance.
+    4.  Summarizing the key takeaways from the visual elements regarding the material's synthesis, structure, and properties.
+    **The output should be in JSON format.**
+  expected_output: >
+    A structured, technically-focused summary based on the loaded patent visuals:
+    - The patent's core technology from a materials chemistry perspective (150-200 words)
+    - The specific problem it addresses and the proposed material or chemical solution (150-200 words)
+    - A concise list of claims related to the material's composition, properties, or applications (150-200 words)
+    - Examples of use-cases or potential applications mentioned in the patent (150-200 words)
+  agent: patent_analyst_visual
+
+
+# ===============================
+# PHASE 2: Market Research & Validation
+# ===============================
+
+market_opportunity_analysis_task:
+  description: >
+    For patent {publication_number}, perform web searches to conduct top-down market opportunity analysis.
+    When searching, use queries leveraging the patent keywords, found in the title and abstract.
+    Focus on:
+    1. Total Addressable Market (TAM) for the patented material or chemical technology.
+    2. Market growth rates for related materials or chemicals.
+    3. Industry sectors (e.g., automotive, aerospace, consumer electronics) where the patent could create value.
+
+    Use search efficiently. Max 3 search tool calls! 
+    Use smart and simple queries.
+    
+    Good example search, follow:
+    {'query': 'market size for biodegradable polymers in packaging', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object detailing market opportunity analysis:
+    - market_size_assessment: TAM and market sizing analysis (150-200 words)
+    - growth_trends: Current market trends and growth drivers supporting the technology (150-200 words)
+    - target_industries: Key industry sectors and application domains identified (150-200 words)
+  agent: market_research_analyst
+  context:
+    - document_analysis_task
+    - document_visual_analysis_task
+
+user_pain_point_validation_task:
+  description: >
+    For patent {publication_number}, perform web searches to conduct bottom-up user research and pain point validation.
+    When searching, use queries leveraging the patent keywords, found in the title and abstract.
+    1. Specific user needs or material deficits that the patented technology could solve (e.g., need for stronger, lighter, or more sustainable materials).
+    2. Value perception for materials with improved performance characteristics.
+    3. User segments most likely to adopt this type of innovation (e.g., product designers, manufacturing engineers).
+
+    Use search efficiently. Max 3 search tool calls!
+    Use smart and simple queries.
+
+    Good example search, follow:
+    {'query': 'challenges with battery degradation in electric vehicles', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object detailing user pain point validation:
+    - solution_gaps: Where current materials or chemicals fall short and create opportunities (150-200 words)
+    - value_perception: User willingness to pay for improved material performance (150-200 words)
+    - target_user_segments: Most promising user segments for technology adoption (150-200 words)
+  agent: product_research_analyst
+  context:
+    - document_analysis_task
+    - document_visual_analysis_task
+
+
+# ===============================
+# PHASE 3: Product Concept Generation 
+# ===============================
+
+product_concept_pm_task:
+  description: >
+    Using patent analysis and market research insights, develop a commercial product concept for patent {publication_number}
+    from a Product Manager perspective.
+    Utilize all gathered insights to build a product concept that translates the material's properties into a marketable product.
+    - product_title: A concise, compelling name for the product, highlighting its core material (e.g., "DuraFlex Advanced Composite").
+    - product_description: Explain the product, its key material properties, target users, and the unique benefits derived from its chemical composition (200-300 characters).
+    - implementation: Describe how the material would be manufactured or integrated into a final product (e.g., as a coating, adhesive, or structural component) (200-300 characters).
+    - differentiation: Highlight what makes this material unique. Focus on its specific properties (e.g., superior strength-to-weight ratio, thermal stability, biocompatibility) (200-300 characters).
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object containing product concept from PM perspective:
+    - concept_title: Product name reflecting core value proposition (60-100 characters)
+    - product_description: Product features, target users, and benefits (200-300 characters)
+    - implementation: Manufacturing or application approach using the patented material (200-300 characters)
+    - differentiation: Unique competitive advantages based on material properties (200-300 characters)
+    
+    Example of output, strictly follow the format:
+    {
+      "publication_number": "US-5644727-A",
+      "title": "Amazon One-Click: Instant Purchase System for E-commerce",
+      "product_description": "Amazon One-Click enables online shoppers to complete purchases with a single mouse click, eliminating the need to re-enter payment and shipping information. It serves busy consumers and mobile users who want frictionless checkout experiences, significantly reducing cart abandonment and increasing conversion rates for e-commerce platforms.",
+      "implementation": "The system uses the patented single-action ordering method to securely store customer payment methods, shipping addresses, and preferences. When users click the One-Click button, the system automatically processes the order using pre-stored information, handles payment authorization, and initiates fulfillment without requiring additional user input or navigation through checkout pages.",
+      "differentiation": "Unlike traditional multi-step checkout processes that require users to navigate through cart, billing, and shipping pages, One-Click ordering completes purchases instantly with minimal user effort. This dramatically reduces purchase friction, decreases abandonment rates, and creates a competitive advantage through superior user experience, particularly on mobile devices where lengthy checkout flows are especially cumbersome."
+    }
+  agent: product_manager
+  context:
+    - market_opportunity_analysis_task
+    - user_pain_point_validation_task
+    - document_analysis_task
+    - document_visual_analysis_task
+
+product_concept_entrepreneur_task:
+  description: >
+    Using patent analysis and market research insights, develop a startup-oriented product concept for patent {publication_number}
+    from a Serial Entrepreneur perspective. 
+    Utilize all gathered insights to build a product concept focused on a scalable manufacturing process and a high-value niche application.
+    - product_title: A concise, compelling name for the product, highlighting its application (e.g., "Bio-Graft Scaffolds").
+    - product_description: Explain the product, its core function, target users, and the benefits derived from the patented material's unique properties (200-300 characters).
+    - implementation: Describe a lean manufacturing process for the material and how it would be supplied to customers (e.g., as a resin, powder, or pre-fabricated part) (200-300 characters).
+    - differentiation: Highlight the startup's competitive advantage, focusing on speed to market, cost-effective production, or targeting an underserved market niche (200-300 characters).
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object containing product concept from Entrepreneur perspective:
+    - concept_title: Startup product name emphasizing lean execution (60-100 characters)
+    - product_description: MVP features, target users, and lean benefits (200-300 characters)
+    - implementation: Bootstrap-friendly manufacturing and supply chain approach (200-300 characters)
+    - differentiation: Startup-specific competitive advantages and execution strategy (200-300 characters)
+    
+    Example of output, strictly follow the format:
+    {
+      "publication_number": "US-5644727-A",
+      "title": "Amazon One-Click: Instant Purchase System for E-commerce",
+      "product_description": "Amazon One-Click enables online shoppers to complete purchases with a single mouse click, eliminating the need to re-enter payment and shipping information. It serves busy consumers and mobile users who want frictionless checkout experiences, significantly reducing cart abandonment and increasing conversion rates for e-commerce platforms.",
+      "implementation": "The system uses the patented single-action ordering method to securely store customer payment methods, shipping addresses, and preferences. When users click the One-Click button, the system automatically processes the order using pre-stored information, handles payment authorization, and initiates fulfillment without requiring additional user input or navigation through checkout pages.",
+      "differentiation": "Unlike traditional multi-step checkout processes that require users to navigate through cart, billing, and shipping pages, One-Click ordering completes purchases instantly with minimal user effort. This dramatically reduces purchase friction, decreases abandonment rates, and creates a competitive advantage through superior user experience, particularly on mobile devices where lengthy checkout flows are especially cumbersome."
+    }
+  agent: serial_entrepreneur
+  context:
+    - market_opportunity_analysis_task
+    - user_pain_point_validation_task
+    - document_analysis_task
+    - document_visual_analysis_task
+
+product_concept_research_task:
+  description: >
+    Using patent analysis and market research insights, develop a research-to-market product concept for patent {publication_number}
+    from a leading researcher's perspective.
+    Utilize all gathered insights to build a product concept that highlights the core scientific innovation of the material.
+    - product_title: A name highlighting the material's scientific novelty.
+    - product_description: Explain the product, its features based on the novel chemical or physical principles, target users (e.g., other researchers, R&D labs), and the benefits derived from the underlying science (200-300 characters).
+    - implementation: Describe how the material would be synthesized and characterized in a lab setting, focusing on the novelty of the method (200-300 characters).
+    - differentiation: Highlight what makes this material scientifically unique, focusing on its novel structure, synthesis pathway, or unprecedented properties (200-300 characters).
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object containing product concept from Research Commercialization perspective:
+    - concept_title: Research-focused product name highlighting innovation (60-100 characters)
+    - product_description: Research-based features, target users, and scientific benefits (200-300 characters)
+    - implementation: Research-to-market synthesis and characterization approach (200-300 characters)
+    - differentiation: Scientific competitive advantages and research-based positioning (200-300 characters)
+    
+    Example of output, strictly follow the format:
+    {
+      "publication_number": "US-5644727-A",
+      "title": "Amazon One-Click: Instant Purchase System for E-commerce",
+      "product_description": "Amazon One-Click enables online shoppers to complete purchases with a single mouse click, eliminating the need to re-enter payment and shipping information. It serves busy consumers and mobile users who want frictionless checkout experiences, significantly reducing cart abandonment and increasing conversion rates for e-commerce platforms.",
+      "implementation": "The system uses the patented single-action ordering method to securely store customer payment methods, shipping addresses, and preferences. When users click the One-Click button, the system automatically processes the order using pre-stored information, handles payment authorization, and initiates fulfillment without requiring additional user input or navigation through checkout pages.",
+      "differentiation": "Unlike traditional multi-step checkout processes that require users to navigate through cart, billing, and shipping pages, One-Click ordering completes purchases instantly with minimal user effort. This dramatically reduces purchase friction, decreases abandonment rates, and creates a competitive advantage through superior user experience, particularly on mobile devices where lengthy checkout flows are especially cumbersome."
+    }
+  agent: research_commercialization_expert
+  context:
+    - market_opportunity_analysis_task
+    - user_pain_point_validation_task
+    - document_analysis_task
+    - document_visual_analysis_task
+
+# ===============================
+# PHASE 4: Evaluation & Output Formatting (2 Tasks)
+# ===============================
+
+product_evaluation_pm_task:
+  description: >
+    Evaluate the product concept from the Product Manager for patent {publication_number} using the standardized 6-criteria framework.
+    Score the product on a 1-5 scale for each criterion (5=Excellent, 4=Good, 3=Average, 2=Poor, 1=Unacceptable):
+    
+    Use search efficiently to determine the novelty of the product concept. Max 1 search tool calls! 
+    Use smart and simple queries to get the results, do not use complex queries.
+    Do not stack search queries with OR, neither AND. Use simple straight forward queries.
+
+    Bad example search, avoid:
+    {'query': 'graphene applications OR carbon nanotubes uses OR polymer composites market', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    Good example search, follow:
+    {'query': 'competitors for self-healing polymers', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    Search query parameters, follow:
+    {'query': '{your query here}', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    **Evaluation Criteria:**
+    - **Technical Validity**: Can the material be synthesized and manufactured reliably? (5=Proven process, <2 years to scale; 1=Not feasible)
+    - **Innovativeness**: How novel is the material vs existing solutions? (5=New class of material; 1=Minor improvement)
+    - **Specificity**: How clearly defined are the problem, users, and use cases? (5=Highly specific; 1=Too general)
+    - **Need Validity**: Does the target market have a genuine need for this material? (5=Critical need; 1=No clear need)
+    - **Market Size**: What is the total addressable market potential? (5=>$1B TAM; 1=<$1M TAM)
+    - **Competitive Advantage**: What strategic benefits vs competitors? (5=Dominant advantage; 1=No advantage)
+    
+    Assess from both investment and execution perspectives. Calculate total score and provide comprehensive evaluation.
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object with comprehensive evaluation of product_1:
+    {
+      "product_1": {
+        "product_1_full_json": {
+          "concept_source": "product_manager",
+          "concept_title": "Original title from PM",
+          "product_description": "Full product description",
+          "implementation": "Implementation details",
+          "differentiation": "Differentiation points"
+        },
+        "scores_1": {
+          "technical_validity": 4,
+          "innovativeness": 3,
+          "specificity": 4,
+          "need_validity": 5,
+          "market_size": 4,
+          "competitive_advantage": 3,
+          "total_score": 23
+        }
+      }
+    }
+  agent: product_evaluator_1
+  context:
+    - product_concept_pm_task
+
+product_evaluation_entrepreneur_task:
+  description: >
+    Evaluate the product concept from the Serial Entrepreneur for patent {publication_number} using the standardized 6-criteria framework.
+    Score the product on a 1-5 scale for each criterion (5=Excellent, 4=Good, 3=Average, 2=Poor, 1=Unacceptable):
+    
+    Use search efficiently to determine the novelty of the product concept. Max 1 search tool calls! 
+    Use smart and simple queries to get the results, do not use complex queries.
+    Do not stack search queries with OR, neither AND. Use simple straight forward queries.
+
+    Bad example search, avoid:
+    {'query': 'lightweight material OR strong composite OR heat resistant coating', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    Good example search, follow:
+    {'query': 'cost-effective alternatives to carbon fiber composites', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    Search query parameters, follow:
+    {'query': '{your query here}', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    **Evaluation Criteria:**
+    - **Technical Validity**: Can the material be synthesized and manufactured reliably? (5=Proven process, <2 years to scale; 1=Not feasible)
+    - **Innovativeness**: How novel is the material vs existing solutions? (5=New class of material; 1=Minor improvement)
+    - **Specificity**: How clearly defined are the problem, users, and use cases? (5=Highly specific; 1=Too general)
+    - **Need Validity**: Does the target market have a genuine need for this material? (5=Critical need; 1=No clear need)
+    - **Market Size**: What is the total addressable market potential? (5=>$1B TAM; 1=<$1M TAM)
+    - **Competitive Advantage**: What strategic benefits vs competitors? (5=Dominant advantage; 1=No advantage)
+    
+    Assess from both investment and execution perspectives. Calculate total score and provide comprehensive evaluation.
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object with comprehensive evaluation of product_2:
+    {
+      "product_2": {
+        "product_2_full_json": {
+          "concept_source": "serial_entrepreneur",
+          "concept_title": "Original title from Entrepreneur",
+          "product_description": "Full product description",
+          "implementation": "Implementation details",
+          "differentiation": "Differentiation points"
+        },
+        "scores_2": {
+          "technical_validity": 5,
+          "innovativeness": 4,
+          "specificity": 3,
+          "need_validity": 4,
+          "market_size": 3,
+          "competitive_advantage": 4,
+          "total_score": 23
+        }
+      }
+    }
+  agent: product_evaluator_2
+  context:
+    - product_concept_entrepreneur_task
+
+product_evaluation_research_task:
+  description: >
+    Evaluate the product concept from the Research Commercialization Expert for patent {publication_number} using the standardized 6-criteria framework.
+    Score the product on a 1-5 scale for each criterion (5=Excellent, 4=Good, 3=Average, 2=Poor, 1=Unacceptable):
+    
+    Use search efficiently to determine the novelty of the product concept. Max 1 search tool calls! 
+    Use smart and simple queries to get the results, do not use complex queries.
+    Do not stack search queries with OR, neither AND. Use simple straight forward queries.
+    
+    Bad example search, avoid:
+    {'query': 'nanomaterials research OR perovskite solar cells OR drug delivery systems', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    Good example search, follow:
+    {'query': 'emerging applications for metal-organic frameworks', 'depth': 'standard', 'output_type': 'searchResults'}
+
+    Search query parameters, follow:
+    {'query': '{your query here}', 'depth': 'standard', 'output_type': 'searchResults'}
+    
+    **Evaluation Criteria:**
+    - **Technical Validity**: Can the material be synthesized and manufactured reliably? (5=Proven process, <2 years to scale; 1=Not feasible)
+    - **Innovativeness**: How novel is the material vs existing solutions? (5=Groundbreaking discovery; 1=Incremental improvement)
+    - **Specificity**: How clearly defined are the problem, users, and use cases? (5=Highly specific; 1=Too general)
+    - **Need Validity**: Does the target market have a genuine need for this material? (5=Critical need; 1=No clear need)
+    - **Market Size**: What is the total addressable market potential? (5=>$1B TAM; 1=<$1M TAM)
+    - **Competitive Advantage**: What strategic benefits vs competitors? (5=Dominant advantage; 1=No advantage)
+    
+    Assess from both investment and execution perspectives. Calculate total score and provide comprehensive evaluation.
+    **The output should be in JSON format.**
+  expected_output: >
+    A JSON object with comprehensive evaluation of product_3:
+    {
+      "product_3": {
+        "product_3_full_json": {
+          "concept_source": "research_commercialization_expert",
+          "concept_title": "Original title from Research Expert",
+          "product_description": "Full product. description",
+          "implementation": "Implementation details",
+          "differentiation": "Differentiation points"
+        },
+        "scores_3": {
+          "technical_validity": 3,
+          "innovativeness": 5,
+          "specificity": 4,
+          "need_validity": 3,
+          "market_size": 4,
+          "competitive_advantage": 5,
+          "total_score": 24
+        }
+      }
+    }
+  agent: product_evaluator_3
+  context:
+    - product_concept_research_task
+
+final_product_selection_task:
+  description: >
+    Compare the 3 evaluated products for patent {publication_number}, select the winner with highest total score,
+    and transform into exact JSON format matching the existing system requirements. Ensure:
+    1. Select product with highest total score 
+    2. If ties, select the one of the product with highest score in order: technical_validity, market_size, competitive_advantage
+    3. Make sure the product description is clear, any technical acronyms are expanded for the first mention of the acronym.
+    4. Output ONLY pure JSON - NO markdown delimiters like ```json or ```, NO explanatory text, NO formatting
+  expected_output: >
+    A JSON object with EXACT structure matching:
+    {
+      "publication_number": "{publication_number}",
+      "title": "60-100 character product title",
+      "product_description": "200-300 character description with target users, needs, and benefits", 
+      "implementation": "200-300 character manufacturing or application approach",
+      "differentiation": "200-300 character unique competitive advantages"
+    }
+
+    The output MUST be PURE JSON starting with { and ending with }. 
+    Do NOT include:
+    - Markdown delimiters (```json, ```)
+    - Any explanatory text before or after the JSON
+    - Any formatting or comments
+    - Only raw JSON object
+    
+    Example of output:
+    {
+      "publication_number": "US-5644727-A",
+      "title": "Amazon One-Click: Instant Purchase System for E-commerce",
+      "product_description": "Amazon One-Click enables online shoppers to complete purchases with a single mouse click, eliminating the need to re-enter payment and shipping information. It serves busy consumers and mobile users who want frictionless checkout experiences, significantly reducing cart abandonment and increasing conversion rates for e-commerce platforms.",
+      "implementation": "The system uses the patented single-action ordering method to securely store customer payment methods, shipping addresses, and preferences. When users click the One-Click button, the system automatically processes the order using pre-stored information, handles payment authorization, and initiates fulfillment without requiring additional user input or navigation through checkout pages.",
+      "differentiation": "Unlike traditional multi-step checkout processes that require users to navigate through cart, billing, and shipping pages, One-Click ordering completes purchases instantly with minimal user effort. This dramatically reduces purchase friction, decreases abandonment rates, and creates a competitive advantage through superior user experience, particularly on mobile devices where lengthy checkout flows are especially cumbersome."
+    } 
+  agent: output_summarizer
+  context:
+    - product_evaluation_pm_task
+    - product_evaluation_entrepreneur_task
+    - product_evaluation_research_task
+  output_file: "output/mc/{batch_idx}/{publication_number}_output.json" 

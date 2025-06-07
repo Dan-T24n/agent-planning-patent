@@ -1,7 +1,0 @@
-{
-  "publication_number": "US-2022139372-A1",
-  "title": "NLP-Boost: Automated Multi-Lingual Corpus Generation for Enhanced Natural Language Understanding",
-  "product_description": "NLP-Boost leverages advanced machine translation and cognitive enrichment (artificial intelligence-based validation) to generate diverse, high-quality natural language corpora. Targeting AI developers, enterprises, and research institutions, it boosts training data accuracy while minimizing manual annotation and reducing costs.",
-  "implementation": "The product employs a patented round-trip translation process where a base utterance and intent profile are sequentially translated across multiple languages and then normalized using cognitive ranking. A cloud-integrated API ensures seamless incorporation into existing natural language processing pipelines.",
-  "differentiation": "Distinguished by its complete automation, NLP-Boost eliminates laborious data preparation. Its innovative translation and cognitive ranking system delivers semantically enriched, scalable corpora with minimal expert intervention, offering a significant competitive edge in efficient AI model training."
-}

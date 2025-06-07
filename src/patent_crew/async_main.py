@@ -18,7 +18,7 @@ load_dotenv()
 from patent_crew.crew import PatentAnalysisCrew # Import the original crew class
 
 # --- Global Configuration ---
-DEFAULT_CATEGORY = "nlp"  # Choose category to process: {nlp, material_chemistry, computer_science}
+DEFAULT_CATEGORY = "computer_science"  # Choose category to process: {nlp, material_chemistry, computer_science}
 KNOWLEDGE_ROOT_DIR = "knowledge" # This is used as the base for making json_file_path relative
 OUTPUT_DIR = "output"
 MAX_BATCHES_TO_PROCESS = 2 # Set to 1 to process only first batch of 10 patents

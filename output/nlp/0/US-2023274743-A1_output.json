@@ -1,7 +1,0 @@
-{
-  "publication_number": "US-2023274743-A1",
-  "title": "Converso: Adaptive Multi-Turn Conversational Robotics Platform",
-  "product_description": "Converso delivers advanced multi-turn Natural Language Processing (NLP) with multimodal sensor integration to enable natural, context-aware interactions. Designed for enterprise customer support, healthcare, education, and social robotics, it meets demands for real-time emotional intelligence and precise dialogue management that enhance user engagement and operational efficiency.",
-  "implementation": "The platform integrates cloud-based Natural Language Processing with audio-visual sensor modules to capture and analyze user inputs. A layered dialogue manager applies prohibited content filtering and sentiment analysis, ensuring robust Internet of Things (IoT) integration, scalable deployment, and secure real-time communication across industries.",
-  "differentiation": "Unlike standard conversational agents, Converso preserves detailed dialogue context and dynamically adapts to user emotions. Its real-time multilingual support, advanced content filtering, and scalable cloud infrastructure provide superior accuracy and deeper personalization, setting it apart from legacy solutions in competitive markets."
-}

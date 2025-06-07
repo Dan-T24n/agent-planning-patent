@@ -59,7 +59,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).parent.resolve()
 
 # Change one category at a time {nlp, computer_science, material_chemistry}
-CATEGORY = "nlp"  # reload the crew config to get specialized agents
+CATEGORY = "computer_science"  # reload the crew config to get specialized agents
 
 # All paths are now absolute and relative to project root
 INPUT_FILE_PATH = PROJECT_ROOT / f"data/{CATEGORY}/{CATEGORY}.jsonl"

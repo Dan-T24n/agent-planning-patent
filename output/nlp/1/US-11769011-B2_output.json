@@ -1,7 +1,0 @@
-{
-  "publication_number": "US-11769011-B2",
-  "title": "LinguaFlex AI: Universal Unsupervised Language Embedding for Cross-lingual Applications",
-  "product_description": "LinguaFlex AI empowers global enterprises, startups, and research labs to implement unsupervised language models that generate context-aware, bias-free sentence embeddings. Designed for scalable multilingual natural language processing for chatbots, translation, and data analytics, it offers improved accuracy by eliminating the need for expensive labeled datasets.",
-  "implementation": "The system employs Conditional Masked Language Modeling (CMLM) by encoding adjacent language segments to produce contextual embeddings and then predicting masked tokens in a two-stage process. A lean, cloud-based microservice architecture ensures scalable deployment and reduced operational costs.",
-  "differentiation": "LinguaFlex AI stands apart by integrating advanced bias reduction through techniques like Principal Component Removal (PCR) to achieve superior cross-lingual accuracy. Its unsupervised approach avoids the costs of labeled data, enabling rapid, cost-effective deployment that delivers a strong competitive advantage."
-}
