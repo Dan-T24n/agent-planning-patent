@@ -211,7 +211,6 @@ product_evaluation_pm_task:
     
     Use search efficiently to determine the novelty of the product concept. Max 1 search tool calls! 
     Use smart and simple queries to get the results, do not use complex queries.
-    Do not stack search queries with OR, neither AND. Use simple straight forward queries.
 
     Bad example search, avoid:
     {'query': 'graphene applications OR carbon nanotubes uses OR polymer composites market', 'depth': 'standard', 'output_type': 'searchResults'}
@@ -265,7 +264,6 @@ product_evaluation_entrepreneur_task:
     
     Use search efficiently to determine the novelty of the product concept. Max 1 search tool calls! 
     Use smart and simple queries to get the results, do not use complex queries.
-    Do not stack search queries with OR, neither AND. Use simple straight forward queries.
 
     Bad example search, avoid:
     {'query': 'lightweight material OR strong composite OR heat resistant coating', 'depth': 'standard', 'output_type': 'searchResults'}
@@ -319,7 +317,6 @@ product_evaluation_research_task:
     
     Use search efficiently to determine the novelty of the product concept. Max 1 search tool calls! 
     Use smart and simple queries to get the results, do not use complex queries.
-    Do not stack search queries with OR, neither AND. Use simple straight forward queries.
     
     Bad example search, avoid:
     {'query': 'nanomaterials research OR perovskite solar cells OR drug delivery systems', 'depth': 'standard', 'output_type': 'searchResults'}
@@ -373,7 +370,8 @@ final_product_selection_task:
     1. Select product with highest total score 
     2. If ties, select the one of the product with highest score in order: technical_validity, market_size, competitive_advantage
     3. Make sure the product description is clear, any technical acronyms are expanded for the first mention of the acronym.
-    4. Output ONLY pure JSON - NO markdown delimiters like ```json or ```, NO explanatory text, NO formatting
+    4. Rewrite the winner product concept if it's long and complex: respect the maximum length of 200-300 characters for each field.
+    5. Output ONLY pure JSON - NO markdown delimiters like ```json or ```, NO explanatory text, NO formatting
   expected_output: >
     A JSON object with EXACT structure matching:
     {

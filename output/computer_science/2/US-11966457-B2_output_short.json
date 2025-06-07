@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11966457-B2",
+  "title": "TroopAuth: Digital Identity Verification for Military Affiliation",
+  "product_description": "TroopAuth is a real-time digital identity system that verifies military affiliation by consolidating trusted data into a secure platform. It serves government, banks, retail, and fintech by reducing fraud and accelerating onboarding while ensuring cybersecurity compliance.",
+  "implementation": "TroopAuth aggregates diverse identity data from verified sources through an API-powered widget on websites and mobile apps. It uses real-time matching and adaptive algorithms that adjust security based on risk for swift, secure credential issuance.",
+  "differentiation": "TroopAuth transforms traditional military verification into a digital, real-time process. With adaptive algorithms, API integration, and centralized data, it offers enhanced security, lowers fraud risk, and modernizes legacy compliance systems."
+}

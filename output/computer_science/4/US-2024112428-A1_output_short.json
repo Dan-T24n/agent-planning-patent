@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024112428-A1",
+  "title": "Enhanced MobileXR Stabilizer: Real-Time XR Anchoring for Vehicles",
+  "product_description": "Enhanced MobileXR Stabilizer offers robust XR content stabilization for vehicles by isolating head motion from acceleration. Targeting OEMs, transit operators, and mobile enterprises, it delivers secure, immersive, and productive XR experiences on the move.",
+  "implementation": "The system pairs wearable XR devices with in-vehicle sensors to capture dual acceleration data. Advanced convolution algorithms and machine learning isolate head movement from vehicle dynamics, while cloud-assisted adaptive processing ensures real-time adjustments.",
+  "differentiation": "Unlike typical XR systems prone to jitter, Enhanced MobileXR Stabilizer employs dual sensor fusion and predictive machine learning to separate head motion from vehicle acceleration. This method provides unmatched stability, deeper immersion, and a competitive edge."
+}

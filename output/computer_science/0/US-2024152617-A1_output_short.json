@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024152617-A1",
+  "title": "ConvoGuard: Lean AI Cybersecurity for Malicious String Detection",
+  "product_description": "ConvoGuard is an agile cybersecurity solution using deep neural networks to analyze texts like URLs, file paths, and logs. It supports SOC teams, vendors, and enterprises with fast threat detection, low false positives, and reduced manual oversight.",
+  "implementation": "The system converts input strings into character vectors and uses convolution matrices for feature extraction. A lightweight deep neural network performs real-time classification. Its cloud-native build enables rapid prototyping and seamless integration.",
+  "differentiation": "Featuring an innovative single-model design, ConvoGuard automates feature extraction to minimize false alarms. Its lean AI approach allows fast integration and cost efficiency, offering an edge over traditional multi-step threat detection methods."
+}

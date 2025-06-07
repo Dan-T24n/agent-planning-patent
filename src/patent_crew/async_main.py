@@ -20,8 +20,8 @@ from patent_crew.crew import PatentAnalysisCrew # Import the original crew class
 DEFAULT_CATEGORY = "material_chemistry"  # Choose category to process: {nlp, material_chemistry, computer_science}
 KNOWLEDGE_ROOT_DIR = "knowledge" # This is used as the base for making json_file_path relative
 OUTPUT_DIR = "output"
-MAX_BATCHES_TO_PROCESS = 5 # Set to 1 to process only first batch of 10 patents
-BATCH_SIZE = 10  # Number of patents to process in each batch
+MAX_BATCHES_TO_PROCESS = 10 # Set to 1 to process only first batch of 10 patents
+BATCH_SIZE = 5  # Number of patents to process in each batch
 START_BATCH_IDX = 0 # Set to a specific batch index to start from (e.g., 3)
 # ---------------------------
 

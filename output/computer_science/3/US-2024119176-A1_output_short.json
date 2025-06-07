@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024119176-A1",
+  "title": "SecureHealthChain: Agile Privacy & Federated Analytics for Clinical Data",
+  "product_description": "SecureHealthChain is a privacy-preserving analytics platform for hospitals, labs, and research centers. It complies with HIPAA and GDPR, providing secure, compliant, and actionable insights to improve patient care while protecting sensitive data.",
+  "implementation": "The platform uses containerized secure enclaves to isolate sensitive computations. It integrates dynamic de-identification, iterative machine learning models, and API-driven federated pipelines to enable rapid, scalable, and compliant clinical data analytics.",
+  "differentiation": "SecureHealthChain uniquely blends agile machine learning with secure enclaves in a lean microservice architecture. Its simplified design reduces complexity, speeds deployment, and provides robust regulatory compliance with enhanced data privacy."
+}

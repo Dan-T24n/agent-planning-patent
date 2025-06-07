@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024037051-A1",
+  "title": "DynaLink: Adaptive Hot-Plug Signal Correction for High-Speed Systems",
+  "product_description": "DynaLink provides real-time signal correction in high-speed networks by auto-tuning parameters based on device ID. It targets data centers, telecom, automotive, and industrial sectors, ensuring plug-and-play setup with reduced downtime and enhanced performance.",
+  "implementation": "DynaLink uses a dual-channel approach by merging high-speed data paths with a dedicated sideband control. When a device connects, its ID is retrieved, matched in a nonvolatile lookup table, and parameters are updated in real time for seamless operation.",
+  "differentiation": "Unlike static systems, DynaLink employs adaptive algorithms that instantly update correction parameters via device diagnostics. This minimizes link training failures, reduces reconfiguration delays, and delivers robust plug-and-play performance."
+}

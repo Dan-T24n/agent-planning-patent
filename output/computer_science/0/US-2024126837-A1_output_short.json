@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024126837-A1",
+  "title": "PredictEdge: AI-Enabled Storage Maintenance via Telemetry",
+  "product_description": "PredictEdge uses real-time machine telemetry and LSTM models to forecast storage failures. It serves data centers, cloud providers, and IT managers by sending automated alerts to minimize downtime and lower repair costs.",
+  "implementation": "Built on a lightweight microservice architecture, PredictEdge collects streaming telemetry from storage systems and processes it with LSTM models. Containerized with modular APIs, it ensures rapid failure detection and continuous model feedback.",
+  "differentiation": "PredictEdge stands out with its agile design that delivers instant, automated alerts and continual prediction improvements. Its blend of deep learning and simple APIs offers fast ROI and enhanced efficiency over traditional reactive maintenance."
+}

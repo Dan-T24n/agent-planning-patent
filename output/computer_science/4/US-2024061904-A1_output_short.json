@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024061904-A1",
+  "title": "SecureRelate: Next-Gen Efficient Confidential Query Suite",
+  "product_description": "SecureRelate employs breakthrough secure relational algebra to eliminate dummy rows and streamline encrypted data processing. Tailored for finance, healthcare, cloud, and government sectors, it cuts computational overhead while upholding robust data privacy.",
+  "implementation": "SecureRelate uses a proprietary row extraction module with random permutation and flag reconstruction to isolate genuine data from encrypted tables. It integrates secure multi-party computation and Trusted Execution Environments (TEEs) in a distributed setup for efficient processing.",
+  "differentiation": "SecureRelate stands apart from legacy systems by using a novel row-reduction protocol that dramatically cuts processing time and cost. Its mix of advanced cryptography and a streamlined, modular architecture delivers superior real-time secure analytics."
+}

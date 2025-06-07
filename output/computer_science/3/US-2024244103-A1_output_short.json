@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024244103-A1",
+  "title": "StreamSync Resumer: Breakpoint Resume for Mobile Downloads",
+  "product_description": "StreamSync Resumer offers uninterrupted file downloads with seamless breakpoint resume between active and background modes. It targets mobile app developers, streaming services, and cloud teams, ensuring data integrity and reducing redundant transfers.",
+  "implementation": "Using a dual-interface download manager, files are split into indexed fragments stored in a key-value database. Precise start and end offsets are logged and sequential splicing algorithms accurately reconstruct files, managing mode transitions for continuous downloads.",
+  "differentiation": "StreamSync Resumer stands out with true breakpoint resume via smart file fragmentation and indexed splicing. Its adaptive design handles intermittent connectivity and variable conditions, eliminating duplicate transfers for superior download continuity."
+}

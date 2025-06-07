@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024256103-A1",
+  "title": "DynaView Customizer: Adaptive, Secure UI Personalization Platform",
+  "product_description": "DynaView Customizer is a self-service UI personalization tool for enterprises, network managers, and mobile admins. It provides real-time design updates, cuts developer dependency, and lowers operational costs to meet evolving digital needs.",
+  "implementation": "The platform uses a dynamic builder converting JSON configurations into responsive HTML components. Seamless real-time data integration with a modular backend and secure permissions enable efficient drag-and-drop updates across devices.",
+  "differentiation": "Unlike static systems, DynaView Customizer empowers users to update interfaces without developer help. Its mix of real-time data, robust permission controls, and modular design reduces development cycles and maintenance costs."
+}

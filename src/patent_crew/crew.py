@@ -2,7 +2,7 @@ import os
 from typing import List, Tuple, Any
 from crewai import Agent, Task, Crew, Process, LLM, TaskOutput
 from crewai.project import CrewBase, agent, crew, task
-from crewai_tools import LinkupSearchTool
+from crewai_tools import LinkupSearchTool, SerperDevTool
 
 # Import the patent analysis tools
 from patent_crew.tools.custom_tool import PatentJsonLoaderTool, PatentGeminiPdfLoaderTool
@@ -34,7 +34,8 @@ class PatentAnalysisCrew():
     
     llm_small= LLM(
         model="gemini/gemini-2.0-flash",
-        temperature=0.1
+        temperature=0.1,
+        timeout=180
     )
 
 # Rate limit exceeded
@@ -46,18 +47,21 @@ class PatentAnalysisCrew():
     llm_openai_mini = LLM(
         model="gpt-4o-mini",
         # model="openai/o3-mini",
-        temperature=0
+        temperature=0,
+        timeout=180
     )
     
     llm_openai_o3 = LLM(
         # model="gpt-4o-mini",
         model="openai/o3-mini",
-        temperature=0.2
+        temperature=0.2,
+        timeout=180
     )   
 
 
     # Instantiate tools
-    linkup_search_tool = LinkupSearchTool(api_key=os.getenv("LINKUP_API_KEY"))    
+    linkup_search_tool = LinkupSearchTool(api_key=os.getenv("LINKUP_API_KEY"))
+    serper_dev_tool = SerperDevTool(api_key=os.getenv("SERPER_API_KEY"))
     patent_json_loader_tool = PatentJsonLoaderTool()
     patent_gemini_pdf_loader_tool = PatentGeminiPdfLoaderTool()
 
@@ -142,7 +146,9 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['product_evaluator_1'],
             verbose=False,
-            llm=self.llm_openai_o3
+            tools=[self.linkup_search_tool],
+            llm=self.llm_openai_o3,
+            max_retries=3
         )
 
     @agent
@@ -150,7 +156,9 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['product_evaluator_2'],
             verbose=False,
-            llm=self.llm_openai_o3
+            tools=[self.linkup_search_tool],
+            llm=self.llm_openai_o3,
+            max_retries=3
         )
 
     @agent
@@ -158,7 +166,9 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['product_evaluator_3'],
             verbose=False,
-            llm=self.llm_openai_o3
+            tools=[self.linkup_search_tool],
+            llm=self.llm_openai_o3,
+            max_retries=3
         )
 
     @agent

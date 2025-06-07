@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024111858-A1",
+  "title": "BreachSim Guardian: Automated Continuous Security Compliance & Simulation",
+  "product_description": "BreachSim Guardian automates real-time security testing by simulating breaches to monitor network controls and ensure compliance. Ideal for enterprises, finance, healthcare, and government, it reduces risks with proactive threat detection and fast remediation.",
+  "implementation": "BreachSim Guardian uses a patented probe engine to inject simulated non-compliant data across networks and monitor controls. Through iterative feedback and adaptive machine learning, it adjusts breach scenarios and prioritizes vulnerabilities for prompt remediation.",
+  "differentiation": "Unlike periodic assessments, BreachSim Guardian continuously simulates real-world breaches. Its adaptive engine delivers on-demand security analytics and prioritized mitigation insights, offering a proactive, scientifically validated approach to network security and compliance."
+}

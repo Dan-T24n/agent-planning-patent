@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-12013751-B2",
+  "title": "SecurePUF KeyForge: Agile PUF-Based Key Generator for IoT & Security",
+  "product_description": "Using patent US-12013751-B2, our solution adopts a dual-phase enrollment/regeneration to derive keys from inherent hardware variations. It delivers built-in error correction and low hardware overhead for IoT, microcontroller, automotive, and defense sectors.",
+  "implementation": "Our system deploys a lean microservice architecture with lightweight firmware modules to access on-chip PUF circuits. XOR operations with helper data and standard error correction combine with cloud CI/CD tools for rapid, iterative prototyping.",
+  "differentiation": "It stands out with a low-power, agile PUF-based key generation that never exposes raw data. The streamlined design reduces system complexity and cost while meeting stringent security standards with superior noise-resilient error correction."
+}

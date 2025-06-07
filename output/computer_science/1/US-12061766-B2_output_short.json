@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-12061766-B2",
+  "title": "SmartID Capture: Seamless OCR Auto-Entry for MDM Systems",
+  "product_description": "SmartID Capture uses OCR to extract IMEI, serial, and MAC data from screenshots. It streamlines device registration for IT teams and MDM providers by reducing manual entry and minimizing errors.",
+  "implementation": "SmartID Capture employs OCR and image retrieval via a lightweight API. It integrates with MDM systems using cloud functions and containerized microservices, and features an intuitive GUI for quick, error-free onboarding.",
+  "differentiation": "SmartID Capture eliminates manual data entry by automating the extraction of device identifiers through OCR. Its agile, microservice-based architecture significantly cuts setup time and errors, giving enterprises and BYOD environments a clear edge."
+}

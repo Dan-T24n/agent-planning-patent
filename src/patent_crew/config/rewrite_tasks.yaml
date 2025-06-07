@@ -1,0 +1,24 @@
+rewrite_product_concept_task:
+  description: >
+    Take the product concept from the previous step and rewrite each field to be a maximum of 250-300 characters.
+    The rewritten product concept should be concise and clear, retaining the core logic and ideas.
+    Be very close to the original ideas and concepts, focus on rewriting words that are not necessary, or use shorter synonyms.
+
+    Here is the JSON to rewrite:
+    {json_file}
+
+  expected_output: >
+    A JSON object with the identical structure and ideas to the input. 
+    Each field should be rewritten to be a maximum of 250-300 characters.
+    The output MUST be PURE JSON starting with { and ending with }. 
+    
+    Example of output:
+    {
+      "publication_number": "US-5644727-A",
+      "title": "Amazon One-Click: Instant Purchase System for E-commerce",
+      "product_description": "Amazon One-Click enables online shoppers to complete purchases with a single mouse click, eliminating the need to re-enter payment and shipping information. It serves busy consumers and mobile users who want frictionless checkout experiences, significantly reducing cart abandonment and increasing conversion rates for e-commerce platforms.",
+      "implementation": "The system uses the patented single-action ordering method to securely store customer payment methods, shipping addresses, and preferences. When users click the One-Click button, the system automatically processes the order using pre-stored information, handles payment authorization, and initiates fulfillment without requiring additional user input or navigation through checkout pages.",
+      "differentiation": "Unlike traditional multi-step checkout processes that require users to navigate through cart, billing, and shipping pages, One-Click ordering completes purchases instantly with minimal user effort. This dramatically reduces purchase friction, decreases abandonment rates, and creates a competitive advantage through superior user experience, particularly on mobile devices where lengthy checkout flows are especially cumbersome."
+    } 
+
+  agent: product_concept_rewriter 

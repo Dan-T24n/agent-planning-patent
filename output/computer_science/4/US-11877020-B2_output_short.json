@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11877020-B2",
+  "title": "MetaScore Discover: Smart Media Search with Actor-Genre Precision",
+  "product_description": "MetaScore Discover transforms media search by using patented actor-genre scoring to accurately rank films. Engineered for streaming services, curators, and analysts, it enables tailored content discovery that boosts engagement and market success.",
+  "implementation": "Our system leverages a lean microservices architecture to process video streams and reviews. Open-source tools calculate actor-genre scores stored in a fast-access database. A lightweight REST API ensures near real-time results with scalable performance.",
+  "differentiation": "MetaScore Discover stands out with detailed actor-specific insights beyond traditional metadata. Its agile scoring method filters out noise to deliver hyper-relevant search results, providing a competitive edge in the dynamic digital media arena."
+}

@@ -1,12 +1,12 @@
 '''
 # Goal
 This utility script is used to compile individual patent-product json into a jsonl file.
-For a specific category, e.g. "nlp", we have results in output/nlp/{batch_idx}/{publication_number}_output.json.
+For a specific category, e.g. "nlp", we have results in output/nlp/{batch_idx}/{publication_number}_output_short.json.
 
 The goal is to compile all the individual patent-product json into a jsonl file for each category,
 the jsonl file should be at: output/{category}/{category}_output.jsonl.
 
-Each input json "output/nlp/{batch_idx}/{publication_number}_output.json" is a valid json/dictionary,
+Each input json "output/nlp/{batch_idx}/{publication_number}_output_short.json" is a valid json/dictionary,
 with the following structure:
 {
     "publication_number": "{publication_number}",
@@ -28,10 +28,10 @@ When compiling, we need to ensure that:
 │   └── nlp/                                  # Data specific to NLP patents.
 │       └── nlp_output.jsonl                  # Compiled jsonl file for NLP patent-products.
 │       └── 0/                                # Batch 0
-│           └── US-2020073983-A1_output.json  # Output for patent US-2020073983-A1
+│           └── US-2020073983-A1_output_short.json  # Output for patent US-2020073983-A1
 │           └── ...                           # Output for other patents
 │       └── 1/                                # Batch 1
-│           └── US-2020073983-A1_output.json  # Output for patent US-2020073983-A1
+│           └── US-2020073983-A1_output_short.json  # Output for patent US-2020073983-A1
 │           └── ...                           # Output for other patents
 
 
@@ -65,12 +65,13 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).parent.resolve()
 
 # Change one category at a time {nlp, computer_science, material_chemistry}
-CATEGORY = "nlp"  # reload the crew config to get specialized agents
+CATEGORY = "computer_science"  # reload the crew config to get specialized agents
 
 # All paths are now absolute and relative to project root
 INPUT_JSONL_FILE = PROJECT_ROOT / f"knowledge/{CATEGORY}/{CATEGORY}.jsonl"
-OUTPUT_JSONL_FILE = PROJECT_ROOT / f"output/{CATEGORY}/{CATEGORY}_output.jsonl"
+INPUT_JSONL_DIR = PROJECT_ROOT / f"output/{CATEGORY}"
 OUTPUT_DIR = PROJECT_ROOT / f"output/{CATEGORY}"
+OUTPUT_JSONL_FILE = OUTPUT_DIR / f"{CATEGORY}_output.jsonl"
 
 # --- End Configuration ---
 
@@ -107,6 +108,7 @@ def validate_entry(entry: dict) -> bool:
             return False
         
         field_len = len(entry[field])
+        print(f"  - Field '{field}': {field_len} characters.")
         if field_len > max_len:
             print(f"Validation failed for {entry.get('publication_number', 'Unknown')}: Field '{field}' is too long ({field_len} > {max_len})")
             return False
@@ -124,7 +126,7 @@ def main():
         print(f"Found {len(expected_pub_numbers)} expected patents in {INPUT_JSONL_FILE}.")
 
     # 2. Find all individual output JSON files
-    json_files = list(OUTPUT_DIR.glob("**/*_output.json"))
+    json_files = list(OUTPUT_DIR.glob("**/*_output_short.json"))
     print(f"Found {len(json_files)} individual JSON files to process in {OUTPUT_DIR}.")
 
     valid_entries = []
@@ -133,6 +135,7 @@ def main():
     # 3. Process and Validate each JSON file
     for file_path in json_files:
         try:
+            print(f"\n--- Processing file: {file_path.name} ---")
             with open(file_path, "r") as f:
                 data = json.load(f)
             
@@ -182,4 +185,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024095114-A1",
+  "title": "IntelliHeal: Proactive Mainframe Error Prevention & Resolution Platform",
+  "product_description": "IntelliHeal is a smart platform for banks, government agencies, and large enterprises to ensure continuous mainframe operations. It predicts job errors with rigorous pre-checks and metadata analysis, reducing downtime and operational risks.",
+  "implementation": "Using containerized microservices built in Python with REST APIs, the system integrates with legacy mainframes. It performs real-time metadata extraction and resource checks to trigger automated error-healing workflows for quick fault resolution.",
+  "differentiation": "Unlike reactive solutions that fix errors post-occurrence, IntelliHeal proactively predicts and resolves job failures. Its automated metadata analysis combined with dynamic corrective actions minimizes manual work and boosts system efficiency."
+}

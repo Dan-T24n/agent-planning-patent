@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11880929-B2",
+  "title": "VoxelVis: 3D Visualization with Adaptive Transparency",
+  "product_description": "VoxelVis offers advanced 3D views by auto-adjusting voxel opacity and color from sensor inputs. It serves medical, automotive, and industrial sectors, enhancing data clarity for swift diagnostics and informed decisions.",
+  "implementation": "VoxelVis computes each voxel's opacity using the absolute difference between its state and a target. With set color scales and optional spatial filters, it blends sensor data with context to render dynamic 3D visualizations.",
+  "differentiation": "VoxelVis stands out by providing real-time 3D views that derive voxel transparency from numerical differences. Integrating sensor data with contextual overlays, it ensures clearer visuals and rapid, high-precision diagnostics."
+}

@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-12064337-B2",
+  "title": "NeuroPulse: Ultra-low Power Sensor-Level Neural Data Compression for Brain Interfaces",
+  "product_description": "NeuroPulse compresses neural data at the sensor level, cutting power use and reducing bottlenecks in next-gen BCIs. Tailored for neuroprosthetic makers, research labs, and wearable tech developers, it supports rapid, high-fidelity spike detection.",
+  "implementation": "The system fuses a high-density sensor array with comparators, a global ramp DAC, and wired-OR readouts. A centralized decoder using Gray counting and a 3-tap FIR filter employs on-chip pulse-position modulation to compress key neural events while curbing redundancy.",
+  "differentiation": "NeuroPulse transforms raw neural signals into compressed, high-fidelity data in real time. Its event-driven, on-chip pulse-position modulation cuts energy use and load, offering collision-resistant decoding and robust performance compared to conventional methods."
+}

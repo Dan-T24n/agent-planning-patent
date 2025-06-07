@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024233781-A1",
+  "title": "EcoSync DynamicClock: Adaptive Clock Gating Controller for Low Power",
+  "product_description": "EcoSync DynamicClock is a power management solution leveraging dynamic firmware-based clock gating to boost semiconductor efficiency. It serves consumer electronics, IoT devices, automotive systems, and data centers by extending battery life, reducing heat, and cutting costs.",
+  "implementation": "The controller combines a polling module with a dynamic clock gating circuit, using firmware to monitor processor activity and disable clocks during idle times. On wakeup detection, it quickly restores full clock function, maintaining performance while saving energy.",
+  "differentiation": "Unlike fixed hardware methods, EcoSync DynamicClock uses adaptive firmware to deliver real-time energy optimization. Its asynchronous design minimizes recovery latency and maximizes efficiency, offering a clear advantage in semiconductor performance."
+}

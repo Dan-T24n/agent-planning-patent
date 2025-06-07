@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024191989-A1",
+  "title": "CrowdAltitude Precision: Advanced Indoor Altitude & Floor Mapping",
+  "product_description": "CrowdAltitude Precision uses crowd-sourced barometric data to deliver accurate indoor altitude and floor detection in multi-story buildings. It serves emergency responders, facility managers, and AR developers by boosting navigation and safety.",
+  "implementation": "The system uses a cloud grid algorithm to merge mobile sensor data, computing precise altitude and floor levels. It sends barometric, speed, and location signals to a central server that applies interpolation and the barometric formula for real-time localization.",
+  "differentiation": "CrowdAltitude Precision stands out with a crowd-sourced calibration method that corrects sensor errors by analyzing device speed, location, and barometric data together. This scientific approach outperforms single-device measurements for robust mapping."
+}

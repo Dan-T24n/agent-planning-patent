@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11977896-B2",
+  "title": "AccelSequence: Next-Gen High-Density Triggered Instruction Accelerator",
+  "product_description": "AccelSequence applies innovative TIA tech to lessen per-instruction checks by triggering entire instruction sequences with one condition. It offers reduced latency, increased compute density, and boosted energy efficiency for HPC, AI, data centers, and embedded systems.",
+  "implementation": "The accelerator employs a sequence-start framework that preissues batches of dependent instructions once a trigger condition is met. Integrated hardware counters and state monitoring streamline execution, cut redundant checks, and lower power use on modular platforms.",
+  "differentiation": "AccelSequence shifts sequential processing to an event-driven model that consolidates many instructions into one trigger. Its TIA methods, using predictive state monitoring and advanced counters, surpass traditional GPU, FPGA, and ASIC systems in performance and energy efficiency."
+}

@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024126713-A1",
+  "title": "ThrottlEdge: Dynamic Hardware I/O Throttling for Next-Gen Data Centers",
+  "product_description": "ThrottlEdge is a cutting-edge hardware I/O manager built to tackle congestion and latency in high-performance data centers and storage networks. Serving hyperscale clouds, enterprise SANs, and trading platforms, it maximizes per-device throughput and streamlines resource allocation.",
+  "implementation": "Based on patent US-2024126713-A1, ThrottlEdge uses a dedicated throttle module, register file, and pend list to dynamically manage I/O commands. It monitors queue depth and device load in real time, issuing or deferring commands without OS delays.",
+  "differentiation": "ThrottlEdge stands apart with its hardware-driven, per-device I/O throttling that software systems can\u2019t match. Its real-time queue management bypasses OS-induced delays, reducing latency and congestion while ensuring scalable, cost-effective performance."
+}

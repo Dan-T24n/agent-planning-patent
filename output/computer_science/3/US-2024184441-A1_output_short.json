@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024184441-A1",
+  "title": "AdaptiveFlow: Fluid Gesture Keyboard with Smart Punctuation & Deletion",
+  "product_description": "AdaptiveFlow transforms touch input by blending swipe gestures with adaptive deletion, converting function keys into dynamic punctuation displays. It supports tap, swipe, and press-and-hold for deletion, boosting typing accuracy and speeding up communication for mobile and enterprise users.",
+  "implementation": "Our solution features a dedicated Keyboard Input Analysis Module that fuses data from touch panels and motion sensors. With predictive text and real-time feedback, it adapts key functions on the fly. Modular components ensure smooth integration across mobile devices, wearables, and touch systems.",
+  "differentiation": "AdaptiveFlow cuts out punctuation mode-switching and uses gesture-based deletion. Its AI-driven recognition and context-aware key adaptation reduce errors and enhance productivity. This fluid interface offers faster, more comfortable typing than traditional touch keyboards."
+}

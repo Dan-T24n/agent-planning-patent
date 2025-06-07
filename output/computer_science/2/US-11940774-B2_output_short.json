@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11940774-B2",
+  "title": "MonoMimic: Vision-Driven Robotic Action Imitation for Versatile Automation",
+  "product_description": "MonoMimic uses advanced computer vision and dual neural networks to let robots mimic human and animal actions non-invasively. Ideal for industrial, service, healthcare, and R&D settings, it offers a cost-effective, adaptive marker-free automation solution.",
+  "implementation": "MonoMimic operates with a single monocular camera and two neural networks. The first extracts 2D key points, and the second converts them to 3D coordinates, delivering precise control even in variable lighting and complex backgrounds.",
+  "differentiation": "MonoMimic stands out by removing the need for extra cameras or markers. Its unique deep learning method converts 2D visual data into actionable 3D information, lowering setup complexity and cost while enhancing adaptability and scalability."
+}

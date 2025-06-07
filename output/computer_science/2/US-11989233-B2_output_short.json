@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-11989233-B2",
+  "title": "GraphMIPS Navigator: Advanced Graph-Based Maximum Inner Product Search Engine",
+  "product_description": "GraphMIPS Navigator leverages advanced graph indexing and a patented M\u00f6bius transformation for swift, accurate searches on high-dimensional data. Ideal for AI-driven e-commerce, ad tech, and analytics teams seeking low latency and precision.",
+  "implementation": "The solution applies the patented M\u00f6bius transformation to map inner product similarity into a metric space. It builds an approximate 2D Delaunay graph using methods like HNSW or SONG and utilizes a greedy search to efficiently pinpoint top candidates.",
+  "differentiation": "GraphMIPS Navigator stands out by converting a non-metric search problem into an efficient metric graph traversal. Its innovative M\u00f6bius transformation and optimized graph creation offer superior speed, accuracy, and lower computational overhead over traditional methods."
+}

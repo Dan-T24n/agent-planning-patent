@@ -1,0 +1,7 @@
+{
+  "publication_number": "US-2024004564-A1",
+  "title": "DynamicMem: Adaptive Storage Optimization for ECUs and IoT Devices",
+  "product_description": "DynamicMem is a cutting-edge memory management system for automotive ECUs, IoT devices, and embedded systems. It reallocates storage in real time based on usage patterns, reducing waste and boosting performance for OEMs, suppliers, and development teams.",
+  "implementation": "DynamicMem employs a multi-stage allocation algorithm that monitors free memory and identifies underused storage in active apps. It aggregates available space into a dynamic table and reallocates memory to high-demand areas by analyzing access and lifespan metrics.",
+  "differentiation": "Replacing static partitioning, DynamicMem leverages real-time reallocation based on both access frequency and remaining lifespan. This method enhances resource utilization, maintains performance under fluctuating loads, and offers a robust edge in safety-critical automotive and IoT solutions."
+}
