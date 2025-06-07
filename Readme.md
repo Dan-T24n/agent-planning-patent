@@ -41,12 +41,13 @@ We build a multi-agents workflow with CrewAI to read patent data and make potent
 Use CrewAI documentation for central concepts: Agents, Task, Crew, Knowledge, Tools
 
 Features:
-[x] multi-agent coordination
-[x] web search 
-[x] custom tool: json loading, PDF loading
-[x] vision capabilities: sends PDF to LLM for visual interpretation
-[x] validator
-[x] async kick off
+- [x] multi-agent coordination
+- [x] web search 
+- [x] custom tool: json loading, PDF loading
+- [x] vision capabilities: sends PDF to LLM for visual interpretation
+- [x] validator
+- [x] async kickoff
+- [x] batching for async
 
 # Enhanced Multi-Agent Framework
 

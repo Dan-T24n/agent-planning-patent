@@ -354,8 +354,8 @@ final_product_selection_task:
     Compare the 3 evaluated products for patent {publication_number}, select the winner with highest total score,
     and transform into exact JSON format matching the existing system requirements. Ensure:
     1. Select product with highest total score 
-    2. if ties, select the one of the product with highest score in order: technical_validity, market_size, competitive_advantage
-    3. Format selected product into exact existing JSON structure
+    2. If ties, select the one of the product with highest score in order: technical_validity, market_size, competitive_advantage
+    3. Make sure the product description is clear, any technical acronyms are expanded for the first mention of the acronym.
     4. Output ONLY pure JSON - NO markdown delimiters like ```json or ```, NO explanatory text, NO formatting
   expected_output: >
     A JSON object with EXACT structure matching:
@@ -387,4 +387,4 @@ final_product_selection_task:
     - product_evaluation_pm_task
     - product_evaluation_entrepreneur_task
     - product_evaluation_research_task
-  output_file: "output/nlp/{publication_number}_output.json" # Dynamic output file path using placeholder 
+  output_file: "output/nlp/{batch_idx}/{publication_number}_output.json"

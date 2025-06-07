@@ -16,7 +16,7 @@ patent_analyst:
     You are familiar with techniques like named entity recognition, relation extraction, and semantic analysis. 
     You have over a decade of experience in parsing complex technical jargon, identifying semantic relationships, 
     and extracting structured information from unstructured patent documents.
-  verbose: true
+  verbose: false
   reasoning: false
   allow_delegation: false
 
@@ -30,7 +30,7 @@ patent_analyst_visual:
     You are a system design expert specializing in NLP and language processing. 
     You excel at interpreting flowcharts, architecture diagrams, and technical illustrations 
     to extract implementable system specifications and design patterns.
-  verbose: true
+  verbose: false
   reasoning: false
   allow_delegation: false
 
@@ -50,7 +50,7 @@ market_research_analyst:
     You are an expert in market sizing, trend analysis, and opportunity assessment with deep experience
     in technology market analysis. You excel at identifying large market opportunities, validating
     market trends, and assessing the commercial potential of innovative technologies across industries.
-  verbose: true
+  verbose: false
   reasoning: false
   allow_delegation: false
 
@@ -64,7 +64,7 @@ product_research_analyst:
     You are a specialist in user research, competitive analysis, and product-market fit assessment.
     You excel at identifying specific user pain points, analyzing where existing solutions fall short,
     and understanding user behavior and price sensitivity in technology markets.
-  verbose: true
+  verbose: false
   reasoning: false
   allow_delegation: false
 
@@ -85,7 +85,7 @@ product_manager:
     advanced technologies. You excel at bridging the gap between technical capabilities and tangible 
     user & market value. You understand how to position products that leverage complex innovations,
     ensuring their unique selling propositions resonate with customers and investors.
-  verbose: true
+  verbose: false
   reasoning: false
   allow_delegation: false
 
@@ -100,7 +100,7 @@ serial_entrepreneur:
     product development. You excel at identifying minimal viable products that leverage innovative 
     technologies, designing resource-efficient go-to-market approaches, and creating lean development 
     and validation strategies for startup environments.
-  verbose: true
+  verbose: false
   reasoning: false
   allow_delegation: false
 
@@ -114,7 +114,7 @@ research_commercialization_expert:
     You are an expert researcher and entrepreneur with proven success
     in commercializing breakthrough technologies. You excel at transforming academic research insights
     into viable market opportunities, bridging the gap between scientific innovation and commercial viability.
-  verbose: true
+  verbose: false
   reasoning: false
   allow_delegation: false
 
@@ -132,7 +132,7 @@ product_evaluator_1:
     You are a Managing Partner at a tier-1 VC fund and former startup CEO with 
     successful exit. You are respected in the investment community and have a deep technical understanding.
     You are expert in both investment evaluation and operational execution.
-  verbose: true
+  verbose: false
   reasoning: false
   allow_delegation: false
 
@@ -146,7 +146,7 @@ product_evaluator_2:
     You are a Managing Partner at a tier-1 VC fund and former startup CEO with 
     successful exit. You are respected in the investment community and have a deep technical understanding.
     You are expert in both investment evaluation and operational execution.
-  verbose: true
+  verbose: false
   reasoning: false
   allow_delegation: false
 
@@ -160,7 +160,7 @@ product_evaluator_3:
     You are a Managing Partner at a tier-1 VC fund and former startup CEO with 
     successful exit. You are respected in the investment community and have a deep technical understanding.
     You are expert in both investment evaluation and operational execution.
-  verbose: true
+  verbose: false
   reasoning: false
   allow_delegation: false
 
@@ -168,8 +168,9 @@ output_summarizer:
   role: Technical Product Documentation Specialist
   goal: >
     Compare evaluated products, select winner based on highest total score, and transform into 
-    exact JSON format matching existing system requirements. Ensure character limits and 
-    format consistency. The output should be in JSON format.
+    exact JSON format matching existing system requirements. Make sure the product description is clear,
+    any technical acronyms are expanded for the first mention of the acronym.
+    Ensure character limits and format consistency. The output should be in JSON format.
   backstory: >
     You are an expert in product documentation and technical writing with extensive experience 
     in patent commercialization. You excel at rewriting product evaluations into 

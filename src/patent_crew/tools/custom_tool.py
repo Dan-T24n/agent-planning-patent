@@ -115,8 +115,7 @@ class PatentGeminiPdfLoaderTool(BaseTool):
 
             extracted_content = response.text # .text conveniently concatenates parts
 
-            print(f"[DEBUG custom_tool.py] PatentGeminiPdfLoaderTool successfully processed {full_path} via {model_name}. Content length: {len(extracted_content)}")
-            print(f"[DEBUG custom_tool.py] Content snippet: {extracted_content[:500]}...")
+            print(f"[DEBUG custom_tool.py] Content snippet: {extracted_content[:200]}...")
             return extracted_content
 
         except Exception as e:

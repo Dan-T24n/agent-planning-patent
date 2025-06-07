@@ -1,6 +1,6 @@
 import os
-from typing import List 
-from crewai import Agent, Task, Crew, Process, LLM
+from typing import List, Tuple, Any
+from crewai import Agent, Task, Crew, Process, LLM, TaskOutput
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import LinkupSearchTool
 
@@ -10,6 +10,16 @@ from patent_crew.tools.custom_tool import PatentJsonLoaderTool, PatentGeminiPdfL
 # Ensure the output directory exists
 output_dir = "output/nlp"
 os.makedirs(output_dir, exist_ok=True)
+
+# Guardrail Definition
+def ensure_output_exists(task_output: TaskOutput) -> Tuple[bool, Any]:
+    """
+    A simple guardrail to ensure the task's raw output is not empty.
+    """
+    if task_output.raw and task_output.raw.strip():
+        return True, task_output.raw
+    else:
+        return False, "The task did not produce any output."
 
 
 @CrewBase
@@ -52,8 +62,9 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['patent_analyst'],
             tools=[self.patent_json_loader_tool],
-            verbose=True,
-            llm=self.llm_small    
+            verbose=False,
+            llm=self.llm_small,
+            max_retries=3
         )
 
     @agent
@@ -61,8 +72,9 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['patent_analyst_visual'],
             tools=[self.patent_gemini_pdf_loader_tool],
-            verbose=True,
-            llm=self.llm_small 
+            verbose=False,
+            llm=self.llm_small,
+            max_retries=3
         )
 
     # ===============================
@@ -74,8 +86,9 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['market_research_analyst'],
             tools=[self.linkup_search_tool],
-            verbose=True,
-            llm=self.llm_large
+            verbose=False,
+            llm=self.llm_large,
+            max_retries=3
         )
 
     @agent
@@ -83,8 +96,9 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['product_research_analyst'],
             tools=[self.linkup_search_tool],
-            verbose=True,
-            llm=self.llm_large
+            verbose=False,
+            llm=self.llm_large,
+            max_retries=3
         )
 
     # ===============================
@@ -95,24 +109,27 @@ class PatentAnalysisCrew():
     def product_manager(self) -> Agent:
         return Agent(
             config=self.agents_config['product_manager'],
-            verbose=True,
-            llm=self.llm_large  
+            verbose=False,
+            llm=self.llm_large,
+            max_retries=3
         )
 
     @agent
     def serial_entrepreneur(self) -> Agent:
         return Agent(
             config=self.agents_config['serial_entrepreneur'],
-            verbose=True,
-            llm=self.llm_large
+            verbose=False,
+            llm=self.llm_large,
+            max_retries=3
         )
 
     @agent
     def research_commercialization_expert(self) -> Agent:
         return Agent(
             config=self.agents_config['research_commercialization_expert'],
-            verbose=True,
-            llm=self.llm_large  
+            verbose=False,
+            llm=self.llm_large,
+            max_retries=3
         )
 
     # ===============================
@@ -123,24 +140,27 @@ class PatentAnalysisCrew():
     def product_evaluator_1(self) -> Agent:
         return Agent(
             config=self.agents_config['product_evaluator_1'],
-            verbose=True,
-            llm=self.llm_large  
+            verbose=False,
+            llm=self.llm_large,
+            max_retries=3
         )
 
     @agent
     def product_evaluator_2(self) -> Agent:
         return Agent(
             config=self.agents_config['product_evaluator_2'],
-            verbose=True,
-            llm=self.llm_large  
+            verbose=False,
+            llm=self.llm_large,
+            max_retries=3
         )
 
     @agent
     def product_evaluator_3(self) -> Agent:
         return Agent(
             config=self.agents_config['product_evaluator_3'],
-            verbose=True,
-            llm=self.llm_large  
+            verbose=False,
+            llm=self.llm_large,
+            max_retries=3
         )
 
     @agent
@@ -148,7 +168,8 @@ class PatentAnalysisCrew():
         return Agent(
             config=self.agents_config['output_summarizer'],
             verbose=True,
-            llm=self.llm_openai
+            llm=self.llm_openai,
+            max_retries=3
         )
 
     # ===============================
@@ -159,14 +180,18 @@ class PatentAnalysisCrew():
     def document_analysis_task(self) -> Task:
         return Task(
             config=self.tasks_config['document_analysis_task'],
-            agent=self.patent_analyst()
+            agent=self.patent_analyst(),
+            guardrail=ensure_output_exists,
+            max_retries=3
         )
 
     @task
     def document_visual_analysis_task(self) -> Task:
         return Task(
             config=self.tasks_config['document_visual_analysis_task'],
-            agent=self.patent_analyst_visual()
+            agent=self.patent_analyst_visual(),
+            guardrail=ensure_output_exists,
+            max_retries=3
         )
 
     # ===============================
@@ -181,7 +206,9 @@ class PatentAnalysisCrew():
             context=[
                 self.document_analysis_task(),
                 self.document_visual_analysis_task()
-            ]
+            ],
+            guardrail=ensure_output_exists,
+            max_retries=3
         )
 
     @task
@@ -192,7 +219,9 @@ class PatentAnalysisCrew():
             context=[
                 self.document_analysis_task(),
                 self.document_visual_analysis_task()
-            ]
+            ],
+            guardrail=ensure_output_exists,
+            max_retries=3
         )
 
     # ===============================
@@ -210,7 +239,9 @@ class PatentAnalysisCrew():
                 self.user_pain_point_validation_task(),
                 self.document_analysis_task(),
                 self.document_visual_analysis_task()
-            ]
+            ],
+            guardrail=ensure_output_exists,
+            max_retries=3
         )
 
     @task
@@ -224,7 +255,9 @@ class PatentAnalysisCrew():
                 self.user_pain_point_validation_task(),
                 self.document_analysis_task(),
                 self.document_visual_analysis_task()
-            ]
+            ],
+            guardrail=ensure_output_exists,
+            max_retries=3
         )
 
     @task
@@ -238,7 +271,9 @@ class PatentAnalysisCrew():
                 self.user_pain_point_validation_task(),
                 self.document_analysis_task(),
                 self.document_visual_analysis_task()
-            ]
+            ],
+            guardrail=ensure_output_exists,
+            max_retries=3
         )
 
     # ===============================
@@ -250,7 +285,9 @@ class PatentAnalysisCrew():
         return Task(
             config=self.tasks_config['product_evaluation_pm_task'],
             agent=self.product_evaluator_1(),
-            context=[self.product_concept_pm_task()]
+            context=[self.product_concept_pm_task()],
+            guardrail=ensure_output_exists,
+            max_retries=3
         )
 
     @task
@@ -258,7 +295,9 @@ class PatentAnalysisCrew():
         return Task(
             config=self.tasks_config['product_evaluation_entrepreneur_task'],
             agent=self.product_evaluator_2(),
-            context=[self.product_concept_entrepreneur_task()]
+            context=[self.product_concept_entrepreneur_task()],
+            guardrail=ensure_output_exists,
+            max_retries=3
         )
 
     @task
@@ -266,7 +305,9 @@ class PatentAnalysisCrew():
         return Task(
             config=self.tasks_config['product_evaluation_research_task'],
             agent=self.product_evaluator_3(),
-            context=[self.product_concept_research_task()]
+            context=[self.product_concept_research_task()],
+            guardrail=ensure_output_exists,
+            max_retries=3
         )
 
     @task
@@ -278,7 +319,9 @@ class PatentAnalysisCrew():
                 self.product_evaluation_pm_task(),
                 self.product_evaluation_entrepreneur_task(),
                 self.product_evaluation_research_task()
-            ]
+            ],
+            guardrail=ensure_output_exists,
+            max_retries=3
         )
 
     @crew
